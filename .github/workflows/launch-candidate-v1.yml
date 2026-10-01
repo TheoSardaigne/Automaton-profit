@@ -7,6 +7,7 @@ on:
       - launch-candidate-v1
     paths:
       - scripts/apply-launch-candidate-v1.mjs
+      - scripts/apply-launch-idle-guard.mjs
       - scripts/check-launch-safety.mjs
       - .github/workflows/launch-candidate-v1.yml
 
@@ -53,6 +54,9 @@ jobs:
 
       - name: Apply Automaton-profit launch safeguards
         run: node scripts/apply-launch-candidate-v1.mjs
+
+      - name: Apply idle inference cost guard
+        run: node scripts/apply-launch-idle-guard.mjs
 
       - name: Fail-closed launch safety gate
         run: node scripts/check-launch-safety.mjs
