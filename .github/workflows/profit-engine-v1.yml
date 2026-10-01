@@ -1,3 +1,4 @@
+# retrigger after enabling Actions write permissions
 name: Profit Engine v1 validation
 
 on:
