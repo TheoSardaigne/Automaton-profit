@@ -6,9 +6,6 @@ on:
     branches:
       - launch-candidate-v1
     paths:
-      - scripts/apply-launch-candidate-v1.mjs
-      - scripts/apply-launch-idle-guard.mjs
-      - scripts/check-launch-safety.mjs
       - .github/workflows/launch-candidate-v1.yml
 
 permissions:
@@ -33,6 +30,15 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Repair launch codemod syntax deterministically
+        run: node scripts/fix-launch-candidate-codemod.mjs
+
+      - name: Preflight codemod syntax
+        run: |
+          node --check scripts/apply-launch-candidate-v1.mjs
+          node --check scripts/apply-launch-idle-guard.mjs
+          node --check scripts/check-launch-safety.mjs
 
       - name: Import community hardening PR 417
         run: |
@@ -140,7 +146,7 @@ jobs:
 
       - name: Commit validated candidate changes
         run: |
-          git add package.json src
+          git add package.json src scripts/apply-launch-candidate-v1.mjs
           if git diff --cached --quiet; then
             echo "No candidate source changes to commit."
           else
