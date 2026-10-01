@@ -468,6 +468,11 @@ export class Orchestrator {
       return { ...state, phase: "idle" };
     }
 
+    const goal = getGoalById(this.params.db, state.goalId);
+    if (!goal) {
+      return { ...state, phase: "idle", goalId: null };
+    }
+
     const planKey = `orchestrator.plan.${state.goalId}`;
     const planRow = this.params.db
       .prepare("SELECT value FROM kv WHERE key = ?")
@@ -480,6 +485,38 @@ export class Orchestrator {
     const planData = safeJsonParse(planRow.value);
     if (!planData) {
       return { ...state, phase: "executing" };
+    }
+
+    const estimatedTotalCostCents =
+      typeof planData.estimatedTotalCostCents === "number" &&
+      Number.isFinite(planData.estimatedTotalCostCents)
+        ? Math.max(0, Math.floor(planData.estimatedTotalCostCents))
+        : 0;
+
+    // Profit-safety: revenue goals must project at least 2x revenue/cost.
+    // A rejected goal is paused rather than sent through an unbounded review loop.
+    const MIN_PROJECTED_ROI = 2;
+    if (
+      goal.expectedRevenueCents > 0 &&
+      estimatedTotalCostCents > 0 &&
+      goal.expectedRevenueCents / estimatedTotalCostCents < MIN_PROJECTED_ROI
+    ) {
+      const projectedRoi = goal.expectedRevenueCents / estimatedTotalCostCents;
+      const feedback =
+        `Projected ROI ${projectedRoi.toFixed(2)}x is below required ${MIN_PROJECTED_ROI.toFixed(2)}x ` +
+        `(expected revenue ${goal.expectedRevenueCents}c, plan cost ${estimatedTotalCostCents}c).`;
+
+      this.params.db.prepare(
+        "INSERT OR REPLACE INTO kv (key, value, updated_at) VALUES (?, ?, datetime('now'))",
+      ).run(`orchestrator.review_feedback.${state.goalId}`, feedback);
+      updateGoalStatus(this.params.db, state.goalId, "paused");
+      logger.warn("Goal paused by projected ROI guard", {
+        goalId: state.goalId,
+        expectedRevenueCents: goal.expectedRevenueCents,
+        estimatedTotalCostCents,
+        projectedRoi,
+      });
+      return { ...DEFAULT_STATE };
     }
 
     try {
@@ -498,7 +535,10 @@ export class Orchestrator {
         "INSERT OR REPLACE INTO kv (key, value, updated_at) VALUES (?, ?, datetime('now'))",
       ).run(`orchestrator.review_feedback.${state.goalId}`, result.feedback ?? "Plan rejected");
 
-      return { ...state, phase: "planning" };
+      // Do not spend more inference repeatedly regenerating a plan that violated
+      // the automatic budget. Pause it for explicit review or a cheaper redesign.
+      updateGoalStatus(this.params.db, state.goalId, "paused");
+      return { ...DEFAULT_STATE };
     } catch (error) {
       const err = normalizeError(error);
       if (err.message === "awaiting human approval") {

@@ -68,6 +68,19 @@ export interface AutomatonConfig {
   parentAddress?: string;
   socialRelayUrl?: string;
   treasuryPolicy?: TreasuryPolicy;
+  /**
+   * Allow the runtime to automatically spend wallet USDC on Conway compute.
+   * Profit experiments default to false so low compute cannot silently drain treasury.
+   */
+  autoTopupEnabled?: boolean;
+  /**
+   * Master switch for any USDC -> Conway compute purchase. Default false.
+   * This blocks startup bootstrap purchases and the topup_credits tool until
+   * the operator explicitly opts in after a controlled health check.
+   */
+  allowPaidComputeTopup?: boolean;
+  /** Maximum autonomous/manual Conway compute topup allowed in one purchase. */
+  maxPaidComputeTopupUsd?: number;
   // Phase 2 config additions
   soulConfig?: SoulConfig;
   modelStrategy?: ModelStrategyConfig;
@@ -90,6 +103,9 @@ export const DEFAULT_CONFIG: Partial<AutomatonConfig> = {
   maxTurnsPerCycle: 25,
   childSandboxMemoryMb: 1024,
   socialRelayUrl: "https://social.conway.tech",
+  autoTopupEnabled: false,
+  allowPaidComputeTopup: false,
+  maxPaidComputeTopupUsd: 5,
 };
 
 // ─── Agent State ─────────────────────────────────────────────────

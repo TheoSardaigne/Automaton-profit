@@ -83,6 +83,13 @@ describe("orchestration/task-graph", () => {
       expect(stored?.description).toBe("With details");
     });
 
+    it("persists conservative expected revenue", () => {
+      const goal = createGoal(db, "Sell service", "Deliver paid work", "profit-first", 1250);
+      const stored = getGoalById(db, goal.id);
+      expect(stored?.expectedRevenueCents).toBe(1250);
+      expect(goal.expectedRevenueCents).toBe(1250);
+    });
+
     it.each([
       ["", "desc", "Goal title cannot be empty"],
       ["   ", "desc", "Goal title cannot be empty"],

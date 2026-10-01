@@ -368,10 +368,10 @@ describe("orchestration/plan-mode", () => {
       expect(result).toEqual({ approved: true });
     });
 
-    it("auto mode approves above threshold with feedback", async () => {
+    it("auto mode rejects above threshold with feedback", async () => {
       const result = await reviewPlan(makePlan({ estimatedTotalCostCents: 9000 }), autoConfig);
-      expect(result.approved).toBe(true);
-      expect(result.feedback).toContain("Auto-approved above threshold");
+      expect(result.approved).toBe(false);
+      expect(result.feedback).toContain("exceeds auto budget threshold");
     });
 
     it("supervised mode throws awaiting approval", async () => {
@@ -399,7 +399,7 @@ describe("orchestration/plan-mode", () => {
         reviewTimeoutMs: Number.NaN,
       });
 
-      expect(result.approved).toBe(true);
+      expect(result.approved).toBe(false);
       expect(result.feedback).toContain("5000");
     });
   });

@@ -291,6 +291,10 @@ export function createBuiltinTools(sandboxId: string): AutomatonTool[] {
         required: ["amount_usd"],
       },
       execute: async (args, ctx) => {
+        if (ctx.config.allowPaidComputeTopup !== true) {
+          return "Blocked: paid Conway compute topups are disabled by configuration. This is a launch-safety guard; enable allowPaidComputeTopup only after a controlled service health check.";
+        }
+
         // Solana guard: x402 topup is EVM-only
         const chainType = ctx.config.chainType || ctx.identity.chainType || "evm";
         if (chainType === "solana") {
@@ -300,9 +304,15 @@ export function createBuiltinTools(sandboxId: string): AutomatonTool[] {
         const { topupCredits, TOPUP_TIERS } =
           await import("../conway/topup.js");
         const amountUsd = args.amount_usd as number;
+        const configuredMaxTopup = Number.isFinite(ctx.config.maxPaidComputeTopupUsd)
+          ? Math.max(0, Number(ctx.config.maxPaidComputeTopupUsd))
+          : 5;
 
         if (!TOPUP_TIERS.includes(amountUsd)) {
           return `Invalid tier. Valid amounts (USD): ${TOPUP_TIERS.join(", ")}`;
+        }
+        if (amountUsd > configuredMaxTopup) {
+          return `Blocked: requested ${amountUsd} compute topup exceeds configured per-purchase cap of ${configuredMaxTopup}.`;
         }
 
         // Check USDC balance first (EVM-only path after Solana guard above)
@@ -2822,8 +2832,14 @@ Model: ${ctx.inference.getDefaultModel()}
             description:
               "Optional strategic guidance for the planner (e.g., 'prioritize speed over cost')",
           },
+          expected_revenue_cents: {
+            type: "number",
+            description:
+              "Conservative expected external revenue in cents if the goal succeeds. " +
+              "Use 0 only for maintenance/non-revenue goals.",
+          },
         },
-        required: ["title", "description"],
+        required: ["title", "description", "expected_revenue_cents"],
       },
       execute: async (args, ctx) => {
         const { createGoal } = await import("../orchestration/task-graph.js");
@@ -2833,9 +2849,17 @@ Model: ${ctx.inference.getDefaultModel()}
         const description = (args.description as string).trim();
         const strategy =
           typeof args.strategy === "string" ? args.strategy.trim() : undefined;
+        const expectedRevenueCents = Number(args.expected_revenue_cents);
 
         if (!title) return "Error: goal title cannot be empty.";
         if (!description) return "Error: goal description cannot be empty.";
+        if (
+          !Number.isFinite(expectedRevenueCents) ||
+          expectedRevenueCents < 0 ||
+          !Number.isInteger(expectedRevenueCents)
+        ) {
+          return "Error: expected_revenue_cents must be a non-negative integer.";
+        }
 
         // Dedup: reject if a similar active goal already exists
         const activeGoals = getActiveGoals(ctx.db.raw);
@@ -2868,9 +2892,15 @@ Model: ${ctx.inference.getDefaultModel()}
           );
         }
 
-        const goal = createGoal(ctx.db.raw, title, description, strategy);
+        const goal = createGoal(
+          ctx.db.raw,
+          title,
+          description,
+          strategy,
+          expectedRevenueCents,
+        );
         return (
-          `Goal created: "${goal.title}" (id: ${goal.id}, status: ${goal.status})\n` +
+          `Goal created: "${goal.title}" (id: ${goal.id}, status: ${goal.status}, expected revenue: ${goal.expectedRevenueCents} cents)\n` +
           `The orchestrator will pick this up on the next tick and begin planning.\n` +
           `Monitor progress via the todo.md block in your context.`
         );

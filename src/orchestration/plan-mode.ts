@@ -248,8 +248,10 @@ export async function reviewPlan(
     case "auto": {
       if (plan.estimatedTotalCostCents > normalized.autoBudgetThreshold) {
         return {
-          approved: true,
-          feedback: `Auto-approved above threshold (${plan.estimatedTotalCostCents} > ${normalized.autoBudgetThreshold}).`,
+          approved: false,
+          feedback:
+            `Plan cost ${plan.estimatedTotalCostCents} cents exceeds auto budget threshold ` +
+            `${normalized.autoBudgetThreshold} cents.`,
         };
       }
       return { approved: true };

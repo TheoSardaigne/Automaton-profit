@@ -336,8 +336,10 @@ async function run(): Promise<void> {
     logger.warn(`[${new Date().toISOString()}] State repo init failed: ${err.message}`);
   }
 
-  // Bootstrap topup: buy minimum credits ($5) from USDC so the agent can start.
-  // The agent decides larger topups itself via the topup_credits tool.
+  // Bootstrap topup is opt-in. Community reports document real USDC debits
+  // without corresponding credits and duplicate topups during low-credit loops.
+  // Never move wallet funds at startup unless the operator explicitly enables it.
+  if (config.autoTopupEnabled === true && config.allowPaidComputeTopup === true) {
   try {
     let bootstrapTimer: ReturnType<typeof setTimeout>;
     const bootstrapTimeout = new Promise<null>((_, reject) => {
@@ -366,6 +368,11 @@ async function run(): Promise<void> {
     }
   } catch (err: any) {
     logger.warn(`[${new Date().toISOString()}] Bootstrap topup skipped: ${err.message}`);
+  }
+  } else {
+    logger.info(
+      `[${new Date().toISOString()}] Paid Conway compute topups disabled by configuration.`,
+    );
   }
 
   // Start heartbeat daemon (Phase 1.1: DurableScheduler)

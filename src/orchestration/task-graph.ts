@@ -88,6 +88,7 @@ export function createGoal(
   title: string,
   description: string,
   strategy?: string,
+  expectedRevenueCents = 0,
 ): Goal {
   const normalizedTitle = title.trim();
   const normalizedDescription = description.trim();
@@ -100,10 +101,16 @@ export function createGoal(
     throw new Error("Goal description cannot be empty");
   }
 
+  if (!Number.isFinite(expectedRevenueCents) || expectedRevenueCents < 0) {
+    throw new Error("Expected revenue must be a non-negative number of cents");
+  }
+  const normalizedExpectedRevenueCents = Math.floor(expectedRevenueCents);
+
   const id = insertGoal(db, {
     title: normalizedTitle,
     description: normalizedDescription,
     strategy: strategy ?? null,
+    expectedRevenueCents: normalizedExpectedRevenueCents,
   });
 
   const row = getGoalById(db, id);

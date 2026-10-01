@@ -156,6 +156,11 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
       timestamp: new Date().toISOString(),
     }));
 
+    // Profit-safety: never convert treasury USDC into compute unless explicitly enabled.
+    if (taskCtx.config.autoTopupEnabled !== true) {
+      return { shouldWake: false };
+    }
+
     const MIN_TOPUP_USD = 5;
     if (balance >= MIN_TOPUP_USD && (ctx.survivalTier === "critical" || ctx.survivalTier === "dead")) {
       // Cooldown: don't attempt more than once every 5 minutes to avoid
@@ -512,15 +517,26 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
 
     try {
       const transactions = taskCtx.db.getRecentTransactions(5000);
-      let revenueCents = 0;
+      let inflowCents = 0;
       let expenseCents = 0;
+      let computeTopupCents = 0;
 
       for (const tx of transactions) {
         const amount = Math.max(0, Math.floor(tx.amountCents ?? 0));
         if (amount === 0) continue;
 
-        if (tx.type === "transfer_in" || tx.type === "credit_purchase") {
-          revenueCents += amount;
+        // transfer_in is cash/credit inflow, but not necessarily earned revenue:
+        // it can also be creator funding or recalled child funds.
+        if (tx.type === "transfer_in") {
+          inflowCents += amount;
+          continue;
+        }
+
+        // A credit purchase spends wallet USDC on compute. It is an expense,
+        // never revenue.
+        if (tx.type === "credit_purchase") {
+          computeTopupCents += amount;
+          expenseCents += amount;
           continue;
         }
 
@@ -548,9 +564,14 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
 
       const report = {
         timestamp: new Date().toISOString(),
-        revenueCents,
+        // Do not label generic incoming transfers as earned revenue.
+        inflowCents,
         expenseCents,
-        netCents: revenueCents - expenseCents,
+        computeTopupCents,
+        netCashflowCents: inflowCents - expenseCents,
+        // Backward-compatible fields. "revenueCents" now excludes credit purchases.
+        revenueCents: inflowCents,
+        netCents: inflowCents - expenseCents,
         fundedToChildrenCents: childFunding.total,
         taskExecutionCostCents: taskCosts.total,
         activeAgents: taskCtx.db.getChildren().filter(
