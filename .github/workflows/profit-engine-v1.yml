@@ -7,6 +7,7 @@ on:
       - profit-engine-v1
     paths:
       - scripts/apply-profit-engine-v1.mjs
+      - scripts/apply-profit-engine-safety-v1.mjs
       - .github/workflows/profit-engine-v1.yml
 
 permissions:
@@ -44,6 +45,9 @@ jobs:
 
       - name: Apply profit-engine-v1 source edits
         run: node scripts/apply-profit-engine-v1.mjs
+
+      - name: Apply paid-topup launch safety edits
+        run: node scripts/apply-profit-engine-safety-v1.mjs
 
       - name: Run tests
         timeout-minutes: 10
