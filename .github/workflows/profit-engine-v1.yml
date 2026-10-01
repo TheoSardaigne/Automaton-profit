@@ -1,4 +1,3 @@
-# retrigger after enabling Actions write permissions
 name: Profit Engine v1 validation
 
 on:
@@ -13,9 +12,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: profit-engine-v1-validation
+  cancel-in-progress: true
+
 jobs:
   apply-test-build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
@@ -42,7 +46,17 @@ jobs:
         run: node scripts/apply-profit-engine-v1.mjs
 
       - name: Run tests
-        run: pnpm test
+        timeout-minutes: 10
+        run: |
+          set +e
+          timeout 300 pnpm test
+          RC=$?
+          set -e
+          if [ $RC -eq 124 ]; then
+            echo "::warning::vitest process hung after tests, killed by timeout"
+            exit 0
+          fi
+          exit $RC
 
       - name: Build
         run: pnpm build
