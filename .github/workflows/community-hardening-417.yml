@@ -1,0 +1,71 @@
+name: Validate community hardening PR 417
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - community-hardening-417
+    paths:
+      - .github/workflows/community-hardening-417.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: community-hardening-417
+  cancel-in-progress: true
+
+jobs:
+  import-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout validation branch
+        uses: actions/checkout@v4
+        with:
+          ref: community-hardening-417
+          fetch-depth: 0
+
+      - name: Import exact validated PR 417 head
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add community https://github.com/kaydot20/automaton.git
+          git fetch community ecae43a14482ad4ddcd51358344cd0298fbfa195
+          git cherry-pick d8f816881fd24b6f5e3d616e59edec387a447667..ecae43a14482ad4ddcd51358344cd0298fbfa195
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Core tests
+        timeout-minutes: 12
+        run: pnpm test
+
+      - name: Security tests
+        timeout-minutes: 10
+        run: pnpm run test:security
+
+      - name: Financial tests
+        timeout-minutes: 10
+        run: pnpm run test:financial
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated community hardening
+        run: git push origin HEAD:community-hardening-417
