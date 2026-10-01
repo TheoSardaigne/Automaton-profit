@@ -1,0 +1,86 @@
+name: Build launch foundation v1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - launch-foundation-v1
+    paths:
+      - .github/workflows/launch-foundation-v1.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: launch-foundation-v1
+  cancel-in-progress: true
+
+jobs:
+  compose-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout launch foundation
+        uses: actions/checkout@v4
+        with:
+          ref: launch-foundation-v1
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Import validated community hardening PR 417
+        run: |
+          git remote add hardening https://github.com/kaydot20/automaton.git
+          git fetch hardening ecae43a14482ad4ddcd51358344cd0298fbfa195
+          git cherry-pick d8f816881fd24b6f5e3d616e59edec387a447667..ecae43a14482ad4ddcd51358344cd0298fbfa195
+
+      - name: Import secret-protection PR 413
+        run: |
+          git remote add secretsfix https://github.com/Matthew-Selvam/automaton.git
+          git fetch secretsfix c96b842d728afc29749084dbed82d4c317df822b
+          git cherry-pick c96b842d728afc29749084dbed82d4c317df822b
+
+      - name: Import colony spend-accounting PR 388
+        run: |
+          git remote add spendfix https://github.com/Nicowirz/automaton.git
+          git fetch spendfix b5a6119a1f2e6ba428fa9372550b065cf9fa946f
+          git cherry-pick d8f816881fd24b6f5e3d616e59edec387a447667..b5a6119a1f2e6ba428fa9372550b065cf9fa946f
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Core tests
+        timeout-minutes: 12
+        run: pnpm test
+
+      - name: Security tests
+        timeout-minutes: 10
+        run: pnpm run test:security
+
+      - name: Financial tests
+        timeout-minutes: 10
+        run: pnpm run test:financial
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated foundation
+        run: git push origin HEAD:launch-foundation-v1
