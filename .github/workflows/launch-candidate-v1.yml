@@ -38,6 +38,7 @@ jobs:
         run: |
           node --check scripts/apply-launch-candidate-v1.mjs
           node --check scripts/apply-launch-idle-guard.mjs
+          node --check scripts/apply-wallet-reconciliation.mjs
           node --check scripts/check-launch-safety.mjs
 
       - name: Import community hardening PR 417
@@ -63,6 +64,9 @@ jobs:
 
       - name: Apply idle inference cost guard
         run: node scripts/apply-launch-idle-guard.mjs
+
+      - name: Apply wallet reconciliation guard
+        run: node scripts/apply-wallet-reconciliation.mjs
 
       - name: Fail-closed launch safety gate
         run: node scripts/check-launch-safety.mjs
