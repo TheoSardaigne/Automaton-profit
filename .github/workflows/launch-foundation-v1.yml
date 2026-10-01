@@ -80,31 +80,26 @@ jobs:
           fi
           exit $RC
 
-      - name: Security tests
-        timeout-minutes: 6
-        run: |
-          set +e
-          timeout 180 pnpm run test:security
-          RC=$?
-          set -e
-          if [ $RC -eq 124 ]; then
-            echo "::warning::security vitest process hung after tests; killed by timeout"
-            exit 0
-          fi
-          exit $RC
+      - name: Focused security tests
+        timeout-minutes: 8
+        run: pnpm run test:security:ci
 
-      - name: Financial tests
+      - name: Focused financial tests
         timeout-minutes: 6
-        run: |
-          set +e
-          timeout 180 pnpm run test:financial
-          RC=$?
-          set -e
-          if [ $RC -eq 124 ]; then
-            echo "::warning::financial vitest process hung after tests; killed by timeout"
-            exit 0
-          fi
-          exit $RC
+        run: >-
+          pnpm exec vitest run
+          src/__tests__/financial.test.ts
+          src/__tests__/spend-tracker.test.ts
+          src/__tests__/reserve.test.ts
+          src/__tests__/reserve-x402.test.ts
+          src/__tests__/authority-rules.test.ts
+          src/__tests__/funding.test.ts
+
+      - name: Source hygiene gate
+        run: pnpm run check:source-hygiene
+
+      - name: Dependency audit gate
+        run: pnpm run check:audit
 
       - name: Build
         run: pnpm build
