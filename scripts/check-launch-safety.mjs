@@ -26,6 +26,8 @@ mustContain("src/agent/loop.ts", "config.profitLaunchMode === true ? 2 : 10", "l
 mustContain("src/heartbeat/tasks.ts", 'tx.type === "earned_revenue"', "strict revenue accounting");
 mustContain("src/heartbeat/tasks.ts", "operatingProfitCents", "operating profit metric");
 mustContain("src/heartbeat/tasks.ts", "netCashflowCents", "net cashflow metric");
+mustContain("src/heartbeat/tasks.ts", "walletUsdcBalanceCents", "wallet truth metric");
+mustContain("src/heartbeat/tasks.ts", "reconciliationGapCents", "wallet-vs-ledger reconciliation");
 mustContain("src/orchestration/orchestrator.ts", "MIN_PROJECTED_ROI = 2", "2x projected ROI gate");
 mustContain("src/orchestration/orchestrator.ts", 'task.assignedTo?.startsWith("local://")', "local worker loop fix");
 mustContain("src/registry/erc8004.ts", "const MAX_BLOCK_RANGE = 2_000n", "Base public RPC range bound");
@@ -46,5 +48,6 @@ console.log("- dangerous/spend tools centrally blocked");
 console.log("- local-only workers in launch mode");
 console.log("- idle inference cycles bounded and event-wakeable");
 console.log("- revenue and owner funding separated");
+console.log("- wallet balance reconciled against internal ledger");
 console.log("- ROI and inference budget guards present");
 console.log("- Base RPC discovery bounded");
