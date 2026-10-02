@@ -65,6 +65,7 @@ import {
   MIGRATION_V10,
   MIGRATION_V11,
   MIGRATION_V12_EXPIRY_TIMESTAMP_STATEMENTS,
+  MIGRATION_V13_REVENUE,
 } from "./schema.js";
 import type {
   RiskLevel,
@@ -670,6 +671,10 @@ function applyMigrations(db: DatabaseType): void {
           }
         }
       },
+    },
+    {
+      version: 13,
+      apply: () => db.exec(MIGRATION_V13_REVENUE),
     },
   ];
 

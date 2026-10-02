@@ -2865,6 +2865,133 @@ Model: ${ctx.inference.getDefaultModel()}
       },
     },
 
+    // === Verified Revenue Tools ===
+    {
+      name: "create_revenue_receivable",
+      description:
+        "Register an expected external Base USDC payment BEFORE the customer pays. " +
+        "This is only an invoice/receivable and does not count as revenue until a later on-chain transaction is verified.",
+      category: "financial",
+      riskLevel: "caution",
+      parameters: {
+        type: "object",
+        properties: {
+          payer_address: { type: "string", description: "Customer EVM address expected to pay" },
+          amount_cents: { type: "number", description: "Exact USDC amount in USD cents" },
+          purpose: { type: "string", description: "What product/service this payment is for (max 500 chars)" },
+          goal_id: { type: "string", description: "Optional goal ID to attribute revenue to" },
+          expires_in_hours: { type: "number", description: "Invoice validity, 1-720 hours (default 168)" },
+        },
+        required: ["payer_address", "amount_cents", "purpose"],
+      },
+      execute: async (args, ctx) => {
+        if ((ctx.config.chainType || ctx.identity.chainType || "evm") !== "evm") {
+          return "Revenue verification v1 is Base EVM only.";
+        }
+        const payer = String(args.payer_address || "");
+        const amountCents = Number(args.amount_cents);
+        const purpose = String(args.purpose || "");
+        const goalId = typeof args.goal_id === "string" && args.goal_id.trim() ? args.goal_id.trim() : null;
+        const expiresInHours = args.expires_in_hours === undefined ? 168 : Number(args.expires_in_hours);
+        const { isValidAddress, normalizeAddress } = await import("../identity/chain.js");
+        if (!isValidAddress(payer, "evm")) return "Invalid payer EVM address.";
+        if (!Number.isSafeInteger(amountCents) || amountCents <= 0) return "amount_cents must be a positive integer.";
+        if (!purpose.trim() || purpose.trim().length > 500) return "purpose must contain 1-500 characters.";
+        if (!Number.isFinite(expiresInHours) || expiresInHours < 1 || expiresInHours > 720) return "expires_in_hours must be between 1 and 720.";
+        const normalizedPayer = normalizeAddress(payer, "evm");
+        const internal = [
+          ctx.identity.address,
+          ctx.identity.creatorAddress,
+          ctx.config.creatorAddress,
+          ctx.config.parentAddress,
+          ...ctx.db.getChildren().map((child) => child.address),
+        ].filter((value): value is string => typeof value === "string" && isValidAddress(value, "evm"))
+          .map((value) => normalizeAddress(value, "evm"));
+        if (internal.includes(normalizedPayer)) {
+          return "Blocked: creator, parent, self, and child-wallet funding cannot be registered as earned-revenue receivables.";
+        }
+        const { createBaseRevenueChainReader } = await import("../revenue/verifier.js");
+        const reader = createBaseRevenueChainReader(ctx.config.rpcUrl);
+        let createdBlockNumber: bigint;
+        try {
+          createdBlockNumber = await reader.getCurrentBlockNumber();
+        } catch (error) {
+          return `Failed closed: could not anchor receivable creation to Base block height: ${error instanceof Error ? error.message : String(error)}`;
+        }
+        const { createRevenueReceivable } = await import("../revenue/store.js");
+        try {
+          const receivable = createRevenueReceivable(ctx.db.raw, {
+            payerAddress: normalizedPayer,
+            expectedAmountCents: amountCents,
+            purpose,
+            goalId,
+            createdBlockNumber,
+            expiresInHours,
+          });
+          return `Receivable created: ${receivable.id}. Expected exact payment: ${(amountCents / 100).toFixed(2)} USDC on Base from ${normalizedPayer}. Creation block: ${receivable.createdBlockNumber}. This is NOT revenue until verify_revenue_payment succeeds.`;
+        } catch (error) {
+          return `Receivable creation failed: ${error instanceof Error ? error.message : String(error)}`;
+        }
+      },
+    },
+    {
+      name: "verify_revenue_payment",
+      description:
+        "Verify a Base USDC customer payment by transaction hash against a receivable that existed before the payment. " +
+        "Requires exact payer, exact amount, at least two confirmations, and excludes known internal funding addresses.",
+      category: "financial",
+      riskLevel: "caution",
+      parameters: {
+        type: "object",
+        properties: {
+          receivable_id: { type: "string", description: "Receivable ID returned by create_revenue_receivable" },
+          tx_hash: { type: "string", description: "Base transaction hash containing the customer USDC transfer" },
+        },
+        required: ["receivable_id", "tx_hash"],
+      },
+      execute: async (args, ctx) => {
+        if ((ctx.config.chainType || ctx.identity.chainType || "evm") !== "evm") {
+          return "Revenue verification v1 is Base EVM only.";
+        }
+        const receivableId = String(args.receivable_id || "");
+        const txHash = String(args.tx_hash || "");
+        if (!receivableId) return "receivable_id is required.";
+        if (!/^0x[0-9a-fA-F]{64}$/.test(txHash)) return "Invalid Base transaction hash.";
+        const { getRevenueReceivable, getRevenueReceivableByTxHash, recordVerifiedRevenue } = await import("../revenue/store.js");
+        const receivable = getRevenueReceivable(ctx.db.raw, receivableId);
+        if (!receivable) return "Receivable not found.";
+        if (getRevenueReceivableByTxHash(ctx.db.raw, txHash)) return "Blocked: this transaction hash was already attributed.";
+        const { isValidAddress, normalizeAddress } = await import("../identity/chain.js");
+        const excluded = [
+          ctx.identity.address,
+          ctx.identity.creatorAddress,
+          ctx.config.creatorAddress,
+          ctx.config.parentAddress,
+          ...ctx.db.getChildren().map((child) => child.address),
+        ].filter((value): value is string => typeof value === "string" && isValidAddress(value, "evm"))
+          .map((value) => normalizeAddress(value, "evm"));
+        const { createBaseRevenueChainReader, verifyBaseUsdcRevenuePayment } = await import("../revenue/verifier.js");
+        const verification = await verifyBaseUsdcRevenuePayment({
+          reader: createBaseRevenueChainReader(ctx.config.rpcUrl),
+          receivable,
+          walletAddress: ctx.identity.address,
+          excludedPayerAddresses: excluded,
+          txHash,
+        });
+        if (!verification.verified) return `Payment not verified: ${verification.reason}`;
+        try {
+          const recorded = recordVerifiedRevenue(ctx.db.raw, {
+            receivableId,
+            txHash: verification.txHash,
+            amountCents: verification.amountCents,
+          });
+          return `VERIFIED EARNED REVENUE: ${(verification.amountCents / 100).toFixed(2)} USDC | receivable=${recorded.id} | tx=${verification.txHash} | block=${verification.blockNumber}.`;
+        } catch (error) {
+          return `Revenue recording failed closed: ${error instanceof Error ? error.message : String(error)}`;
+        }
+      },
+    },
+
     // === Orchestration Tools ===
     {
       name: "create_goal",

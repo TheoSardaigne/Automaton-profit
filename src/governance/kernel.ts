@@ -37,6 +37,10 @@ export const KERNEL_FILES: readonly string[] = Object.freeze([
   // Governance / constitution
   "constitution.md",
   "src/governance/kernel.ts",
+  "src/revenue/verifier.ts",
+  "src/revenue/store.ts",
+  "src/state/database.ts",
+  "src/state/schema.ts",
   "src/conway/reserve.ts",
   "src/conway/topup.ts",
   "src/orchestration/local-worker.ts",

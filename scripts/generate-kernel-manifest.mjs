@@ -19,6 +19,10 @@ const MANIFEST_PATH = resolve(ROOT, "kernel-manifest.json");
 const KERNEL_FILES = [
   "constitution.md",
   "src/governance/kernel.ts",
+  "src/revenue/verifier.ts",
+  "src/revenue/store.ts",
+  "src/state/database.ts",
+  "src/state/schema.ts",
   "src/conway/reserve.ts",
   "src/conway/topup.ts",
   "src/orchestration/local-worker.ts",

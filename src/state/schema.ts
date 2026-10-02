@@ -5,7 +5,7 @@
  * The database IS the automaton's memory.
  */
 
-export const SCHEMA_VERSION = 12;
+export const SCHEMA_VERSION = 13;
 
 export const CREATE_TABLES = `
   -- Schema version tracking
@@ -730,4 +730,30 @@ export const MIGRATION_V10 = `
 
   CREATE INDEX idx_knowledge_category ON knowledge_store(category);
   CREATE INDEX idx_knowledge_key ON knowledge_store(key);
+`;
+
+
+// === Profit Engine v3: Verified Revenue Receivables ===
+
+export const MIGRATION_V13_REVENUE = `
+  CREATE TABLE IF NOT EXISTS revenue_receivables (
+    id TEXT PRIMARY KEY,
+    chain TEXT NOT NULL DEFAULT 'eip155:8453' CHECK(chain = 'eip155:8453'),
+    payer_address TEXT NOT NULL,
+    expected_amount_cents INTEGER NOT NULL CHECK(expected_amount_cents > 0),
+    purpose TEXT NOT NULL,
+    goal_id TEXT,
+    status TEXT NOT NULL DEFAULT 'open' CHECK(status IN ('open','verified','cancelled','expired')),
+    created_block_number INTEGER NOT NULL CHECK(created_block_number >= 0),
+    created_at TEXT NOT NULL,
+    expires_at TEXT NOT NULL,
+    verified_tx_hash TEXT UNIQUE,
+    verified_amount_cents INTEGER,
+    verified_at TEXT
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_revenue_receivables_status
+    ON revenue_receivables(status, expires_at);
+  CREATE INDEX IF NOT EXISTS idx_revenue_receivables_payer
+    ON revenue_receivables(payer_address, status);
 `;
