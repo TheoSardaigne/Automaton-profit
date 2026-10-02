@@ -1,4 +1,5 @@
 name: Protected kernel merge v2
+# retry after installing the kernel-manifest gate in the primary CI
 
 on:
   workflow_dispatch:
@@ -57,9 +58,6 @@ jobs:
             git add package.json
             git cherry-pick --continue
           fi
-          # The upstream commit also edits CI. GitHub Actions cannot push workflow
-          # changes with this token, and our CI is already separately hardened.
-          # Restore our exact CI file before the final squashed commit.
           git checkout "$BASE_SHA" -- .github/workflows/ci.yml
       - name: Adapt protected kernel contract to this fork
         run: |
