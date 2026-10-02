@@ -69,6 +69,12 @@ export interface AutomatonConfig {
   socialRelayUrl?: string;
   treasuryPolicy?: TreasuryPolicy;
   /**
+   * Safe launch-candidate mode. While true, irreversible/spend-producing
+   * external actions are denied and compute is capped. The launch candidate
+   * refuses autonomous startup when this is not explicitly true.
+   */
+  profitLaunchMode?: boolean;
+  /**
    * Allow the runtime to automatically spend wallet USDC on Conway compute.
    * Profit experiments default to false so low compute cannot silently drain treasury.
    */
@@ -103,6 +109,7 @@ export const DEFAULT_CONFIG: Partial<AutomatonConfig> = {
   maxTurnsPerCycle: 25,
   childSandboxMemoryMb: 1024,
   socialRelayUrl: "https://social.conway.tech",
+  profitLaunchMode: true,
   autoTopupEnabled: false,
   allowPaidComputeTopup: false,
   maxPaidComputeTopupUsd: 5,
@@ -266,6 +273,7 @@ export type TransactionType =
   | "credit_purchase"
   | "inference"
   | "tool_use"
+  | "earned_revenue"
   | "transfer_in"
   | "transfer_out"
   | "funding_request";

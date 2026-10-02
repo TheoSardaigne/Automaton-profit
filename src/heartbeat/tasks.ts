@@ -574,13 +574,14 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
     }
   },
 
-  colony_financial_report: async (_ctx: TickContext, taskCtx: HeartbeatLegacyContext) => {
+  colony_financial_report: async (ctx: TickContext, taskCtx: HeartbeatLegacyContext) => {
     if (!shouldRunAtInterval(taskCtx, "colony_financial_report", COLONY_TASK_INTERVALS_MS.colony_financial_report)) {
       return { shouldWake: false };
     }
 
     try {
       const transactions = taskCtx.db.getRecentTransactions(5000);
+      let earnedRevenueCents = 0;
       let inflowCents = 0;
       let expenseCents = 0;
       let computeTopupCents = 0;
@@ -589,8 +590,14 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
         const amount = Math.max(0, Math.floor(tx.amountCents ?? 0));
         if (amount === 0) continue;
 
-        // transfer_in is cash/credit inflow, but not necessarily earned revenue:
-        // it can also be creator funding or recalled child funds.
+        // Only a trusted attribution path may write earned_revenue. There is
+        // intentionally no model-facing tool that can self-declare this type.
+        if (tx.type === "earned_revenue") {
+          earnedRevenueCents += amount;
+          continue;
+        }
+
+        // transfer_in is funding/inflow, not earned revenue.
         if (tx.type === "transfer_in") {
           inflowCents += amount;
           continue;
@@ -626,16 +633,32 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
         )
         .get() as { total: number };
 
+      const operatingProfitCents = earnedRevenueCents - expenseCents;
+      const netCashflowCents = earnedRevenueCents + inflowCents - expenseCents;
+      const walletUsdcBalanceCents = Math.round(ctx.usdcBalance * 100);
+      const baselineKey = "profit_launch.wallet_usdc_baseline_cents";
+      const storedBaseline = Number(taskCtx.db.getKV(baselineKey));
+      const walletUsdcBaselineCents = Number.isFinite(storedBaseline)
+        ? storedBaseline
+        : walletUsdcBalanceCents;
+      if (!Number.isFinite(storedBaseline)) {
+        taskCtx.db.setKV(baselineKey, String(walletUsdcBaselineCents));
+      }
+
       const report = {
         timestamp: new Date().toISOString(),
-        // Do not label generic incoming transfers as earned revenue.
+        earnedRevenueCents,
         inflowCents,
         expenseCents,
         computeTopupCents,
-        netCashflowCents: inflowCents - expenseCents,
-        // Backward-compatible fields. "revenueCents" now excludes credit purchases.
-        revenueCents: inflowCents,
-        netCents: inflowCents - expenseCents,
+        operatingProfitCents,
+        netCashflowCents,
+        walletUsdcBalanceCents,
+        walletUsdcBaselineCents,
+        walletUsdcDeltaCents: walletUsdcBalanceCents - walletUsdcBaselineCents,
+        // Backward-compatible fields now use strict economic definitions.
+        revenueCents: earnedRevenueCents,
+        netCents: operatingProfitCents,
         fundedToChildrenCents: childFunding.total,
         taskExecutionCostCents: taskCosts.total,
         activeAgents: taskCtx.db.getChildren().filter(

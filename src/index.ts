@@ -35,6 +35,7 @@ import { createLogger, setGlobalLogLevel, StructuredLogger } from "./observabili
 import { prettySink } from "./observability/pretty-sink.js";
 import { bootstrapTopup } from "./conway/topup.js";
 import { randomUUID } from "crypto";
+import { assertLaunchCandidateConfig, applyLaunchTreasuryLock } from "./launch/safety.js";
 import { keccak256, toHex } from "viem";
 import {
   defaultManifestPath,
@@ -225,6 +226,9 @@ async function run(): Promise<void> {
     config = await runSetupWizard();
   }
 
+  // Launch-candidate safety is checked before wallet, network, or database work.
+  assertLaunchCandidateConfig(config);
+
   // Load wallet (chain-aware)
   const { account, chainIdentity, chainType: walletChainType } = await getWallet();
   const resolvedChainType = config.chainType || walletChainType || "evm";
@@ -355,7 +359,10 @@ async function run(): Promise<void> {
   }
 
   // Initialize PolicyEngine + SpendTracker (Phase 1.4)
-  const treasuryPolicy = config.treasuryPolicy ?? DEFAULT_TREASURY_POLICY;
+  const configuredTreasuryPolicy = config.treasuryPolicy ?? DEFAULT_TREASURY_POLICY;
+  const treasuryPolicy = config.profitLaunchMode === true
+    ? applyLaunchTreasuryLock(configuredTreasuryPolicy)
+    : configuredTreasuryPolicy;
   const rules = createDefaultRules(treasuryPolicy);
   const policyEngine = new PolicyEngine(db.raw, rules);
   const spendTracker = new SpendTracker(db.raw);

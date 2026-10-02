@@ -65,6 +65,7 @@ import { createWorkerInferenceBridge } from "./worker-inference-bridge.js";
 import { ProviderRegistry } from "../inference/provider-registry.js";
 import { UnifiedInferenceClient } from "../inference/inference-client.js";
 import { isIdleOnlyTool } from "./idle-only-tools.js";
+import { applyLaunchInferenceCaps, capLaunchCycleTurns } from "../launch/safety.js";
 
 const logger = createLogger("loop");
 const MAX_TOOL_CALLS_PER_TURN = 10;
@@ -109,10 +110,13 @@ export async function runAgentLoop(
   };
 
   // Initialize inference router (Phase 2.3)
-  const modelStrategyConfig: ModelStrategyConfig = {
+  const configuredModelStrategy: ModelStrategyConfig = {
     ...DEFAULT_MODEL_STRATEGY_CONFIG,
     ...(config.modelStrategy ?? {}),
   };
+  const modelStrategyConfig = config.profitLaunchMode === true
+    ? applyLaunchInferenceCaps(configuredModelStrategy)
+    : configuredModelStrategy;
   const modelRegistry = new ModelRegistry(db.raw);
   modelRegistry.initialize();
 
@@ -221,6 +225,11 @@ export async function runAgentLoop(
         config: {
           ...config,
           spawnAgent: async (task: any) => {
+            // Launch candidate never provisions a paid remote sandbox.
+            if (config.profitLaunchMode === true) {
+              return initializedWorkerPool.spawn(task);
+            }
+
             // Try Conway sandbox spawn first (production)
             try {
               const { generateGenesisConfig } = await import("../replication/genesis.js");
@@ -386,7 +395,9 @@ export async function runAgentLoop(
   const MAX_IDLE_TURNS = 10; // Force sleep after N turns with no real work
   let idleTurnCount = 0;
 
-  const maxCycleTurns = config.maxTurnsPerCycle ?? 25;
+  const maxCycleTurns = config.profitLaunchMode === true
+    ? capLaunchCycleTurns(config.maxTurnsPerCycle)
+    : (config.maxTurnsPerCycle ?? 25);
   let cycleTurnCount = 0;
 
   let pendingInput: { content: string; source: string } | undefined = {

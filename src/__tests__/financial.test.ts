@@ -506,12 +506,15 @@ describe("Financial Policy Rules", () => {
   });
 
   describe("Rules are registered", () => {
-    it("creates 9 financial rules (7 Phase 0 + 2 Phase 1)", () => {
-      expect(rules.length).toBe(9);
+    it("creates 10 financial rules including the profit-launch lock", () => {
+      expect(rules.length).toBe(10);
+      expect(rules.some((rule) => rule.id === "financial.profit_launch_lock")).toBe(true);
     });
 
-    it("all rules have priority 500", () => {
-      for (const rule of rules) {
+    it("launch lock outranks normal financial rules but not kernel integrity", () => {
+      const launch = rules.find((rule) => rule.id === "financial.profit_launch_lock");
+      expect(launch?.priority).toBe(75);
+      for (const rule of rules.filter((entry) => entry.id !== "financial.profit_launch_lock")) {
         expect(rule.priority).toBe(500);
       }
     });

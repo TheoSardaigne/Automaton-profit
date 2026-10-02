@@ -11,6 +11,7 @@ import type {
   PolicyRuleResult,
   TreasuryPolicy,
 } from "../../types.js";
+import { PROFIT_LAUNCH_BLOCKED_TOOLS } from "../../launch/safety.js";
 
 function deny(
   rule: string,
@@ -18,6 +19,29 @@ function deny(
   humanMessage: string,
 ): PolicyRuleResult {
   return { rule, action: "deny", reasonCode, humanMessage };
+}
+
+function createProfitLaunchLockRule(): PolicyRule {
+  return {
+    id: "financial.profit_launch_lock",
+    description: "Deny dangerous and external/spend-producing actions in launch mode",
+    priority: 75, // kernel integrity remains the unique minimum at 50
+    appliesTo: { by: "all" },
+    evaluate(request: PolicyRequest): PolicyRuleResult | null {
+      if (request.context?.config?.profitLaunchMode !== true) return null;
+      if (
+        request.tool.riskLevel !== "dangerous" &&
+        !PROFIT_LAUNCH_BLOCKED_TOOLS.has(request.tool.name)
+      ) {
+        return null;
+      }
+      return deny(
+        "financial.profit_launch_lock",
+        "PROFIT_LAUNCH_LOCK",
+        `Blocked in profit launch mode: ${request.tool.name}. This candidate permits analysis/build work but no autonomous irreversible or paid external action.`,
+      );
+    },
+  };
 }
 
 /**
@@ -301,6 +325,7 @@ export function createFinancialRules(
   treasuryPolicy: TreasuryPolicy,
 ): PolicyRule[] {
   return [
+    createProfitLaunchLockRule(),
     createX402MaxSingleRule(treasuryPolicy),
     createX402DomainAllowlistRule(treasuryPolicy),
     createTransferMaxSingleRule(treasuryPolicy),

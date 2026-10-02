@@ -156,6 +156,10 @@ export function createConfig(params: {
     maxChildren: DEFAULT_CONFIG.maxChildren || 3,
     parentAddress: params.parentAddress,
     treasuryPolicy: params.treasuryPolicy ?? DEFAULT_TREASURY_POLICY,
+    profitLaunchMode: true,
+    autoTopupEnabled: false,
+    allowPaidComputeTopup: false,
+    maxPaidComputeTopupUsd: 5,
     chainType: params.chainType || "evm",
   };
 }
