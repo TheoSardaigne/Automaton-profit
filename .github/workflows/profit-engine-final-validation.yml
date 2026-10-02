@@ -1,0 +1,50 @@
+name: Profit Engine final validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v1-final-validation
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Core tests (fail closed)
+        timeout-minutes: 8
+        run: timeout 420 pnpm test
+
+      - name: Financial tests
+        run: pnpm run test:financial
+
+      - name: Security tests
+        run: pnpm run test:security
+
+      - name: Build
+        run: pnpm build
