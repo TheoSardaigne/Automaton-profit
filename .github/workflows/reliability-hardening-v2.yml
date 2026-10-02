@@ -1,0 +1,77 @@
+name: Reliability hardening v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/reliability-hardening-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reliability-hardening-v2
+  cancel-in-progress: true
+
+jobs:
+  integrate-test-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Integrate child lifecycle and health fixes (upstream PR #415)
+        run: |
+          git fetch https://github.com/Matthew-Selvam/automaton.git 6714557af1ff151faf3cfb2300b2ee4af2fa1149
+          git cherry-pick 6714557af1ff151faf3cfb2300b2ee4af2fa1149
+
+      - name: Integrate observability alert wiring fixes (upstream PR #416)
+        run: |
+          git fetch https://github.com/Matthew-Selvam/automaton.git 1e3a9f07f15725781c706e30a9ab68ef60bd5f69
+          git cherry-pick 1e3a9f07f15725781c706e30a9ab68ef60bd5f69
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Targeted reliability tests
+        run: |
+          pnpm vitest run \
+            src/__tests__/lifecycle.test.ts \
+            src/__tests__/replication.test.ts \
+            src/__tests__/observability.test.ts \
+            src/__tests__/alert-rules-wiring.test.ts \
+            src/__tests__/heartbeat.test.ts \
+            src/__tests__/heartbeat-scheduler.test.ts
+
+      - name: Full tests - fail closed
+        timeout-minutes: 15
+        run: timeout 840 pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated reliability commits
+        run: git push origin HEAD:profit-engine-v2-hardening
