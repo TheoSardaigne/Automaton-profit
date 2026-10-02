@@ -53,6 +53,20 @@ jobs:
           git cherry-pick 4823efa61a9e24c9f0fd33766d8dfc61b2a8f05d
           git cherry-pick a4451c5a11ee30314c6e9d1cdcf2789a7e2ceae5
 
+      - name: Normalize upstream expiry test on UTC runners
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'src/__tests__/expiry-consumers.test.ts';
+          const text = fs.readFileSync(file, 'utf8');
+          const before = '    expect(correctParse - naiveParse).toBe(-offsetMinutes * 60_000);';
+          const after = '    const expectedShift = offsetMinutes === 0 ? 0 : -offsetMinutes * 60_000;\n    expect(correctParse - naiveParse).toBe(expectedShift);';
+          if (!text.includes(before)) throw new Error('expiry UTC assertion context not found');
+          fs.writeFileSync(file, text.replace(before, after));
+          NODE
+          git add src/__tests__/expiry-consumers.test.ts
+          git commit -m "test: normalize zero UTC offset assertion"
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
