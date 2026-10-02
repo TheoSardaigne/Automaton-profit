@@ -37,7 +37,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Apply trusted revenue verifier
-        run: node scripts/apply-revenue-verification-v3.mjs
+        run: |
+          node scripts/apply-revenue-verification-v3.mjs
+          node scripts/fix-revenue-verification-v3.mjs
       - name: Regenerate protected-kernel manifest
         run: |
           node scripts/generate-kernel-manifest.mjs
