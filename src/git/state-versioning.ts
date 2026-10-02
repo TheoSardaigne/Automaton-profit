@@ -6,13 +6,14 @@
  * The automaton's entire identity history is version-controlled and replayable.
  */
 
+import os from "node:os";
 import type { ConwayClient, AutomatonDatabase } from "../types.js";
 import { gitInit, gitCommit, gitStatus, gitLog } from "./tools.js";
 
 const AUTOMATON_DIR = "~/.automaton";
 
 function resolveHome(p: string): string {
-  const home = process.env.HOME || "/root";
+  const home = process.env.AUTOMATON_HOME || process.env.HOME || os.homedir() || "/root";
   if (p.startsWith("~")) {
     return `${home}${p.slice(1)}`;
   }
@@ -41,16 +42,26 @@ export async function initStateRepo(
   // Initialize
   await gitInit(conway, dir);
 
-  // Create .gitignore for sensitive files
+  // Create .gitignore for sensitive files.
+  // Runtime/provider configs contain API keys and must never enter the state repo.
+  // Keep this explicit rather than using *.json so non-secret state such as
+  // genesis.json can still be versioned.
   const gitignore = `# Sensitive files - never commit
 wallet.json
 config.json
+automaton.json
+inference-providers.json
 state.db
 state.db-wal
 state.db-shm
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
 logs/
 *.log
 *.err
+.env
 `;
 
   await conway.writeFile(`${dir}/.gitignore`, gitignore);
