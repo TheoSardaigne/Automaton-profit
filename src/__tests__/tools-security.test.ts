@@ -566,6 +566,19 @@ describe("transfer_credits self-preservation", () => {
     expect(result).toContain("Blocked");
     expect(result).toContain("positive number");
   });
+
+  it("serializes concurrent transfers instead of racing on a stale balance", async () => {
+    const transferTool = tools.find((t) => t.name === "transfer_credits")!;
+    const [first, second] = await Promise.all([
+      transferTool.execute({ to_address: "0xa", amount_cents: 4000 }, ctx),
+      transferTool.execute({ to_address: "0xb", amount_cents: 4000 }, ctx),
+    ]);
+
+    const results = [first, second];
+    expect(results.filter((r) => r.includes("transfer submitted"))).toHaveLength(1);
+    expect(results.filter((r) => r.includes("Blocked"))).toHaveLength(1);
+    expect(conway.creditsCents).toBe(6000);
+  });
 });
 
 // ─── Tool Category Checks ───────────────────────────────────────

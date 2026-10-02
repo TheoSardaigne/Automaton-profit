@@ -27,6 +27,21 @@ import { createLogger } from "../observability/logger.js";
 
 const logger = createLogger("tools");
 
+// ─── Credit Transfer Mutex ─────────────────────────────────────
+// Serialize the complete balance -> policy/reserve checks -> transfer sequence.
+// Without this, concurrent transfers can both validate against the same stale
+// balance and collectively violate the half-balance or minimum-reserve guards.
+let creditTransferLock: Promise<unknown> = Promise.resolve();
+
+function withCreditTransferLock<T>(fn: () => Promise<T>): Promise<T> {
+  const run = creditTransferLock.then(fn);
+  creditTransferLock = run.then(
+    () => undefined,
+    () => undefined,
+  );
+  return run;
+}
+
 // ─── Path Confinement ─────────────────────────────────────────
 // write_file is restricted to the sandbox home directory tree.
 // The sandbox home is /root for both local and remote execution.
@@ -1027,26 +1042,36 @@ Model: ${ctx.inference.getDefaultModel()}
           return `Blocked: amount_cents must be a positive number, got ${amount}.`;
         }
 
-        // Guard: don't transfer more than half your balance
-        const balance = await ctx.conway.getCreditsBalance();
-        if (amount > balance / 2) {
-          return `Blocked: Cannot transfer more than half your balance ($${(balance / 100).toFixed(2)}). Self-preservation.`;
-        }
+        // The balance read, all spend guards, and the transfer are one critical
+        // section. This preserves BOTH the half-balance rule and minimum reserve
+        // under concurrent calls (CWE-367 / TOCTOU).
+        const outcome = await withCreditTransferLock(async () => {
+          const balance = await ctx.conway.getCreditsBalance();
+          if (amount > balance / 2) {
+            return {
+              ok: false as const,
+              blocked: `Blocked: Cannot transfer more than half your balance (${(balance / 100).toFixed(2)}). Self-preservation.`,
+            };
+          }
 
-        // Minimum reserve invariant: post-spend balance must stay >= configured reserve.
-        const reserveCents =
-          ctx.config.treasuryPolicy?.minimumReserveCents ??
-          DEFAULT_TREASURY_POLICY.minimumReserveCents;
-        const reserveCheck = checkReserve(amount, balance, reserveCents);
-        if (!reserveCheck.allowed) {
-          return reserveCheck.message;
-        }
+          const reserveCents =
+            ctx.config.treasuryPolicy?.minimumReserveCents ??
+            DEFAULT_TREASURY_POLICY.minimumReserveCents;
+          const reserveCheck = checkReserve(amount, balance, reserveCents);
+          if (!reserveCheck.allowed) {
+            return { ok: false as const, blocked: reserveCheck.message };
+          }
 
-        const transfer = await ctx.conway.transferCredits(
-          args.to_address as string,
-          amount,
-          args.reason as string | undefined,
-        );
+          const transfer = await ctx.conway.transferCredits(
+            args.to_address as string,
+            amount,
+            args.reason as string | undefined,
+          );
+          return { ok: true as const, balance, transfer };
+        });
+
+        if (!outcome.ok) return outcome.blocked;
+        const { balance, transfer } = outcome;
 
         const { ulid } = await import("ulid");
         ctx.db.insertTransaction({
@@ -1779,25 +1804,35 @@ Model: ${ctx.inference.getDefaultModel()}
           return `Blocked: amount_cents must be a positive number, got ${amount}.`;
         }
 
-        const balance = await ctx.conway.getCreditsBalance();
-        if (amount > balance / 2) {
-          return `Blocked: Cannot transfer more than half your balance. Self-preservation.`;
-        }
+        // Same atomic spend critical section as transfer_credits: re-read the
+        // current balance while holding the lock, then enforce both guards.
+        const outcome = await withCreditTransferLock(async () => {
+          const balance = await ctx.conway.getCreditsBalance();
+          if (amount > balance / 2) {
+            return {
+              ok: false as const,
+              blocked: `Blocked: Cannot transfer more than half your balance. Self-preservation.`,
+            };
+          }
 
-        // Minimum reserve invariant: post-spend balance must stay >= configured reserve.
-        const reserveCents =
-          ctx.config.treasuryPolicy?.minimumReserveCents ??
-          DEFAULT_TREASURY_POLICY.minimumReserveCents;
-        const reserveCheck = checkReserve(amount, balance, reserveCents);
-        if (!reserveCheck.allowed) {
-          return reserveCheck.message;
-        }
+          const reserveCents =
+            ctx.config.treasuryPolicy?.minimumReserveCents ??
+            DEFAULT_TREASURY_POLICY.minimumReserveCents;
+          const reserveCheck = checkReserve(amount, balance, reserveCents);
+          if (!reserveCheck.allowed) {
+            return { ok: false as const, blocked: reserveCheck.message };
+          }
 
-        const transfer = await ctx.conway.transferCredits(
-          child.address,
-          amount,
-          `fund child ${child.id}`,
-        );
+          const transfer = await ctx.conway.transferCredits(
+            child.address,
+            amount,
+            `fund child ${child.id}`,
+          );
+          return { ok: true as const, balance, transfer };
+        });
+
+        if (!outcome.ok) return outcome.blocked;
+        const { balance, transfer } = outcome;
 
         const { ulid } = await import("ulid");
         ctx.db.insertTransaction({
