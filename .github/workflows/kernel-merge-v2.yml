@@ -1,5 +1,5 @@
 name: Protected kernel merge v2
-# retry after installing the kernel-manifest gate in the primary CI
+# final retry from the latest hardening head after CI stabilization
 
 on:
   workflow_dispatch:
