@@ -40,6 +40,7 @@ jobs:
         run: |
           node scripts/apply-launch-candidate-v2.mjs
           node scripts/fix-launch-candidate-v2.mjs
+          node scripts/fix-launch-financial-tests-v2.mjs
       - name: Regenerate protected-kernel manifest
         run: |
           node scripts/generate-kernel-manifest.mjs
