@@ -1,0 +1,65 @@
+name: Input taint hardening v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/input-taint-hardening-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: input-taint-hardening-v2
+  cancel-in-progress: true
+
+jobs:
+  integrate-test-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Integrate universal taint-boundary hardening (upstream PR #417 B3)
+        run: |
+          git fetch https://github.com/kaydot20/automaton.git fb4e9e278adb82f75de4159961942add149a2514
+          git cherry-pick fb4e9e278adb82f75de4159961942add149a2514
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Targeted taint/security tests
+        run: pnpm vitest run src/__tests__/injection-defense.test.ts src/__tests__/tools-security.test.ts src/__tests__/orchestration/task-result-hardening.test.ts src/__tests__/orchestration/orchestrator.test.ts
+
+      - name: Full tests - fail closed
+        timeout-minutes: 12
+        run: timeout 660 pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated taint hardening
+        run: git push origin HEAD:profit-engine-v2-hardening
