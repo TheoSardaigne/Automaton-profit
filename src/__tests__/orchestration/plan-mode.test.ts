@@ -379,7 +379,7 @@ describe("orchestration/plan-mode", () => {
       await expect(reviewPlan(makePlan(), supervised)).rejects.toThrow("awaiting human approval");
     });
 
-    it("consensus mode returns approval feedback", async () => {
+    it("consensus mode denies by default until consensus is implemented", async () => {
       const consensus: PlanApprovalConfig = {
         ...autoConfig,
         mode: "consensus",
@@ -387,7 +387,8 @@ describe("orchestration/plan-mode", () => {
         reviewTimeoutMs: 9000,
       };
       const result = await reviewPlan(makePlan(), consensus);
-      expect(result.approved).toBe(true);
+      expect(result.approved).toBe(false);
+      expect(result.feedback).toContain("CONSENSUS_MODE_UNAVAILABLE");
       expect(result.feedback).toContain("critic role 'critic'");
     });
 

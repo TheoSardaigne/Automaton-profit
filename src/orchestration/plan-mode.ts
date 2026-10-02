@@ -262,9 +262,13 @@ export async function reviewPlan(
     }
 
     case "consensus": {
+      // Consensus execution is not implemented yet. A stub must never grant
+      // authority: fail closed until a real quorum/critic protocol exists.
       return {
-        approved: true,
-        feedback: `Consensus review stub (critic role '${normalized.consensusCriticRole}', timeout ${normalized.reviewTimeoutMs}ms).`,
+        approved: false,
+        feedback:
+          `CONSENSUS_MODE_UNAVAILABLE: consensus review is not implemented ` +
+          `(critic role '${normalized.consensusCriticRole}', timeout ${normalized.reviewTimeoutMs}ms).`,
       };
     }
 
