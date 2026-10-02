@@ -51,13 +51,29 @@ jobs:
               git cherry-pick --abort
               exit 1
             fi
-            # B6 only changes package.json to register extra CI helper scripts.
-            # Keep our already-hardened package metadata; this workflow invokes
-            # the kernel checks explicitly below.
             git checkout --ours package.json
             git add package.json
             git cherry-pick --continue
           fi
+      - name: Adapt kernel network boundary to this fork
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          files = [
+              Path('src/governance/kernel.ts'),
+              Path('scripts/generate-kernel-manifest.mjs'),
+              Path('scripts/check-kernel-manifest.mjs'),
+          ]
+          old = '  "src/net/policy.ts",'
+          new = '  "src/registry/discovery.ts",'
+          for path in files:
+              text = path.read_text()
+              if text.count(old) != 1:
+                  raise SystemExit(f"Unexpected kernel network entry count in {path}: {text.count(old)}")
+              path.write_text(text.replace(old, new))
+          PY
+          git add src/governance/kernel.ts scripts/generate-kernel-manifest.mjs scripts/check-kernel-manifest.mjs
+          git commit -m "fix(governance): protect the fork's actual network trust boundary"
       - name: Regenerate manifest for OUR hardened source
         run: |
           node scripts/generate-kernel-manifest.mjs
