@@ -1,0 +1,65 @@
+name: Transfer race hardening v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/transfer-race-hardening-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: transfer-race-hardening-v2
+  cancel-in-progress: true
+
+jobs:
+  integrate-test-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Integrate transfer TOCTOU fix (upstream PR #343)
+        run: |
+          git fetch https://github.com/Matthew-Selvam/automaton.git 5d83549fd9579f403cedd63b354aaafa2a0272a4
+          git cherry-pick 5d83549fd9579f403cedd63b354aaafa2a0272a4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Targeted transfer/security tests
+        run: pnpm vitest run src/__tests__/tools-security.test.ts src/__tests__/authority-rules.test.ts src/__tests__/reserve.test.ts src/__tests__/reserve-x402.test.ts
+
+      - name: Full tests - fail closed
+        timeout-minutes: 12
+        run: timeout 660 pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated transfer hardening
+        run: git push origin HEAD:profit-engine-v2-hardening
