@@ -36,10 +36,28 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Cherry-pick upstream protected-kernel foundation (PR #418 B6)
+      - name: Port upstream protected-kernel foundation (PR #418 B6)
         run: |
           git fetch https://github.com/kaydot20/automaton.git 568955614b9c017e481b10e62427fb3e425ca8d6
+          set +e
           git cherry-pick 568955614b9c017e481b10e62427fb3e425ca8d6
+          RC=$?
+          set -e
+          if [ $RC -ne 0 ]; then
+            CONFLICTS="$(git diff --name-only --diff-filter=U)"
+            echo "Conflicts: $CONFLICTS"
+            if [ "$CONFLICTS" != "package.json" ]; then
+              echo "Unexpected conflict set; fail closed."
+              git cherry-pick --abort
+              exit 1
+            fi
+            # B6 only changes package.json to register extra CI helper scripts.
+            # Keep our already-hardened package metadata; this workflow invokes
+            # the kernel checks explicitly below.
+            git checkout --ours package.json
+            git add package.json
+            git cherry-pick --continue
+          fi
       - name: Regenerate manifest for OUR hardened source
         run: |
           node scripts/generate-kernel-manifest.mjs
