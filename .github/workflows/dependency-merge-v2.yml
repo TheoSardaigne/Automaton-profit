@@ -1,0 +1,56 @@
+name: Dependency merge v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/dependency-merge-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dependency-merge-v2
+  cancel-in-progress: true
+
+jobs:
+  merge-audit-test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Cherry-pick validated dependency security patch
+        run: |
+          git fetch origin c7a158bd7da214763edda7fdc80f628259791fcc b11f7f5022a3630fe2c8639a4eb8cc9f4b64c443
+          git cherry-pick c7a158bd7da214763edda7fdc80f628259791fcc
+          git cherry-pick b11f7f5022a3630fe2c8639a4eb8cc9f4b64c443
+      - name: Install reproducibly
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm run typecheck
+      - name: Production audit - fail on high or critical
+        run: pnpm audit --prod --audit-level=high
+      - name: Full tests - fail closed
+        timeout-minutes: 15
+        run: timeout 840 pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Push only validated dependency changes
+        run: git push origin HEAD:profit-engine-v2-hardening
