@@ -1663,7 +1663,11 @@ Model: ${ctx.inference.getDefaultModel()}
           // Auto-topup on 402 insufficient credits and retry once
           const is402 = err?.status === 402 ||
             err?.message?.includes("INSUFFICIENT_CREDITS");
-          if (is402) {
+          if (
+            is402 &&
+            ctx.config.autoTopupEnabled === true &&
+            ctx.config.allowPaidComputeTopup === true
+          ) {
             const COOLDOWN_MS = 60_000;
             const last = ctx.db.getKV("last_sandbox_topup_attempt");
             const cooldownOk = !last ||

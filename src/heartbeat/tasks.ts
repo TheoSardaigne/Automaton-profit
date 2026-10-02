@@ -156,8 +156,12 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
       timestamp: new Date().toISOString(),
     }));
 
-    // Profit-safety: never convert treasury USDC into compute unless explicitly enabled.
-    if (taskCtx.config.autoTopupEnabled !== true) {
+    // Profit-safety: automatic treasury -> compute conversion requires both
+    // the automatic-topup switch and the paid-compute master switch.
+    if (
+      taskCtx.config.autoTopupEnabled !== true ||
+      taskCtx.config.allowPaidComputeTopup !== true
+    ) {
       return { shouldWake: false };
     }
 

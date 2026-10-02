@@ -246,7 +246,11 @@ export async function runAgentLoop(
               const is402 = sandboxError?.status === 402 ||
                 sandboxError?.message?.includes("INSUFFICIENT_CREDITS");
 
-              if (is402) {
+              if (
+                is402 &&
+                config.autoTopupEnabled === true &&
+                config.allowPaidComputeTopup === true
+              ) {
                 const SANDBOX_TOPUP_COOLDOWN_MS = 60_000;
                 const lastAttempt = db.getKV("last_sandbox_topup_attempt");
                 const cooldownExpired = !lastAttempt ||
@@ -443,6 +447,7 @@ export async function runAgentLoop(
         // the heartbeat to fire. Uses a 60s cooldown to avoid hammering.
         if (
           config.autoTopupEnabled === true &&
+          config.allowPaidComputeTopup === true &&
           (tier === "critical" || tier === "low_compute") &&
           financial.usdcBalance >= 5
         ) {

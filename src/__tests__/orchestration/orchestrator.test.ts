@@ -702,24 +702,22 @@ describe("orchestration/Orchestrator", () => {
       expect(result.phase).toBe("executing");
     });
 
-    it("supervised mode stays in plan_review (awaiting human approval)", async () => {
+    it("pauses a goal when the automatic plan exceeds the budget ceiling", async () => {
       const goalId = insertGoal(db);
       insertTask(db, { goalId, title: "t1", description: "desc" });
-      storePlan(db, goalId);
+      storePlan(db, goalId, { estimatedTotalCostCents: 9999 });
       setOrchestratorState(db, { phase: "plan_review", goalId, replanCount: 0, failedTaskId: null, failedError: null });
 
-      // We need reviewPlan to throw "awaiting human approval". The orchestrator calls it with mode: "auto".
-      // To get supervised behavior we mock the plan-mode module.
-      // The simplest way: store a plan that will trigger the supervised path by mocking vi.mock at module level.
-      // Instead we test the error-catch path by making the orchestrator's handlePlanReviewPhase catch it:
-      // The orchestrator calls reviewPlan with mode:"auto". In auto mode it always approves.
-      // To test supervised mode catching, we verify the catch branch indirectly:
-      // inject a plan with a very high cost to ensure the auto-approve path runs.
-      storePlan(db, goalId, { estimatedTotalCostCents: 9999 });
       const orc = makeOrchestrator(db);
       const result = await orc.tick();
-      // auto mode approves above threshold too, so we get executing
-      expect(result.phase).toBe("executing");
+
+      expect(result.phase).toBe("idle");
+      const goal = db.prepare("SELECT status FROM goals WHERE id = ?").get(goalId) as { status: string };
+      expect(goal.status).toBe("paused");
+      const feedback = db.prepare("SELECT value FROM kv WHERE key = ?").get(
+        "orchestrator.review_feedback." + goalId,
+      ) as { value: string } | undefined;
+      expect(feedback?.value).toContain("exceeds auto budget threshold");
     });
   });
 });
