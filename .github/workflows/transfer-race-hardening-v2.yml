@@ -7,6 +7,7 @@ on:
       - profit-engine-v2-hardening
     paths:
       - .github/workflows/transfer-race-hardening-v2.yml
+      - scripts/apply-transfer-race-v2.mjs
 
 permissions:
   contents: write
@@ -40,10 +41,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Integrate transfer TOCTOU fix (upstream PR #343)
+      - name: Apply reserve-aware transfer mutex
         run: |
-          git fetch https://github.com/Matthew-Selvam/automaton.git 5d83549fd9579f403cedd63b354aaafa2a0272a4
-          git cherry-pick 5d83549fd9579f403cedd63b354aaafa2a0272a4
+          node scripts/apply-transfer-race-v2.mjs
+          git add src
+          git commit -m "fix: serialize reserve-aware credit transfers"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
