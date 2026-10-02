@@ -1,0 +1,70 @@
+name: Economics and state hardening v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/economics-state-hardening-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: economics-state-hardening-v2
+  cancel-in-progress: true
+
+jobs:
+  integrate-test-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Integrate failed-inference accounting fix (upstream PR #412)
+        run: |
+          git fetch https://github.com/Matthew-Selvam/automaton.git f55d653528530e4e41331de12e961378b08cd07f
+          git cherry-pick afb533c6e601e2ffeb62f0e67d178e58f7ffe552
+          git cherry-pick 9267a8aadd4059c71d19e29e7d7cd2e627951157
+
+      - name: Integrate SQLite expiry correctness fix (upstream PR #410)
+        run: |
+          git fetch https://github.com/Matthew-Selvam/automaton.git a4451c5a11ee30314c6e9d1cdcf2789a7e2ceae5
+          git cherry-pick 8592b621a3caebb6fec7b8bdaf17bedaba414a50
+          git cherry-pick 4823efa61a9e24c9f0fd33766d8dfc61b2a8f05d
+          git cherry-pick a4451c5a11ee30314c6e9d1cdcf2789a7e2ceae5
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Full tests - fail closed
+        timeout-minutes: 12
+        run: timeout 660 pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated economics/state commits
+        run: git push origin HEAD:profit-engine-v2-hardening
