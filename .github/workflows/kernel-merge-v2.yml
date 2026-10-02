@@ -1,0 +1,127 @@
+name: Protected kernel merge v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/kernel-merge-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: protected-kernel-merge-v2
+  cancel-in-progress: true
+
+jobs:
+  merge-validate-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Import protected-kernel foundation without workflow changes
+        run: |
+          BASE_SHA="$(git rev-parse HEAD)"
+          echo "BASE_SHA=$BASE_SHA" >> "$GITHUB_ENV"
+          git fetch https://github.com/kaydot20/automaton.git 568955614b9c017e481b10e62427fb3e425ca8d6
+          set +e
+          git cherry-pick 568955614b9c017e481b10e62427fb3e425ca8d6
+          RC=$?
+          set -e
+          if [ $RC -ne 0 ]; then
+            CONFLICTS="$(git diff --name-only --diff-filter=U)"
+            echo "Conflicts: $CONFLICTS"
+            if [ "$CONFLICTS" != "package.json" ]; then
+              echo "Unexpected conflict set; fail closed."
+              git cherry-pick --abort
+              exit 1
+            fi
+            git checkout --ours package.json
+            git add package.json
+            git cherry-pick --continue
+          fi
+          # The upstream commit also edits CI. GitHub Actions cannot push workflow
+          # changes with this token, and our CI is already separately hardened.
+          # Restore our exact CI file before the final squashed commit.
+          git checkout "$BASE_SHA" -- .github/workflows/ci.yml
+      - name: Adapt protected kernel contract to this fork
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          kernel_files = [
+              Path('src/governance/kernel.ts'),
+              Path('scripts/generate-kernel-manifest.mjs'),
+              Path('scripts/check-kernel-manifest.mjs'),
+          ]
+          old_entry = '  "src/net/policy.ts",'
+          new_entry = '  "src/registry/discovery.ts",'
+          for path in kernel_files:
+              text = path.read_text()
+              if text.count(old_entry) != 1:
+                  raise SystemExit(f"Unexpected kernel network entry count in {path}: {text.count(old_entry)}")
+              path.write_text(text.replace(old_entry, new_entry))
+
+          test_path = Path('src/__tests__/governance/kernel.test.ts')
+          test_text = test_path.read_text()
+          if test_text.count('src/net/policy.ts') < 2:
+              raise SystemExit('Expected upstream kernel tests to reference src/net/policy.ts at least twice')
+          test_path.write_text(test_text.replace('src/net/policy.ts', 'src/registry/discovery.ts'))
+          PY
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          pkg.scripts ??= {};
+          pkg.scripts['check:kernel-manifest'] = 'node scripts/check-kernel-manifest.mjs';
+          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          NODE
+      - name: Regenerate and verify protected-kernel manifest
+        run: |
+          node scripts/generate-kernel-manifest.mjs
+          node scripts/check-kernel-manifest.mjs
+      - name: Install dependencies reproducibly
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm run typecheck
+      - name: Kernel security tests
+        run: pnpm vitest run src/__tests__/governance/kernel.test.ts
+      - name: Production dependency audit
+        run: pnpm audit --prod --audit-level=high
+      - name: Full tests - fail closed
+        timeout-minutes: 15
+        run: timeout 840 pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Re-verify manifest after build/test
+        run: node scripts/check-kernel-manifest.mjs
+      - name: Squash imported changes and assert no workflow mutation
+        run: |
+          git reset --soft "$BASE_SHA"
+          git restore --staged .github/workflows/ci.yml || true
+          git restore --source="$BASE_SHA" --worktree .github/workflows/ci.yml
+          git add -A
+          WORKFLOW_CHANGES="$(git diff --cached --name-only | grep '^.github/workflows/' || true)"
+          if [ -n "$WORKFLOW_CHANGES" ]; then
+            echo "Generated commit unexpectedly changes workflow files:"
+            echo "$WORKFLOW_CHANGES"
+            exit 1
+          fi
+          git commit -m "feat(governance): add protected kernel to profit engine v2"
+      - name: Push validated protected kernel
+        run: git push origin HEAD:profit-engine-v2-hardening
