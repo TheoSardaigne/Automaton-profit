@@ -1,0 +1,57 @@
+name: Consensus deny v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - scripts/apply-consensus-deny-v2.mjs
+      - .github/workflows/consensus-deny-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: consensus-deny-v2
+  cancel-in-progress: true
+
+jobs:
+  patch-test-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Apply consensus fail-closed patch
+        run: node scripts/apply-consensus-deny-v2.mjs
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm run typecheck
+      - name: Plan-mode regression tests
+        run: pnpm vitest run src/__tests__/orchestration/plan-mode.test.ts
+      - name: Full tests - fail closed
+        timeout-minutes: 15
+        run: timeout 840 pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Commit and push validated patch
+        run: |
+          git add src
+          git commit -m "fix(orchestration): deny unavailable consensus mode by default"
+          git push origin HEAD:profit-engine-v2-hardening
