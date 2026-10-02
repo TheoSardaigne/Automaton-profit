@@ -1,0 +1,65 @@
+name: Treasury reserve hardening v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/treasury-reserve-hardening-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: treasury-reserve-hardening-v2
+  cancel-in-progress: true
+
+jobs:
+  integrate-test-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Integrate minimum-reserve enforcement (upstream PR #417 B2)
+        run: |
+          git fetch https://github.com/kaydot20/automaton.git f85b0ca8554e5a76aabac603a8945b460010a714
+          git cherry-pick f85b0ca8554e5a76aabac603a8945b460010a714
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Targeted reserve tests
+        run: pnpm vitest run src/__tests__/reserve.test.ts src/__tests__/reserve-x402.test.ts src/__tests__/financial.test.ts src/__tests__/orchestration/simple-tracker.test.ts
+
+      - name: Full tests - fail closed
+        timeout-minutes: 12
+        run: timeout 660 pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated reserve hardening
+        run: git push origin HEAD:profit-engine-v2-hardening
