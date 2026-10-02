@@ -142,7 +142,7 @@ replaceExact(
       const goal = db.prepare("SELECT status FROM goals WHERE id = ?").get(goalId) as { status: string };
       expect(goal.status).toBe("paused");
       const feedback = db.prepare("SELECT value FROM kv WHERE key = ?").get(
-        `orchestrator.review_feedback.${goalId}`,
+        "orchestrator.review_feedback." + goalId,
       ) as { value: string } | undefined;
       expect(feedback?.value).toContain("exceeds auto budget threshold");
     });`,
