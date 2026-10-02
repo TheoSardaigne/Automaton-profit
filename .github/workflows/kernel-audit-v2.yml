@@ -55,25 +55,38 @@ jobs:
             git add package.json
             git cherry-pick --continue
           fi
-      - name: Adapt kernel network boundary to this fork
+      - name: Adapt protected kernel to this fork
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          files = [
+          kernel_files = [
               Path('src/governance/kernel.ts'),
               Path('scripts/generate-kernel-manifest.mjs'),
               Path('scripts/check-kernel-manifest.mjs'),
           ]
-          old = '  "src/net/policy.ts",'
-          new = '  "src/registry/discovery.ts",'
-          for path in files:
+          old_entry = '  "src/net/policy.ts",'
+          new_entry = '  "src/registry/discovery.ts",'
+          for path in kernel_files:
               text = path.read_text()
-              if text.count(old) != 1:
-                  raise SystemExit(f"Unexpected kernel network entry count in {path}: {text.count(old)}")
-              path.write_text(text.replace(old, new))
+              if text.count(old_entry) != 1:
+                  raise SystemExit(f"Unexpected kernel network entry count in {path}: {text.count(old_entry)}")
+              path.write_text(text.replace(old_entry, new_entry))
+
+          test_path = Path('src/__tests__/governance/kernel.test.ts')
+          test_text = test_path.read_text()
+          if test_text.count('src/net/policy.ts') < 2:
+              raise SystemExit('Expected upstream kernel tests to reference src/net/policy.ts at least twice')
+          test_path.write_text(test_text.replace('src/net/policy.ts', 'src/registry/discovery.ts'))
           PY
-          git add src/governance/kernel.ts scripts/generate-kernel-manifest.mjs scripts/check-kernel-manifest.mjs
-          git commit -m "fix(governance): protect the fork's actual network trust boundary"
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          pkg.scripts ??= {};
+          pkg.scripts['check:kernel-manifest'] = 'node scripts/check-kernel-manifest.mjs';
+          fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          NODE
+          git add src/governance/kernel.ts scripts/generate-kernel-manifest.mjs scripts/check-kernel-manifest.mjs src/__tests__/governance/kernel.test.ts package.json
+          git commit -m "fix(governance): adapt protected kernel contract to profit fork"
       - name: Regenerate manifest for OUR hardened source
         run: |
           node scripts/generate-kernel-manifest.mjs
