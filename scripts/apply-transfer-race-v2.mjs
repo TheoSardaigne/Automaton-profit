@@ -65,8 +65,9 @@ replaceExact(
           const balance = await ctx.conway.getCreditsBalance();
           if (amount > balance / 2) {
             return {
+              ok: false as const,
               blocked: \`Blocked: Cannot transfer more than half your balance ($\${(balance / 100).toFixed(2)}). Self-preservation.\`,
-            } as const;
+            };
           }
 
           const reserveCents =
@@ -74,7 +75,7 @@ replaceExact(
             DEFAULT_TREASURY_POLICY.minimumReserveCents;
           const reserveCheck = checkReserve(amount, balance, reserveCents);
           if (!reserveCheck.allowed) {
-            return { blocked: reserveCheck.message } as const;
+            return { ok: false as const, blocked: reserveCheck.message };
           }
 
           const transfer = await ctx.conway.transferCredits(
@@ -82,10 +83,10 @@ replaceExact(
             amount,
             args.reason as string | undefined,
           );
-          return { blocked: undefined, balance, transfer };
+          return { ok: true as const, balance, transfer };
         });
 
-        if (outcome.blocked) return outcome.blocked;
+        if (!outcome.ok) return outcome.blocked;
         const { balance, transfer } = outcome;`,
   "make transfer_credits reserve-aware and atomic",
 );
@@ -117,8 +118,9 @@ replaceExact(
           const balance = await ctx.conway.getCreditsBalance();
           if (amount > balance / 2) {
             return {
+              ok: false as const,
               blocked: \`Blocked: Cannot transfer more than half your balance. Self-preservation.\`,
-            } as const;
+            };
           }
 
           const reserveCents =
@@ -126,7 +128,7 @@ replaceExact(
             DEFAULT_TREASURY_POLICY.minimumReserveCents;
           const reserveCheck = checkReserve(amount, balance, reserveCents);
           if (!reserveCheck.allowed) {
-            return { blocked: reserveCheck.message } as const;
+            return { ok: false as const, blocked: reserveCheck.message };
           }
 
           const transfer = await ctx.conway.transferCredits(
@@ -134,10 +136,10 @@ replaceExact(
             amount,
             \`fund child \${child.id}\`,
           );
-          return { blocked: undefined, balance, transfer };
+          return { ok: true as const, balance, transfer };
         });
 
-        if (outcome.blocked) return outcome.blocked;
+        if (!outcome.ok) return outcome.blocked;
         const { balance, transfer } = outcome;`,
   "make fund_child reserve-aware and atomic",
 );
