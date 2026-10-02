@@ -1,0 +1,66 @@
+name: Protected kernel audit v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-kernel-audit
+    paths:
+      - .github/workflows/kernel-audit-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: protected-kernel-audit-v2
+  cancel-in-progress: true
+
+jobs:
+  port-regenerate-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-kernel-audit
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Cherry-pick upstream protected-kernel foundation (PR #418 B6)
+        run: |
+          git fetch https://github.com/kaydot20/automaton.git 568955614b9c017e481b10e62427fb3e425ca8d6
+          git cherry-pick 568955614b9c017e481b10e62427fb3e425ca8d6
+      - name: Regenerate manifest for OUR hardened source
+        run: |
+          node scripts/generate-kernel-manifest.mjs
+          git add kernel-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(governance): regenerate protected kernel manifest for profit engine"
+          fi
+      - name: Verify kernel manifest before dependency install
+        run: node scripts/check-kernel-manifest.mjs
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm run typecheck
+      - name: Kernel security tests
+        run: pnpm vitest run src/__tests__/governance/kernel.test.ts
+      - name: Full tests - fail closed
+        timeout-minutes: 15
+        run: timeout 840 pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Re-verify manifest after build/test
+        run: node scripts/check-kernel-manifest.mjs
+      - name: Push only if every gate passed
+        run: git push origin HEAD:profit-engine-v2-kernel-audit
