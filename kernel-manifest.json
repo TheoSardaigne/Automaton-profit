@@ -1,0 +1,27 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "constitution.md": "d69f71832ab7c8ba6a827fd2fe988db5f76ff253d727906a95c064fe53408d8e",
+    "src/agent/injection-defense.ts": "db2d44d7a4a3218ace1a9987530456301421206cf11afc7a264ef4afd0b501c2",
+    "src/agent/policy-engine.ts": "e98768e407f3caaed2159088068b8dec57b40e4998cc4e185d00a79cd8749f69",
+    "src/agent/policy-rules/authority.ts": "f6f61b95b1ade90798231fd4711edfcfe0f33b6455600433fee094b559b5ed56",
+    "src/agent/policy-rules/command-safety.ts": "4d5e21de517b70df7262bfbc23f5de28408c3b123fa38904a72bd530ec9cafab",
+    "src/agent/policy-rules/financial.ts": "5d4ac96a73ce41139afead70950e982e3c42ea85d8016b8c08652e35cc9e7b12",
+    "src/agent/policy-rules/index.ts": "62d1b3ae34db8201b8726f35d7924e35f3307b3a2c38c75cd3b4e4393c1b3572",
+    "src/agent/policy-rules/path-protection.ts": "e51119a5590671dd8c27e9dc46a9ac00c82b479ed6f7a78cc107f1ed95f8d1dd",
+    "src/agent/policy-rules/rate-limits.ts": "b89b49067e0a6a633e1710fcca521146811f7b03b52e871e1bfac86f0caebd8c",
+    "src/agent/policy-rules/validation.ts": "7124e0a08dd9570243b21478b0b7be9ef01cd49d18c221d1e05f64f44a4a6dba",
+    "src/agent/spend-tracker.ts": "64e1f529ea8cc8a9f6401fded501a6026b472063d7783a08583beeb53992e508",
+    "src/conway/credits.ts": "327c214042bb26ae822869371636a8ff3dbd7d84e3c5d3364a9423dcd687f62a",
+    "src/conway/http-client.ts": "f30c5860e3c218e937950e403b91ed80c9d3c77d004eebf9700153f4dd2109e9",
+    "src/conway/x402.ts": "51fbad79d5ab90fca8ec6388fa3d445656395214e73872c83f795180e3948e0f",
+    "src/governance/kernel.ts": "e4b9fbe650b9d958621d7a642dd0cd2dedc0d8cd6faf0904a042a9d3e718c563",
+    "src/identity/chain.ts": "d929c0657e26db7fd987f54bac010c0d67936084f904f540994da51d1bc0083c",
+    "src/identity/wallet.ts": "d17d09c95263c7bf4e59a5460874e34eff30739f8e1cb5b61b73ef87916e4aa7",
+    "src/inference/provider-registry.ts": "95be5155a22611928f041983753d68eaee6e7bb37324af2e9dc0a75eb57147a3",
+    "src/registry/discovery.ts": "3e2a399d1a6f5d85f8d6dbdbf5511f83c5b6396ae4035172386ad418e56fff84",
+    "src/self-mod/code.ts": "9c8ea68d78bd9fc26c12b58627ca8123bc17c932e4b09bab83c1260f601ffd8c",
+    "src/self-mod/tools-manager.ts": "8f605da0542f72bc2abe0bae3c487fdfa6f70f3a8c037e4a1c68715c31fb4d5f",
+    "src/self-mod/upstream.ts": "887a1418e733673ff3e1b903141e836da3d190e2d9083efffd653605805c78b5"
+  }
+}
