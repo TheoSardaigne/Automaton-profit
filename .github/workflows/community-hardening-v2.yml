@@ -1,0 +1,72 @@
+name: Community hardening v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - profit-engine-v2-hardening
+    paths:
+      - .github/workflows/community-hardening-v2.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: community-hardening-v2
+  cancel-in-progress: true
+
+jobs:
+  integrate-test-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: profit-engine-v2-hardening
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Cherry-pick tokenizer hang fix (upstream PR #358)
+        run: |
+          git fetch https://github.com/harsh20048/automaton.git 2b60cf00f1a13dffcc77567683a8ddc680258fa4
+          git cherry-pick 2b60cf00f1a13dffcc77567683a8ddc680258fa4
+
+      - name: Cherry-pick policy-rules self-mod protection (upstream PR #414)
+        run: |
+          git fetch https://github.com/Matthew-Selvam/automaton.git 2608e3ba6959512cf3e06784df14725888055d25
+          git cherry-pick 2608e3ba6959512cf3e06784df14725888055d25
+
+      - name: Cherry-pick SIWE single-use nonce fix (upstream PR #333)
+        run: |
+          git fetch https://github.com/stevegonzalez721-ux/automaton.git 6255ed2c2df3da1518f5e018b8f995a5b186eebb
+          git cherry-pick 6255ed2c2df3da1518f5e018b8f995a5b186eebb
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Full tests - fail closed
+        timeout-minutes: 12
+        run: timeout 660 pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Push validated hardening commits
+        run: git push origin HEAD:profit-engine-v2-hardening
