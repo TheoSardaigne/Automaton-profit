@@ -41,7 +41,8 @@ describe("valid_until is parsed as UTC, not local time", () => {
     // the true one, so every cached entry looked expired hours early.
     const naiveParse = new Date(stored).getTime();
     const correctParse = parseValidUntil(stored);
-    expect(correctParse - naiveParse).toBe(-offsetMinutes * 60_000);
+    const expectedShift = offsetMinutes === 0 ? 0 : -offsetMinutes * 60_000;
+    expect(correctParse - naiveParse).toBe(expectedShift);
 
     if (offsetMinutes !== 0) {
       expect(naiveParse).not.toBe(correctParse);
