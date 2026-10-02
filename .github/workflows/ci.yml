@@ -1,6 +1,20 @@
 name: CI
+
 on: [push, pull_request]
+
 jobs:
+  kernel-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify protected kernel manifest
+        run: |
+          if [ -f scripts/check-kernel-manifest.mjs ] && [ -f kernel-manifest.json ]; then
+            node scripts/check-kernel-manifest.mjs
+          else
+            echo "::notice::Protected kernel is not installed on this transitional commit yet."
+          fi
+
   build-and-test:
     runs-on: ubuntu-latest
     strategy:
@@ -11,28 +25,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: pnpm
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
       - run: pnpm install --frozen-lockfile
       - run: pnpm run typecheck
-      - name: Run tests
+      - name: Run full test suite
+        timeout-minutes: 15
+        run: timeout 840 pnpm test
+      - name: Run security regression suite
         timeout-minutes: 10
-        run: |
-          set +e
-          timeout 300 pnpm test
-          RC=$?
-          set -e
-          # Exit code 124 means timeout killed the process (vitest hung after tests completed)
-          if [ $RC -eq 124 ]; then echo "::warning::vitest process hung after tests, killed by timeout"; exit 0; fi
-          exit $RC
-      - name: Run security tests
-        timeout-minutes: 10
-        run: |
-          set +e
-          timeout 180 pnpm test -- --grep "security|injection|policy|financial"
-          RC=$?
-          set -e
-          if [ $RC -eq 124 ]; then echo "::warning::vitest process hung after tests, killed by timeout"; exit 0; fi
-          exit $RC
+        run: pnpm run test:security
+      - run: pnpm build
 
   security-audit:
     runs-on: ubuntu-latest
@@ -41,6 +47,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: pnpm
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.1
+          run_install: false
       - run: pnpm install --frozen-lockfile
-      - run: pnpm audit --audit-level=high || true
+      - name: Fail on production high/critical vulnerabilities
+        run: pnpm audit --prod --audit-level=high
