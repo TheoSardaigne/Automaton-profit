@@ -105,3 +105,7 @@ Après **trois envois humains**, STOP immédiat : pertinence des briefs/scopes, 
 ## Prochaine information utile
 
 Les URLs/Connects visibles dans le compte du propriétaire permettent de contrôler de vrais briefs actuels, là où l'index public est parfois périmé. Pas besoin d'identifiants. Jusqu'à trois liens suffisent ; pour chacun, lecture/scoring, verdict APPLY/PASS puis proposition personnalisée seulement si qualifié. **L'expérience reste en attente de sélection, pas commercialement lancée par une candidature fictive.**
+
+## Mise à jour — recherche élargie bornée, 6 octobre 2026
+
+Mandat suivant exécuté : **trois nouvelles vagues**, douze requêtes ciblées, zéro nouvelle mission éligible ≥70. Les cinq PASS ci-dessus et le barème restent inchangés. **UPWORK CURRENTLY NOT VALIDATED FOR THIS OFFER.** Recherche arrêtée ; pas de quatrième vague automatique. Détails et décision **LAUNCH FIVERR TEST**, uniquement comme préparation à une action humaine, dans [channel-test-decision-v1.md](channel-test-decision-v1.md). Kit [Fiverr](fiverr-test-v1/gig.md) non publié. Aucun envoi, Connect consommé ou dépense. L'instruction actuelle autorise **0 EUR de dépense**, même si un plafond de 15 EUR figurait précédemment.
