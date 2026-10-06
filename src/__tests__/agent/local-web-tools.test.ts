@@ -8,6 +8,7 @@ import {
 } from "../../agent/local-web-tools.js";
 
 import dns from "node:dns/promises";
+import fsp from "node:fs/promises";
 
 afterEach(() => vi.restoreAllMocks());
 
@@ -97,6 +98,24 @@ function publicDns() {
 }
 
 describe("search parsers and fallbacks", () => {
+  it("enforces a lifetime request budget shared by search and fetch", async () => {
+    const lookup = vi.spyOn(dns, "lookup").mockRejectedValue(new Error("DNS unavailable"));
+    vi.spyOn(fsp, "mkdir").mockResolvedValue(undefined);
+    vi.spyOn(fsp, "appendFile").mockResolvedValue(undefined);
+    const tools = createLocalWebTools({ maxRequests: 1 });
+    const fetch = tools.find((tool) => tool.name === "local_web_fetch")!;
+    const search = tools.find((tool) => tool.name === "local_web_search")!;
+    expect(await fetch.execute({ url: "https://example.com" }, {} as never)).toContain("DNS unavailable");
+    expect(await fetch.execute({ url: "https://example.com" }, {} as never)).toContain("session web request limit reached");
+    expect(await search.execute({ query: "test" }, {} as never)).toContain("session web request limit reached");
+    expect(lookup).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects invalid budgets instead of removing request limits", () => {
+    for (const maxRequests of [0, -1, 31, Infinity, NaN, 1.5]) {
+      expect(() => createLocalWebTools({ maxRequests })).toThrow("maxRequests must be an integer");
+    }
+  });
   it("accepts reordered attributes, nested titles, Lite classes and HTML entities", () => {
     const body = `<a HREF='https://example.com/?a=1&amp;b=2' CLASS='other result__a'>A <b>title</b></a>`;
     expect(extractSearchResults(body, htmlProvider)).toEqual([{ title: "A title", url: "https://example.com/?a=1&b=2" }]);

@@ -157,8 +157,12 @@ interface RawResponse {
   redirect?: string;
 }
 
-async function requestPinned(url: URL): Promise<RawResponse> {
+interface RequestBudget { remaining: number }
+
+async function requestPinned(url: URL, budget?: RequestBudget): Promise<RawResponse> {
+  if (budget && budget.remaining <= 0) throw new Error("session web request limit reached");
   checkRateLimit();
+  if (budget) budget.remaining -= 1;
   const resolved = await resolvePinnedPublicAddress(url.hostname);
   const secure = url.protocol === "https:";
   const transport = secure ? https : http;
@@ -247,10 +251,10 @@ async function requestPinned(url: URL): Promise<RawResponse> {
   });
 }
 
-async function fetchReadOnly(rawUrl: string): Promise<{ finalUrl: URL; response: RawResponse }> {
+async function fetchReadOnly(rawUrl: string, budget?: RequestBudget): Promise<{ finalUrl: URL; response: RawResponse }> {
   let current = validatePublicHttpUrl(rawUrl);
   for (let redirectCount = 0; redirectCount <= MAX_REDIRECTS; redirectCount += 1) {
-    const response = await requestPinned(current);
+    const response = await requestPinned(current, budget);
     if (!response.redirect) return { finalUrl: current, response };
     if (redirectCount === MAX_REDIRECTS) throw new Error("too many redirects");
     current = validatePublicHttpUrl(new URL(response.redirect, current).toString());
@@ -402,13 +406,18 @@ export async function searchPublicWeb(query: string, fetcher = fetchReadOnly): P
     } catch (error) {
       const reason = error instanceof Error ? error.message : String(error);
       attempts.push({ provider, reason });
-      if (reason.includes("rate limit reached")) break;
+      if (reason.includes("rate limit reached") || reason.includes("session web request limit reached")) break;
     }
   }
   return { results: [], attempts };
 }
 
-export function createLocalWebTools(): AutomatonTool[] {
+export function createLocalWebTools(options: { maxRequests?: number } = {}): AutomatonTool[] {
+  if (options.maxRequests !== undefined && (!Number.isInteger(options.maxRequests) || options.maxRequests < 1 || options.maxRequests > MAX_REQUESTS_PER_WINDOW)) {
+    throw new Error("maxRequests must be an integer between 1 and 30");
+  }
+  // Shared by search, fetch, fallbacks and redirects for this toolset's lifetime.
+  const budget = options.maxRequests === undefined ? undefined : { remaining: options.maxRequests };
   return [
     {
       name: "local_web_fetch",
@@ -426,7 +435,7 @@ export function createLocalWebTools(): AutomatonTool[] {
       execute: async (args) => {
         const rawUrl = String(args.url ?? "").trim();
         try {
-          const { finalUrl, response } = await fetchReadOnly(rawUrl);
+          const { finalUrl, response } = await fetchReadOnly(rawUrl, budget);
           await appendAudit("web_fetch", {
             requestedUrl: rawUrl,
             finalUrl: finalUrl.toString(),
@@ -459,9 +468,11 @@ export function createLocalWebTools(): AutomatonTool[] {
         if (!query) return "Blocked: search query is empty";
         if (query.length > 300) return "Blocked: search query exceeds 300 characters";
         try {
-          const { results, attempts } = await searchPublicWeb(query);
+          const { results, attempts } = await searchPublicWeb(query, (url) => fetchReadOnly(url, budget));
           await appendAudit("web_search", { query, resultCount: results.length, attempts });
           if (!results.length) {
+            const limitReason = attempts.find((attempt) => attempt.reason?.includes("limit reached"))?.reason;
+            if (limitReason) return `Blocked: ${limitReason}`;
             return [
               "[UNTRUSTED WEB SEARCH RESPONSE]",
               `Query: ${query}`,
