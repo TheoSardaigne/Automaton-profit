@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-06T19:36:52.170Z",
+  "operator": "Codex",
+  "model": "gpt-oss:20b",
+  "scope": "fixed sources supplied by operator; local extraction without human correction",
+  "autonomousSourceSelection": false,
+  "sourceCount": 3,
+  "successfulFetches": 1,
+  "fetchSeconds": 2.281,
+  "extractionSeconds": 34.012,
+  "totalSeconds": 36.293,
+  "externalComputeSpend": 0,
+  "paidAction": false,
+  "walletLoaded": false,
+  "parseableThreeCompanies": true,
+  "promptTokens": 750,
+  "outputTokens": 1780,
+  "ollamaEvalSeconds": 20.351407
+}
