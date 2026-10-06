@@ -22,9 +22,21 @@ const searchResult = await tool("local_web_search").execute(
   { query: "OpenAI official website" },
   {},
 );
-if (searchResult.startsWith("Blocked:") || !searchResult.includes("http")) {
+const resultUrls = [...searchResult.matchAll(/^\s+(https?:\/\/\S+)$/gm)].map((match) => match[1]);
+if (!searchResult.startsWith("[UNTRUSTED WEB SEARCH RESULTS") || !resultUrls.length) {
   console.error(searchResult.slice(0, 2000));
   throw new Error("web search smoke test failed");
 }
+// Confirm at least one discovered public URL works through the same safe fetch tool.
+let usable = false;
+for (const url of resultUrls.slice(0, 3)) {
+  const page = await tool("local_web_fetch").execute({ url }, {});
+  if (/HTTP status: 2\d\d\n/.test(page) && !page.includes("(empty response body)")) {
+    console.log(`Verified search URL: ${url}`);
+    usable = true;
+    break;
+  }
+}
+if (!usable) throw new Error("no discovered search URL could be fetched successfully");
 console.log("OK: read-only web search works");
 console.log("local web smoke test passed");
