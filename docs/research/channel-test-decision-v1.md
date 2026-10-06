@@ -77,6 +77,8 @@ Temps de setup futur Fiverr estimé 60–90 min (20–30 USD au taux analytique)
 
 ## Expérience recommandée, encore non lancée
 
+**Mise à jour du 6 octobre 2026 :** le propriétaire déclare le gig publié. La présente section conserve le plan antérieur ; le suivi courant est désormais dans [fiverr-live-test-v1.md](fiverr-live-test-v1.md). J0 retenu provisoirement au 6 octobre, J7 au 13 octobre, J14 au 20 octobre ; heure/date réelle distincte et URL à confirmer. Offre inchangée, dépense autorisée 0 EUR, aucun suivi automatique créé.
+
 Un seul gig organique, aucune publicité, aucun boost, aucun abonnement ; budget de dépense autorisé = **0 EUR**. Priorité Basic 39 USD. Standard 69 USD et Premium 99 USD restent des options de volume/profondeur bornées ; plafonner la file à une commande active et suspendre manuellement le gig si la supervision n'est pas disponible. Tous les délais sont des paramètres de brouillon que le propriétaire doit confirmer avant publication.
 
 Fenêtre proposée : **14 jours à compter de la publication humaine réelle** ; aucune automatisation créée. Capture J0/J7/J14 des impressions, clics et messages, si disponibles. Intermédiaire : un message qualifié sur le scope/prix. Commercial : une commande réelle ; jalon principal : retrait externe effectivement encaissé et justificatif expurgé ; puis rentabilité en trésorerie et contribution économique calculées séparément.
