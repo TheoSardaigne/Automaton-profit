@@ -1,5 +1,7 @@
 # Fiverr — journal de l'expérience et protocole 14 jours
 
+**Mise à jour officielle du 6 octobre 2026 :** le propriétaire confirme J0 aujourd'hui, URL https://fr.fiverr.com/s/2ppp7Z8, prix publiés 39/69/99 USD et coût commercial réel d'ouverture **0 EUR**. Le journal économique courant est désormais [fiverr-test-v1/live-test.md](fiverr-test-v1/live-test.md), avec relevés J+1/J+3/J+7/J+14 et veille Upwork limitée programmée. Le texte ci-dessous conserve le protocole antérieur ; ses mentions « URL à fournir », date provisoire et absence d'automatisation décrivent l'état historique, pas l'état courant. L'heure exacte de publication demeure inconnue.
+
 Journal ouvert le **6 octobre 2026**, fuseau **Europe/Paris**. Publication du gig **déclarée par le propriétaire** dans cette conversation ; aucune vérification de la page ou connexion au compte par l'agent. Statut : **PUBLIÉ selon déclaration humaine — suivi préparé**.
 
 ## Point de départ et offre figée
