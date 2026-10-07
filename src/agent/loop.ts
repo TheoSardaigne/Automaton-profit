@@ -65,6 +65,8 @@ import { createWorkerInferenceBridge } from "./worker-inference-bridge.js";
 import { ProviderRegistry } from "../inference/provider-registry.js";
 import { UnifiedInferenceClient } from "../inference/inference-client.js";
 import { isIdleOnlyTool } from "./idle-only-tools.js";
+import { createLocalWorkspaceTools } from "./local-workspace-tools.js";
+import { createLocalWebTools } from "./local-web-tools.js";
 import { applyLaunchInferenceCaps, capLaunchCycleTurns } from "../launch/safety.js";
 
 const logger = createLogger("loop");
@@ -97,9 +99,34 @@ export async function runAgentLoop(
   const { identity, config, db, conway, inference, social, skills, policyEngine, spendTracker, onStateChange, onTurnComplete, ollamaBaseUrl } =
     options;
 
+  const localOllamaOnly =
+    !!ollamaBaseUrl &&
+    /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\/|$)/i.test(ollamaBaseUrl) &&
+    !config.conwayApiKey;
+
   const builtinTools = createBuiltinTools(identity.sandboxId);
   const installedTools = loadInstalledTools(db);
-  const tools = [...builtinTools, ...installedTools];
+  const localOllamaMode = Boolean(ollamaBaseUrl || process.env.OLLAMA_BASE_URL);
+  // In local Ollama mode, never redirect Conway VM tools to the host machine.
+  // Instead expose a separate, confined workspace-only toolset.
+  const unavailableLocalVmTools = new Set([
+    "exec",
+    "read_file",
+    "write_file",
+    "expose_port",
+    "remove_port",
+  ]);
+  const effectiveBuiltinTools = localOllamaMode
+    ? builtinTools.filter((tool) => !unavailableLocalVmTools.has(tool.name))
+    : builtinTools;
+  const localWorkspaceTools = localOllamaMode ? createLocalWorkspaceTools() : [];
+  const localWebTools = localOllamaMode ? createLocalWebTools() : [];
+  const tools = [
+    ...effectiveBuiltinTools,
+    ...installedTools,
+    ...localWorkspaceTools,
+    ...localWebTools,
+  ];
   const toolContext: ToolContext = {
     identity,
     config,
@@ -371,28 +398,39 @@ export async function runAgentLoop(
   onStateChange?.("waking");
 
   // Get financial state
-  let financial = await getFinancialState(conway, identity.address, db, config.chainType || identity.chainType || "evm");
+  let financial = localOllamaOnly
+    ? { creditsCents: 0, usdcBalance: 0, lastChecked: new Date().toISOString() }
+    : await getFinancialState(conway, identity.address, db, config.chainType || identity.chainType || "evm");
 
   // Check if this is the first run
   const isFirstRun = db.getTurnCount() === 0;
 
   // Build wakeup prompt
-  const wakeupInput = buildWakeupPrompt({
+  const baseWakeupInput = buildWakeupPrompt({
     identity,
     config,
     financial,
     db,
   });
+  const wakeupInput = localOllamaOnly
+    ? baseWakeupInput + "\n\nLOCAL OLLAMA MODE: Local inference is available with no Conway credit cost. Do not treat zero Conway credits as a survival problem. Do not request funding or top-ups merely because Conway credits are unavailable. Continue useful profit-oriented work while financial transfers remain locked."
+    : baseWakeupInput;
 
   // Transition to running
   db.setAgentState("running");
   onStateChange?.("running");
 
-  log(config, `[WAKE UP] ${config.name} is alive. Credits: $${(financial.creditsCents / 100).toFixed(2)}`);
+  log(
+    config,
+    localOllamaOnly
+      ? `[WAKE UP] ${config.name} is alive. Local Ollama compute available; Conway credits ignored.`
+      : `[WAKE UP] ${config.name} is alive. Credits: ${(financial.creditsCents / 100).toFixed(2)}`,
+  );
 
   // ─── The Loop ──────────────────────────────────────────────
 
   const MAX_IDLE_TURNS = 10; // Force sleep after N turns with no real work
+  const localIdleSleepMs = ollamaBaseUrl ? 300_000 : 60_000;
   let idleTurnCount = 0;
 
   const maxCycleTurns = config.profitLaunchMode === true
@@ -441,12 +479,20 @@ export async function runAgentLoop(
       }
 
       // Refresh financial state periodically
-      financial = await getFinancialState(conway, identity.address, db, config.chainType || identity.chainType || "evm");
+      financial = localOllamaOnly
+        ? { creditsCents: 0, usdcBalance: 0, lastChecked: new Date().toISOString() }
+        : await getFinancialState(conway, identity.address, db, config.chainType || identity.chainType || "evm");
 
       // Check survival tier
       // api_unreachable: creditsCents === -1 means API failed with no cache.
       // Do NOT kill the agent; continue in low-compute mode and retry next tick.
-      if (financial.creditsCents === -1) {
+      if (localOllamaOnly) {
+        if (db.getAgentState() !== "running") {
+          db.setAgentState("running");
+          onStateChange?.("running");
+        }
+        inference.setLowComputeMode(false);
+      } else if (financial.creditsCents === -1) {
         log(config, "[API_UNREACHABLE] Balance API unreachable, continuing in low-compute mode.");
         inference.setLowComputeMode(true);
       } else {
@@ -616,7 +662,7 @@ export async function runAgentLoop(
       pendingInput = undefined;
 
       // ── Inference Call (via router when available) ──
-      const survivalTier = getSurvivalTier(financial.creditsCents);
+      const survivalTier = localOllamaOnly ? "normal" : getSurvivalTier(financial.creditsCents);
       log(config, `[THINK] Routing inference (tier: ${survivalTier}, model: ${inference.getDefaultModel()})...`);
 
       const inferenceTools = toolsToInferenceFormat(tools);
@@ -874,7 +920,7 @@ export async function runAgentLoop(
         idleTurnCount++;
         if (idleTurnCount >= MAX_IDLE_TURNS) {
           log(config, `[IDLE] ${idleTurnCount} consecutive idle turns with no work. Entering sleep.`);
-          db.setKV("sleep_until", new Date(Date.now() + 60_000).toISOString());
+          db.setKV("sleep_until", new Date(Date.now() + localIdleSleepMs).toISOString());
           db.setAgentState("sleeping");
           onStateChange?.("sleeping");
           running = false;
@@ -908,7 +954,7 @@ export async function runAgentLoop(
         log(config, "[IDLE] No pending inputs. Entering brief sleep.");
         db.setKV(
           "sleep_until",
-          new Date(Date.now() + 60_000).toISOString(),
+          new Date(Date.now() + localIdleSleepMs).toISOString(),
         );
         db.setAgentState("sleeping");
         onStateChange?.("sleeping");

@@ -1,0 +1,30 @@
+{
+  "reviewer": "Codex",
+  "timestamp": "2026-10-06T19:01:25.270Z",
+  "status": "accepted_as_provisional_research_only",
+  "original_aurum_drafts": "Preserved as tool arguments in session.jsonl and review-session.jsonl",
+  "issues_corrected": [
+    "Claims of page access without successful fetch",
+    "Unsupported market demand, prices and margins",
+    "Incorrect NLP offsets",
+    "Irrelevant sources used as evidence",
+    "Confusion between sandbox and real payment",
+    "Incorrect zero request count"
+  ],
+  "remaining": [
+    "No successful primary fetch in initial session",
+    "No demand validation",
+    "No verified payment",
+    "Paid channels and fees not researched"
+  ],
+  "source_urls_in_journal": 32,
+  "verified_primary_fetches": 0,
+  "sample_checks": {
+    "input_rows": 5,
+    "retained_rows": 3,
+    "duplicates": 1,
+    "quarantined": 1,
+    "total_quantity": 20
+  },
+  "public_requests_added_by_review": 0
+}

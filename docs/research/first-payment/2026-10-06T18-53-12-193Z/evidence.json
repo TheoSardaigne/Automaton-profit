@@ -1,0 +1,129 @@
+{
+  "reviewed_at": "2026-10-06T19:01:25.267Z",
+  "reviewer": "Codex",
+  "status": "provisional_not_market_validated",
+  "verified_primary_fetches": 0,
+  "web_budget": {
+    "max_attempts": 20,
+    "exhausted": true,
+    "scope": "Recherche initiale ; tentatives DNS, fallbacks et redirects incluses. Revue hors ligne : 0 requête publique."
+  },
+  "source_policy": "Toutes les URLs sont discovered_only. Aucun contenu primaire n’a été récupéré. Les liens ne prouvent aucune vente.",
+  "external_actions_executed": [],
+  "external_payments_verified_in_this_session": 0,
+  "opportunities": [
+    {
+      "id": "csv",
+      "name": "Nettoyage et contrôle de qualité de petits CSV",
+      "observations": [
+        "Un exemple synthétique de cinq lignes a été réellement nettoyé localement lors de la revue. Aucune preuve de demande externe collectée."
+      ],
+      "assumptions": [
+        "Une PME pourrait payer pour récupérer un CSV propre et un rapport lisible.",
+        "Hypothèse de test : 25 EUR pour un fichier de 100 lignes maximum ; ce prix est une proposition, pas un tarif de marché.",
+        "Temps humain de revue estimé pour un pilote : 30 à 60 minutes, à mesurer."
+      ],
+      "unknowns": [
+        "Client cible prêt à payer",
+        "Données autorisées et règles de nettoyage",
+        "Frais de paiement et conditions fiscales",
+        "Coût total du temps humain"
+      ],
+      "sources": []
+    },
+    {
+      "id": "annotation",
+      "name": "Annotation de courts textes français selon un guide client",
+      "observations": [
+        "Des URLs de plateformes de data labeling figurent dans les résultats de recherche. Les pages n’ont pas été lues.",
+        "L’exemple d’annotation initial d’Aurum présentait des offsets incorrects ; une revue qualité est indispensable."
+      ],
+      "assumptions": [
+        "La tâche pourrait être répétée si le guide est explicite et le contrôle humain suffisant."
+      ],
+      "unknowns": [
+        "Demande réellement payable",
+        "Prix accepté",
+        "Précision et temps de revue",
+        "Licences et confidentialité des textes"
+      ],
+      "sources": [
+        {
+          "url": "https://www.fiverr.com/categories/data/data-labeling-annotation",
+          "status": "discovered_only",
+          "supports": "Existence d’un lien dans les résultats du moteur, pas demande ni vente vérifiée."
+        },
+        {
+          "url": "https://www.g2.com/categories/data-labeling-services",
+          "status": "discovered_only",
+          "supports": "Existence d’un lien dans les résultats du moteur, pas demande ni vente vérifiée."
+        },
+        {
+          "url": "https://www.freelancer.com/hire/data-labeling",
+          "status": "discovered_only",
+          "supports": "Existence d’un lien dans les résultats du moteur, pas demande ni vente vérifiée."
+        }
+      ]
+    },
+    {
+      "id": "product",
+      "name": "Structuration de fiches produit à partir de données autorisées",
+      "observations": [
+        "Aucune source primaire sur la demande ou les tarifs récupérée dans cette passe."
+      ],
+      "assumptions": [
+        "Un catalogue désordonné pourrait être transformé en fiches homogènes sans inventer de caractéristiques."
+      ],
+      "unknowns": [
+        "Client prêt à payer",
+        "Droits sur les descriptions",
+        "Volume, critères et prix",
+        "Taux d’erreur après validation"
+      ],
+      "sources": []
+    },
+    {
+      "id": "watch",
+      "name": "Synthèse de veille sur une niche B2B",
+      "observations": [
+        "Aucune demande précise vérifiée ; les outils de recherche fonctionnent mais le budget a été épuisé avant la lecture des pages."
+      ],
+      "assumptions": [
+        "Une synthèse sourcée pourrait économiser du temps à un professionnel."
+      ],
+      "unknowns": [
+        "Niche précise et abonnement accepté",
+        "Sources fiables et droits de reprise",
+        "Temps de vérification humaine",
+        "Répétabilité"
+      ],
+      "sources": []
+    },
+    {
+      "id": "content",
+      "name": "Audit descriptif de cohérence de contenu public",
+      "observations": [
+        "Aucune source primaire sur la demande ni prestation vendue confirmée."
+      ],
+      "assumptions": [
+        "Un audit limité aux liens, doublons et incohérences visibles pourrait être utile ; aucune garantie SEO ou légale."
+      ],
+      "unknowns": [
+        "Accès autorisé aux contenus",
+        "Attentes du client et prix",
+        "Possibilité de vérifier les corrections sans accès authentifié",
+        "Temps de revue"
+      ],
+      "sources": []
+    }
+  ],
+  "local_sample": {
+    "synthetic": true,
+    "input_rows": 5,
+    "retained_rows": 3,
+    "duplicates_removed": 1,
+    "quarantined_rows": 1,
+    "total_quantity": 20,
+    "computed_by": "Codex lors de la revue locale"
+  }
+}

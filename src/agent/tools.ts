@@ -3391,6 +3391,22 @@ export async function executeTool(
     sessionSpend: SpendTrackerInterface;
   },
 ): Promise<ToolCallResult> {
+  // Some OpenAI-compatible local models namespace function names (for example
+  // "skills.list_skills", "tool:list_goals", or "orchestration/list_goals")
+  // even though the schema exposes bare names. Normalize ONLY when the final
+  // segment exactly matches a tool already exposed in this turn. This does not
+  // expand capabilities. In local Ollama mode, never auto-normalize raw VM shell
+  // execution aliases; local host execution requires a separate explicitly-scoped tool.
+  if (!tools.some((t) => t.name === toolName)) {
+    const parts = toolName.split(/[.:/]/).filter(Boolean);
+    const suffix = parts.length > 1 ? parts[parts.length - 1] : undefined;
+    const matched = suffix ? tools.find((t) => t.name === suffix) : undefined;
+    const localOllamaMode = Boolean(process.env.OLLAMA_BASE_URL || context.config.ollamaBaseUrl);
+    const blockedLocalAliases = new Set(["exec", "read_file", "write_file", "expose_port"]);
+    if (matched && !(localOllamaMode && blockedLocalAliases.has(matched.name))) {
+      toolName = matched.name;
+    }
+  }
   const tool = tools.find((t) => t.name === toolName);
   const startTime = Date.now();
 

@@ -46,13 +46,17 @@ export async function buildTickContext(
 ): Promise<TickContext> {
   const tickId = generateTickId();
   const startedAt = new Date();
+  const localOllamaOnly = !!process.env.OLLAMA_BASE_URL &&
+    /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\/|$)/i.test(process.env.OLLAMA_BASE_URL);
 
   // Fetch balances ONCE
   let creditBalance = 0;
-  try {
-    creditBalance = await conway.getCreditsBalance();
-  } catch (err: any) {
-    logger.error("Failed to fetch credit balance", err instanceof Error ? err : undefined);
+  if (!localOllamaOnly) {
+    try {
+      creditBalance = await conway.getCreditsBalance();
+    } catch (err: any) {
+      logger.error("Failed to fetch credit balance", err instanceof Error ? err : undefined);
+    }
   }
 
   let usdcBalance = 0;
@@ -65,7 +69,7 @@ export async function buildTickContext(
     }
   }
 
-  const survivalTier = getSurvivalTier(creditBalance);
+  const survivalTier = localOllamaOnly ? "normal" : getSurvivalTier(creditBalance);
   const lowComputeMultiplier = config.lowComputeMultiplier ?? 4;
 
   return {

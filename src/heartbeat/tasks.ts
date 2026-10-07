@@ -35,6 +35,13 @@ function getAlertEngine(): AlertEngine {
   return _alertEngine;
 }
 
+function isLocalOllamaOnly(taskCtx: HeartbeatLegacyContext): boolean {
+  const url = process.env.OLLAMA_BASE_URL || taskCtx.config.ollamaBaseUrl;
+  return !!url &&
+    /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\/|$)/i.test(url) &&
+    !taskCtx.config.conwayApiKey;
+}
+
 export const COLONY_TASK_INTERVALS_MS = {
   colony_health_check: 300_000,
   colony_financial_report: 3_600_000,
@@ -52,7 +59,7 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
       taskCtx.db.getKV("start_time") || new Date().toISOString();
     const uptimeMs = Date.now() - new Date(startTime).getTime();
 
-    const tier = ctx.survivalTier;
+    const tier: SurvivalTier = isLocalOllamaOnly(taskCtx) ? "normal" : ctx.survivalTier;
 
     const payload = {
       name: taskCtx.config.name,
@@ -91,6 +98,14 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
   },
 
   check_credits: async (ctx: TickContext, taskCtx: HeartbeatLegacyContext) => {
+    if (isLocalOllamaOnly(taskCtx)) {
+      const now = new Date().toISOString();
+      taskCtx.db.setKV("last_credit_check", JSON.stringify({ credits: 0, tier: "normal", localOllama: true, timestamp: now }));
+      taskCtx.db.setKV("prev_credit_tier", "normal");
+      taskCtx.db.deleteKV("zero_credits_since");
+      return { shouldWake: false };
+    }
+
     // Use ctx.creditBalance instead of calling conway.getCreditsBalance()
     const credits = ctx.creditBalance;
     const tier = ctx.survivalTier;

@@ -1,0 +1,40 @@
+{
+  "agent": "Aurum",
+  "model": "gpt-oss:20b",
+  "endpoint": "http://127.0.0.1:11434",
+  "allowedTools": [
+    "local_workspace_status",
+    "local_list_files",
+    "local_read_file",
+    "local_write_file",
+    "local_validate_file"
+  ],
+  "maxWebRequests": 0,
+  "offlineReview": true,
+  "maxTurns": 28,
+  "externalSpendBudgetCents": 0,
+  "walletLoaded": false,
+  "heartbeatStarted": false,
+  "scope": "research/first-payment/2026-10-06T18-53-12-193Z",
+  "status": "artifacts_written_pending_review",
+  "toolCount": 4,
+  "artifacts": [
+    {
+      "file": "evidence.json",
+      "bytes": 5767
+    },
+    {
+      "file": "comparison.md",
+      "bytes": 2846
+    },
+    {
+      "file": "experiment.md",
+      "bytes": 1455
+    },
+    {
+      "file": "sample.md",
+      "bytes": 1083
+    }
+  ],
+  "elapsedSeconds": 87
+}

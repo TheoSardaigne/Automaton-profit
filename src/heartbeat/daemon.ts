@@ -106,8 +106,11 @@ export function createHeartbeatDaemon(
     onWakeRequest,
   );
 
-  // Tick interval from config (not log level)
-  const tickMs = heartbeatConfig.defaultIntervalMs ?? 60_000;
+  // Tick interval from config (not log level). Local Ollama mode uses a
+  // minimum 5-minute interval to avoid pointless idle GPU churn and reasoning drift.
+  const configuredTickMs = heartbeatConfig.defaultIntervalMs ?? 60_000;
+  const localOllamaMode = Boolean(process.env.OLLAMA_BASE_URL || config.ollamaBaseUrl);
+  const tickMs = localOllamaMode ? Math.max(configuredTickMs, 300_000) : configuredTickMs;
 
   /**
    * Recursive setTimeout loop for overlap protection.

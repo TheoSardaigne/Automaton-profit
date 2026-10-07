@@ -64,10 +64,10 @@ INCONNU = non relevé ; 0 = valeur explicitement observée/confirmée ; NA = non
 
 | Mesure | J0 06/10 | J+1 07/10 | J+3 09/10 | J+7 13/10 | J+14 20/10 |
 |---|---|---|---|---|---|
-| Heure / période / preuve du relevé | À fournir | À relever | À relever | À relever | À relever |
-| Impressions / clics / vues distinctes | INCONNU | INCONNU | INCONNU | INCONNU | INCONNU |
+| Heure / période / preuve du relevé | À fournir | 07/10, 22:35 affiché ; Last 30 days ; capture 2179 | À relever | À relever | À relever |
+| Impressions / clics / vues distinctes | INCONNU | **22 / 0 / INCONNU** | INCONNU | INCONNU | INCONNU |
 | Conversations / qualifiées | INCONNU | INCONNU | INCONNU | INCONNU | INCONNU |
-| Commandes reçues / admissibles / hors scope | INCONNU | INCONNU | INCONNU | INCONNU | INCONNU |
+| Commandes reçues / admissibles / hors scope | INCONNU | **0 affichée / NA / NA** | INCONNU | INCONNU | INCONNU |
 | Actives / livrées / terminées / annulées | INCONNU | INCONNU | INCONNU | INCONNU | INCONNU |
 | CA brut commandé / terminé, USD | INCONNU | INCONNU | INCONNU | INCONNU | INCONNU |
 | Commission / remboursements effectifs, USD | INCONNU | INCONNU | INCONNU | INCONNU | INCONNU |
@@ -115,3 +115,22 @@ Relevé J0 de veille : deux requêtes publiques (competitor research pricing $50
 
 - **06/10/2026 — J0 confirmé par propriétaire** : URL fournie, packages publiés 39/69/99 USD confirmés, acquisition réelle 0 EUR. Journal créé ; statistiques privées à relever ; heure de publication inconnue ; lecture publique du lien impossible ; aucun paiement prétendu.
 - **06/10/2026** : protocole J+1/J+3/J+7/J+14 et veille publique quotidienne bornée préparés ; automation active confirmée par outil. Offre inchangée, aucun achat ni candidature.
+
+### Suivi J+1 — 7 octobre 2026
+
+Run de veille déclenché à **22:33:17 CEST (20:33:17 UTC)** le 7 octobre, selon l'horodatage de l'automation. Journal lu intégralement ; aucun relevé privé ni preuve de commande/paiement reçu dans cette conversation au moment du contrôle. Impressions, clics, messages, commandes, chiffre d'affaires, frais/net/retrait, temps et retours restent **INCONNUS**. Le coût commercial confirmé à **0 EUR** est celui de J0 ; aucune dépense supplémentaire n'est exécutée par l'agent, mais le cumul J+1 doit être confirmé par le propriétaire.
+
+**Demande de relevé J+1 formulée au propriétaire dans ce suivi** : transmettre une capture expurgée ou une transcription avec date/heure et période du tableau de bord ; impressions, clics, conversations/qualifiées, commandes et statuts, brut/frais/net disponible/encaissé, dépenses éventuelles, temps humain/Aurum et problèmes. Valeur non affichée = INCONNU/NA, pas zéro. Ne pas redemander ce relevé dans les prochains runs sans nouvelle raison ; prochain jalon planifié : **9 octobre, J+3**. Aucun accès au compte, identifiant ou contournement utilisé.
+
+Veille Upwork J+1 : **deux requêtes** (`pricing research competitors` et `vendor research comparison`, filtrées sur les trois derniers jours). Résultats publics : profils de prestataires, aucune annonce client pertinente à ouvrir. **0 nouvelle piste qualifiée**, aucun score APPLY fictif, aucune recherche supplémentaire. Les cinq PASS et le seuil ≥70/100 restent inchangés. Aucun Connect consommé, candidature envoyée, modification du gig ou engagement financier. Aucun succès commercial ni profit validé faute de preuve.
+### Relevé J+1 reçu — capture propriétaire
+
+**7 octobre 2026, 22:35 affiché dans la barre Windows de la capture** ; précision à la minute, fuseau de référence du suivi Europe/Paris. Preuve : image fournie dans cette conversation, `C:/Users/Théo/Pictures/Screenshots/Capture d’écran (2179).png`. La capture est interprétée comme preuve visuelle datée par son affichage, pas comme accès direct au compte ou horodatage authentifié de Fiverr.
+
+Tableau Active Gigs, filtre **LAST 30 DAYS**, une ligne pour « research and compare 3 competitors with pricing features and sources » : **22 impressions, 0 clic, 0 commande, cancellations 0 %**. Statut **ACTIVE**, un gig actif. Le titre correspond à l'offre suivie ; aucun changement de paramètres effectué. Le taux d'annulation affiché n'est pas une preuve de commandes terminées : le compteur Orders est à zéro.
+
+**CTR observé : 0 / 22 = 0 % sur cette fenêtre affichée.** La visibilité existe dans le relevé ; aucun clic ni commande affiché. Échantillon limité : aucune conclusion sur la demande, la rentabilité ou la nécessité de modifier le prix/galerie. Offre maintenue inchangée jusqu'aux prochains relevés.
+
+La fenêtre de 30 jours ne constitue pas une mesure isolée des 24 premières heures ni un delta J0→J+1 : il manque un relevé initial comparable. Conserver le filtre et sa période au prochain point, ou expliciter le changement ; ne pas additionner des captures cumulatives. Le relevé ne montre ni messages, ni chiffre d'affaires/revenus/frais/retrait, ni temps humain/Aurum : **INCONNU** pour ces champs. Aucun paiement externe, revenu net ou profit validé. Acquisition **0 EUR confirmée à J0 seulement** ; cumul J+1 non visible. Aucune dépense exécutée par l'agent.
+
+Demande de statistiques J+1 partiellement satisfaite par cette capture ; ne pas redemander les impressions/clics/commandes déjà fournis. Prochain relevé planifié **J+3, 9 octobre 2026**. Les messages et revenus pourront être ajoutés si le propriétaire les transmet, sans inventer une absence de messages ni une recette à partir de cette seule page.

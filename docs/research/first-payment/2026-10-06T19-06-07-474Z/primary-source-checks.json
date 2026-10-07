@@ -1,0 +1,80 @@
+{
+  "scope": "research/first-payment/2026-10-06T19-06-07-474Z",
+  "checkedBy": "Codex via Aurum's read-only tools",
+  "maxWebAttempts": 20,
+  "externalSpendCents": 0,
+  "walletLoaded": false,
+  "paymentVerified": false,
+  "evidence": [
+    {
+      "id": "buyer-demand",
+      "url": "https://www.upwork.com/freelance-jobs/apply/Excel-Data-Cleaning-and-Automation_~022105597905396259311/",
+      "checkedAt": "2026-10-06T19:06:07.578Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 403,
+      "factVerifiedByLocalFetch": false,
+      "fact": null,
+      "failure": "Page inaccessible ou contenu attendu absent ; ne pas conclure à partir de ce fetch."
+    },
+    {
+      "id": "competitor-offer",
+      "url": "https://www.upwork.com/services/product/development-it-automated-data-entry-clean-raw-data-create-reports-1980416903749725322",
+      "checkedAt": "2026-10-06T19:06:07.682Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 403,
+      "factVerifiedByLocalFetch": false,
+      "fact": null,
+      "failure": "Page inaccessible ou contenu attendu absent ; ne pas conclure à partir de ce fetch."
+    },
+    {
+      "id": "upwork-fee",
+      "url": "https://support.upwork.com/hc/en-us/articles/211062538-Learn-about-the-Freelancer-Service-Fee",
+      "checkedAt": "2026-10-06T19:06:08.208Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 200,
+      "factVerifiedByLocalFetch": true,
+      "fact": "La commission freelance annoncée varie de 0 à 15 % par contrat ; le taux précis est affiché avant engagement.",
+      "failure": null
+    },
+    {
+      "id": "upwork-connects",
+      "url": "https://support.upwork.com/hc/en-us/articles/211062898-Understanding-and-using-Connects",
+      "checkedAt": "2026-10-06T19:06:08.286Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 200,
+      "factVerifiedByLocalFetch": true,
+      "fact": "Un Connect coûte 0,15 USD ; le nombre requis pour une candidature reste à vérifier sur l'annonce et le compte.",
+      "failure": null
+    },
+    {
+      "id": "fiverr-earnings",
+      "url": "https://help.fiverr.com/hc/en-us/articles/9234443621137-Your-earnings-page",
+      "checkedAt": "2026-10-06T19:06:08.535Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 200,
+      "factVerifiedByLocalFetch": true,
+      "fact": "Le freelance reçoit 80 % du montant de la commande selon l'aide officielle, avant fiscalité et frais éventuels de retrait.",
+      "failure": null
+    },
+    {
+      "id": "fiverr-onboarding",
+      "url": "https://help.fiverr.com/hc/en-us/articles/360010451397-Creating-a-Gig",
+      "checkedAt": "2026-10-06T19:06:09.093Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 200,
+      "factVerifiedByLocalFetch": true,
+      "fact": "Publier une offre nécessite de compléter le profil et l'onboarding du freelance ; état du compte utilisateur inconnu.",
+      "failure": null
+    },
+    {
+      "id": "fiverr-ai",
+      "url": "https://help.fiverr.com/hc/en-us/articles/37554976380177-Using-AI-on-Fiverr-Guidelines-for-freelancers-and-clients",
+      "checkedAt": "2026-10-06T19:06:09.349Z",
+      "transport": "Aurum local_web_fetch",
+      "httpStatus": 200,
+      "factVerifiedByLocalFetch": true,
+      "fact": "L'utilisation responsable de l'IA est permise ; la qualité finale reste sous responsabilité du freelance.",
+      "failure": null
+    }
+  ]
+}
