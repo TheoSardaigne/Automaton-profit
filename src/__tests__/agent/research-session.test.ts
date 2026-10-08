@@ -60,6 +60,8 @@ describe("zero-spend research session", () => {
     }
     expect(execute).not.toHaveBeenCalled();
     expect(await dispatch("local_research_extract_csv", { path: `${scope}/dataset.csv`, pages: [] })).toBe("OK");
+    expect(await dispatch("local_pricing_extract_csv", { path: "elsewhere.csv", urls: [] })).toContain("Blocked:");
+    expect(await dispatch("local_pricing_extract_csv", { path: `${scope}/dataset.csv`, urls: [] })).toBe("OK");
   });
   it("blocks all web calls in offline review", async () => {
     const execute = vi.fn().mockResolvedValue("OK");
@@ -67,6 +69,7 @@ describe("zero-spend research session", () => {
     expect(await dispatch("local_web_search", { query: "test" })).toContain("offline review");
     expect(await dispatch("web.local_web_fetch", { url: "https://example.com" })).toContain("offline review");
     expect(await dispatch("local_research_extract_csv", { path: "scope/dataset.csv", pages: [] })).toContain("offline review");
+    expect(await dispatch("local_pricing_extract_csv", { path: "scope/dataset.csv", urls: [] })).toContain("offline review");
     expect(execute).not.toHaveBeenCalled();
   });
 });

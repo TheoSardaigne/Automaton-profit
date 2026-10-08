@@ -1,0 +1,1705 @@
+[
+  {
+    "entity": "SavvyCal",
+    "source_url": "https://savvycal.com/pricing/",
+    "accessed_at": "2026-10-08T18:47:30.890Z",
+    "source_sha256": "969d576e4c6374d425b4d555145887be2fff239df3ac49b1d26c3088f803fbb2",
+    "source_characters": 2180,
+    "page_succeeded": true,
+    "fetch_seconds": 0.49366599999999994,
+    "failure": null,
+    "slots": [
+      {
+        "plan_name": "Basic",
+        "billing_option": "UNKNOWN"
+      },
+      {
+        "plan_name": "Premium",
+        "billing_option": "UNKNOWN"
+      }
+    ],
+    "contexts": [
+      {
+        "plan_name": "Basic",
+        "text": " Basic\n Great for individuals & small teams with simple scheduling needs.\n $ 10 /user/mo \n Save 2 months \n Try SavvyCal risk-free You’ll get:\n Unlimited calendars\n\n Unlimited links\n\n Team scheduling\n\n"
+      },
+      {
+        "plan_name": "Premium",
+        "text": ""
+      }
+    ],
+    "proposal": {
+      "draft": {
+        "plans": [
+          {
+            "plan_name": "Basic",
+            "billing_option": "UNKNOWN",
+            "fields": [
+              {
+                "field": "plan_name",
+                "normalized_value": "Basic",
+                "exact_evidence_quote": " Basic",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 1
+              },
+              {
+                "field": "price_amount",
+                "normalized_value": 10,
+                "exact_evidence_quote": "$ 10 /user/mo",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "monthly",
+                "exact_evidence_quote": "$ 10 /user/mo",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "user/month",
+                "exact_evidence_quote": "$ 10 /user/mo",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              }
+            ]
+          },
+          {
+            "plan_name": "Premium",
+            "billing_option": "UNKNOWN",
+            "fields": [
+              {
+                "field": "plan_name",
+                "normalized_value": "Premium",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              },
+              {
+                "field": "price_amount",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              },
+              {
+                "field": "currency",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://savvycal.com/pricing/",
+                "confidence": 0
+              }
+            ]
+          }
+        ]
+      },
+      "raw_content": "{\"plans\":[{\"plan_name\":\"Basic\",\"billing_option\":\"UNKNOWN\",\"fields\":[{\"field\":\"plan_name\",\"normalized_value\":\"Basic\",\"exact_evidence_quote\":\" Basic\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":1},{\"field\":\"price_amount\",\"normalized_value\":10,\"exact_evidence_quote\":\"$ 10 /user/mo\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":1},{\"field\":\"currency\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0},{\"field\":\"billing_period\",\"normalized_value\":\"monthly\",\"exact_evidence_quote\":\"$ 10 /user/mo\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":1},{\"field\":\"pricing_unit\",\"normalized_value\":\"user/month\",\"exact_evidence_quote\":\"$ 10 /user/mo\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":1},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0}]},{\"plan_name\":\"Premium\",\"billing_option\":\"UNKNOWN\",\"fields\":[{\"field\":\"plan_name\",\"normalized_value\":\"Premium\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0},{\"field\":\"price_amount\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0},{\"field\":\"currency\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0},{\"field\":\"billing_period\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0},{\"field\":\"pricing_unit\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0},{\"field\":\"free_plan\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://savvycal.com/pricing/\",\"confidence\":0}]}]}",
+      "model": "gpt-oss:20b",
+      "elapsed_seconds": 88.5038766,
+      "prompt_tokens": 503,
+      "output_tokens": 2413,
+      "complete": true
+    },
+    "validated": [
+      {
+        "entity": "SavvyCal",
+        "source_url": "https://savvycal.com/pricing/",
+        "accessed_at": "2026-10-08T18:47:30.890Z",
+        "plan_name": "Basic",
+        "billing_option": "UNKNOWN",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "Basic",
+            "exact_evidence_quote": " Basic",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 10,
+            "exact_evidence_quote": "$ 10 /user/mo",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "user/month",
+            "exact_evidence_quote": "$ 10 /user/mo",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "INVALID_QUOTE_LENGTH",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SavvyCal",
+        "source_url": "https://savvycal.com/pricing/",
+        "accessed_at": "2026-10-08T18:47:30.890Z",
+        "plan_name": "Premium",
+        "billing_option": "UNKNOWN",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "PLAN_CONTEXT_UNBOUND",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://savvycal.com/pricing/",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "entity": "YouCanBookMe",
+    "source_url": "https://youcanbook.me/pricing",
+    "accessed_at": "2026-10-08T18:48:59.531Z",
+    "source_sha256": "d7dd363b0dee0480c6c35db0d0bb3ed6ec0ffdb841af437f20db7867c1ac9e7b",
+    "source_characters": 20842,
+    "page_succeeded": true,
+    "fetch_seconds": 0.13305920000000332,
+    "failure": null,
+    "slots": [
+      {
+        "plan_name": "Free",
+        "billing_option": "UNKNOWN"
+      },
+      {
+        "plan_name": "Individual",
+        "billing_option": "UNKNOWN"
+      },
+      {
+        "plan_name": "Professional",
+        "billing_option": "UNKNOWN"
+      },
+      {
+        "plan_name": "Team",
+        "billing_option": "UNKNOWN"
+      }
+    ],
+    "contexts": [
+      {
+        "plan_name": "Free",
+        "text": " Free\n\n $ \n 0 \n / month \n\n Contact Sales \n\n Get started. The most customizable free online scheduling tool you can get. Anywhere.\n\n 1 calendar connection\n\n 1 booking page\n\n Sign up free \n\n Features you'll love:\n\n Check 1 calendar for availability (Google, Apple, Microsoft & more)\n\n Powerful, reliable booking page with your own logo & text\n\n Set daily availability & breaks \n\n Customizable confirmation emails & SMS \n\n Customizable booking form questions\n\n Connect to Zoom, MS Teams, Google Meet\n\n Take payments with Stripe: credit & debit cards, Apple Pay, Google Pay\n\n Availability overlay for all bookers\n\n Easy reschedule & cancellation links\n\n Customizable calendar events to include information your clients need\n\n Customizable embedding options to share your link on your website\n\n Polling for availability\n\n Single use booking links\n\n Chrome extension\n\n Access to our support site, community forum, and helpful video resources.\n\n See all features\n\n See all features\n\n"
+      },
+      {
+        "plan_name": "Individual",
+        "text": " Individual\n\n $ \n 0 \n / month \n\n Contact Sales \n\n A booking experience with style! Super customizable for you or your business; works great for occasional online scheduling. \n\n 2 calendar connections\n\n 2 booking pages\n\n Try for free \n\n Everything in Free, plus:\n\n Check 2 personal calendars for availability (Google, Apple, Microsoft & more)\n\n Custom color, background image & page footer \n\n Add extra notifications, branded for your business\n\n Choose from 3 availability displays: monthly, weekly, daily\n\n Customizable reminder emails & SMS\n\n Fixed-date scheduling (events) \n\n Group sessions (webinars and courses)\n\n Minimum & maximum notice periods for meetings\n\n Password protect your booking page\n\n Premium support, including 1:1 support requests & scheduled callbacks\n\n See all features\n\n See all features\n\n"
+      },
+      {
+        "plan_name": "Professional",
+        "text": " Professional\n\n $ \n 0 \n / month \n\n Contact Sales \n\n Perfect for solopreneurs where meetings are the heart of your business. Automations, features & integrations that will help you scale.\n\n 6 calendar connections\n\n 10 booking pages\n\n Try for free \n\n Everything in Individual, plus:\n\n Check up to 6 calendars for availability (Google, Apple, Microsoft & more)\n\n No need to create separate links. List different resources on the same page (appointment types, meeting rooms, locations, etc) \n\n Automated workflows with customized reminders, follow-up notifications, & no-show management\n\n Unlimited booking form questions \n\n Offer promotion codes\n\n Add notes to bookings\n\n Customize the message when your page is unavailable\n\n Accept/Decline requested meetings\n\n Tracking with Google Analytics, Facebook, Instagram & LinkedIn Pixel\n\n Direct integration with HubSpot\n\n Integrate with 1,000s of tools with Zapier\n\n Set a limit on meetings per day\n\n Block bookings based on booker email address\n\n Analytics\n\n Send SMS messages from your dedicated business line\n\n Premium support, including 1:1 support requests & scheduled callbacks\n\n See all features\n\n See all features\n\n Most popular\n\n"
+      },
+      {
+        "plan_name": "Team",
+        "text": " Team\n\n $ \n 0 \n / member / month \n\n Contact Sales \n\n For individuals who need more booking pages - or teams who need to schedule and coordinate across groups and departments. Role-based access and enterprise-level features. \n\n 10 calendar connections per user \n\n 15+ booking pages per user\n\n Have a team of 50 plus? \n Contact sales \n\n Try for free \n\n Everything in Professional, plus:\n\n Invite and manage team members through one dashboard\n\n Assign roles to determine account access\n\n List different team members on the same page.\n\n Multiple administrators for larger teams\n\n Round robin for teams\n\n Centralized billing\n\n Unlimited API access\n\n Personalized onboarding\n\n Premium support, including 1:1 support requests & scheduled callbacks\n\n See all features\n\n See all features\n\n Your clients will ❤️ scheduling with you\n\n We care about your clients as much as you do. \n\n \"There are a small handful of tools that I recommend without hesitation and YouCanBookMe is absolutely top of that list.\"\n\n Gareth Marlow\n\n Founder, eqsystems.io\n\n \"YouCanBookMe has significantly improved my customer experience by providing a seamless booking process. My clients appreciate the ease of scheduling and the automated reminders.\"\n\n Corine La Font\n\n PR and Communication Consultant, La Font and Associates\n\n \"We switched to YouCanBookMe a couple of years ago because it provided the features we needed that Calendly didn't. I really love YouCanBookMe.\"\n\n Georgie Ionescu\n\n Onboarding Team Lead, Passion.io\n\n \"YouCanBookMe has been a game changer for our team. It truly has taken hours out of our workday.\"\n\n Kaleena Goldsworthy\n\n Owner, Proof Incubator\n\n \"YouCanBookMe has a clean interface, allows SMS notifications, works great for teams, and is a highly effective sales and communication tool – we absolutely lo"
+      }
+    ],
+    "proposal": {
+      "draft": null,
+      "raw_content": "",
+      "model": "gpt-oss:20b",
+      "elapsed_seconds": 76.05078639999999,
+      "prompt_tokens": 1596,
+      "output_tokens": 6000,
+      "complete": false
+    },
+    "validated": [
+      {
+        "entity": "YouCanBookMe",
+        "source_url": "https://youcanbook.me/pricing",
+        "accessed_at": "2026-10-08T18:48:59.531Z",
+        "plan_name": "Free",
+        "billing_option": "UNKNOWN",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "YouCanBookMe",
+        "source_url": "https://youcanbook.me/pricing",
+        "accessed_at": "2026-10-08T18:48:59.531Z",
+        "plan_name": "Individual",
+        "billing_option": "UNKNOWN",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "YouCanBookMe",
+        "source_url": "https://youcanbook.me/pricing",
+        "accessed_at": "2026-10-08T18:48:59.531Z",
+        "plan_name": "Professional",
+        "billing_option": "UNKNOWN",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "YouCanBookMe",
+        "source_url": "https://youcanbook.me/pricing",
+        "accessed_at": "2026-10-08T18:48:59.531Z",
+        "plan_name": "Team",
+        "billing_option": "UNKNOWN",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://youcanbook.me/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "entity": "SimplyBook.me",
+    "source_url": "https://simplybook.me/en/pricing",
+    "accessed_at": "2026-10-08T18:50:15.973Z",
+    "source_sha256": "97d885d7f3cc81bd35a268faf069cd99c4738e21350970ff0979deb94e726475",
+    "source_characters": 27223,
+    "page_succeeded": true,
+    "fetch_seconds": 0.3879716999999946,
+    "failure": null,
+    "slots": [
+      {
+        "plan_name": "Free",
+        "billing_option": "monthly"
+      },
+      {
+        "plan_name": "Free",
+        "billing_option": "annual"
+      },
+      {
+        "plan_name": "Basic",
+        "billing_option": "monthly"
+      },
+      {
+        "plan_name": "Basic",
+        "billing_option": "annual"
+      },
+      {
+        "plan_name": "Standard",
+        "billing_option": "monthly"
+      },
+      {
+        "plan_name": "Standard",
+        "billing_option": "annual"
+      },
+      {
+        "plan_name": "Premium",
+        "billing_option": "monthly"
+      },
+      {
+        "plan_name": "Premium",
+        "billing_option": "annual"
+      },
+      {
+        "plan_name": "Enterprise",
+        "billing_option": "monthly"
+      },
+      {
+        "plan_name": "Enterprise",
+        "billing_option": "annual"
+      }
+    ],
+    "contexts": [
+      {
+        "plan_name": "Enterprise",
+        "text": ""
+      },
+      {
+        "plan_name": "Free",
+        "text": " Free\n\n €0\n\n per month, billed annually \n €0\n\n per month, billed monthly \n\n Included bookings\n\n 50\n\n Custom Features \n\n 1\n\n Providers\n\n 1\n\n Get Started \n\n Available options\n\n Booking website\n\n Booking widget\n\n Admin App\n\n Wordpress widget\n\n"
+      },
+      {
+        "plan_name": "Basic",
+        "text": " Basic\n\n €11.9\n\n per month, billed annually \n €13.9\n\n per month, billed monthly \n\n Included bookings\n\n 100\n\n Custom Features \n\n 3\n\n Providers\n\n 5\n\n Get Started \n\n Available options on Free+\n\n Client App\n\n Payments, Deposits, Tips\n\n Sales (POS)\n\n"
+      },
+      {
+        "plan_name": "Standard",
+        "text": " Standard\n\n €24.9\n\n per month, billed annually \n €29.9\n\n per month, billed monthly \n\n Included bookings\n\n 500\n\n Custom Features \n\n 8\n\n Providers\n\n 15\n\n Get Started \n\n Available options on Basic+\n\n Branded Client App\n\n HIPAA\n\n SAML SSO\n\n"
+      },
+      {
+        "plan_name": "Premium",
+        "text": " Premium\n\n Most popular \n\n €49.9\n\n per month, billed annually \n €59.9\n\n per month, billed monthly \n\n Included bookings\n\n 2000\n\n Custom Features \n\n ∞\n\n Providers\n\n 30\n\n Get Started \n\n Available options on Standard+\n\n Payments PRO\n\n Refunds, Payment Links, Vaulted cards \n\n QuickBooks, FreshBooks, Xero Integrations\n\n White label (page footer)\n\n (page footer) \n\n"
+      }
+    ],
+    "proposal": {
+      "draft": {
+        "plans": [
+          {
+            "plan_name": "Free",
+            "billing_option": "monthly",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 0,
+                "exact_evidence_quote": " €0\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €0\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "monthly",
+                "exact_evidence_quote": " €0\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €0\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": true,
+                "exact_evidence_quote": " Free",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Free",
+            "billing_option": "annual",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 0,
+                "exact_evidence_quote": " €0\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €0\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "annual",
+                "exact_evidence_quote": " €0\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €0\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": true,
+                "exact_evidence_quote": " Free",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Basic",
+            "billing_option": "monthly",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 13.9,
+                "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "monthly",
+                "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": " Basic",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Basic",
+            "billing_option": "annual",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 11.9,
+                "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "annual",
+                "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": " Basic",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Standard",
+            "billing_option": "monthly",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 29.9,
+                "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "monthly",
+                "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": " Standard",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Standard",
+            "billing_option": "annual",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 24.9,
+                "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "annual",
+                "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": " Standard",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Premium",
+            "billing_option": "monthly",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 59.9,
+                "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "monthly",
+                "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": " Premium",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Premium",
+            "billing_option": "annual",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": 49.9,
+                "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "currency",
+                "normalized_value": "EUR",
+                "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "annual",
+                "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "per month",
+                "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": false,
+                "exact_evidence_quote": " Premium",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 1
+              }
+            ]
+          },
+          {
+            "plan_name": "Enterprise",
+            "billing_option": "monthly",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "currency",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              }
+            ]
+          },
+          {
+            "plan_name": "Enterprise",
+            "billing_option": "annual",
+            "fields": [
+              {
+                "field": "price_amount",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "currency",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "billing_period",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "pricing_unit",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              },
+              {
+                "field": "free_plan",
+                "normalized_value": "UNKNOWN",
+                "exact_evidence_quote": "",
+                "source_url": "https://simplybook.me/en/pricing",
+                "confidence": 0
+              }
+            ]
+          }
+        ]
+      },
+      "raw_content": "{\"plans\":[{\"plan_name\":\"Free\",\"billing_option\":\"monthly\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":0,\"exact_evidence_quote\":\" €0\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €0\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"monthly\",\"exact_evidence_quote\":\" €0\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €0\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":true,\"exact_evidence_quote\":\" Free\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Free\",\"billing_option\":\"annual\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":0,\"exact_evidence_quote\":\" €0\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €0\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"annual\",\"exact_evidence_quote\":\" €0\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €0\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":true,\"exact_evidence_quote\":\" Free\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Basic\",\"billing_option\":\"monthly\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":13.9,\"exact_evidence_quote\":\" €13.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €13.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"monthly\",\"exact_evidence_quote\":\" €13.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €13.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\" Basic\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Basic\",\"billing_option\":\"annual\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":11.9,\"exact_evidence_quote\":\" €11.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €11.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"annual\",\"exact_evidence_quote\":\" €11.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €11.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\" Basic\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Standard\",\"billing_option\":\"monthly\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":29.9,\"exact_evidence_quote\":\" €29.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €29.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"monthly\",\"exact_evidence_quote\":\" €29.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €29.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\" Standard\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Standard\",\"billing_option\":\"annual\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":24.9,\"exact_evidence_quote\":\" €24.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €24.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"annual\",\"exact_evidence_quote\":\" €24.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €24.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\" Standard\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Premium\",\"billing_option\":\"monthly\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":59.9,\"exact_evidence_quote\":\" €59.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €59.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"monthly\",\"exact_evidence_quote\":\" €59.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €59.9\\n\\n per month, billed monthly\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\" Premium\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Premium\",\"billing_option\":\"annual\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":49.9,\"exact_evidence_quote\":\" €49.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"currency\",\"normalized_value\":\"EUR\",\"exact_evidence_quote\":\" €49.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"billing_period\",\"normalized_value\":\"annual\",\"exact_evidence_quote\":\" €49.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"pricing_unit\",\"normalized_value\":\"per month\",\"exact_evidence_quote\":\" €49.9\\n\\n per month, billed annually\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0},{\"field\":\"free_plan\",\"normalized_value\":false,\"exact_evidence_quote\":\" Premium\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":1.0}]},{\"plan_name\":\"Enterprise\",\"billing_option\":\"monthly\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"currency\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"billing_period\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"pricing_unit\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"free_plan\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0}]},{\"plan_name\":\"Enterprise\",\"billing_option\":\"annual\",\"fields\":[{\"field\":\"price_amount\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"currency\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"billing_period\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"pricing_unit\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0},{\"field\":\"free_plan\",\"normalized_value\":\"UNKNOWN\",\"exact_evidence_quote\":\"\",\"source_url\":\"https://simplybook.me/en/pricing\",\"confidence\":0}]}]}",
+      "model": "gpt-oss:20b",
+      "elapsed_seconds": 66.88553099999999,
+      "prompt_tokens": 913,
+      "output_tokens": 5814,
+      "complete": true
+    },
+    "validated": [
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Free",
+        "billing_option": "monthly",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 0,
+            "exact_evidence_quote": " €0\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €0\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "monthly",
+            "exact_evidence_quote": " €0\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Free",
+        "billing_option": "annual",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 0,
+            "exact_evidence_quote": " €0\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €0\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "annual",
+            "exact_evidence_quote": " €0\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Basic",
+        "billing_option": "monthly",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 13.9,
+            "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "monthly",
+            "exact_evidence_quote": " €13.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Basic",
+        "billing_option": "annual",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 11.9,
+            "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "annual",
+            "exact_evidence_quote": " €11.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Standard",
+        "billing_option": "monthly",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 29.9,
+            "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "monthly",
+            "exact_evidence_quote": " €29.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Standard",
+        "billing_option": "annual",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 24.9,
+            "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "annual",
+            "exact_evidence_quote": " €24.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Premium",
+        "billing_option": "monthly",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 59.9,
+            "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "monthly",
+            "exact_evidence_quote": " €59.9\n\n per month, billed monthly",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Premium",
+        "billing_option": "annual",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": 49.9,
+            "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "currency",
+            "normalized_value": "EUR",
+            "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "annual",
+            "exact_evidence_quote": " €49.9\n\n per month, billed annually",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "VERIFIED_EVIDENCE",
+            "reason": "EXACT_QUOTE_AND_RULES",
+            "model_confidence": 1
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "VALUE_NOT_DEMONSTRATED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Enterprise",
+        "billing_option": "monthly",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      },
+      {
+        "entity": "SimplyBook.me",
+        "source_url": "https://simplybook.me/en/pricing",
+        "accessed_at": "2026-10-08T18:50:15.973Z",
+        "plan_name": "Enterprise",
+        "billing_option": "annual",
+        "fields": [
+          {
+            "field": "plan_name",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "price_amount",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "currency",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "billing_period",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "pricing_unit",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          },
+          {
+            "field": "free_plan",
+            "normalized_value": "UNKNOWN",
+            "exact_evidence_quote": "",
+            "source_url": "https://simplybook.me/en/pricing",
+            "status": "UNKNOWN",
+            "reason": "NOT_PROPOSED",
+            "model_confidence": null
+          }
+        ]
+      }
+    ]
+  }
+]

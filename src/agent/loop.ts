@@ -68,6 +68,7 @@ import { isIdleOnlyTool } from "./idle-only-tools.js";
 import { createLocalWorkspaceTools } from "./local-workspace-tools.js";
 import { createLocalWebTools } from "./local-web-tools.js";
 import { createStructuredResearchTools } from "./structured-research.js";
+import { createLocalPricingTools } from "./pricing-research.js";
 import { applyLaunchInferenceCaps, capLaunchCycleTurns } from "../launch/safety.js";
 
 const logger = createLogger("loop");
@@ -128,6 +129,7 @@ export async function runAgentLoop(
     ...localWorkspaceTools,
     ...localWebTools,
     ...(localOllamaMode ? createStructuredResearchTools(localWebTools, localWorkspaceTools) : []),
+    ...(localOllamaMode ? createLocalPricingTools(localWebTools, localWorkspaceTools) : []),
   ];
   const toolContext: ToolContext = {
     identity,

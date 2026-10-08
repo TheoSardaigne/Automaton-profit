@@ -5,7 +5,7 @@
     "scripts/check-kernel-manifest.mjs": "dfb6fc24d1a2dbf309d42a6fb10dfe568b01e8d5430fc290ac04836f609cafd1",
     "scripts/generate-kernel-manifest.mjs": "cdf585e7c3f95cc0b43e784bc94226dc295b5a023cd8f4eb4317444128920085",
     "src/agent/injection-defense.ts": "db2d44d7a4a3218ace1a9987530456301421206cf11afc7a264ef4afd0b501c2",
-    "src/agent/loop.ts": "72d4546561b357c459e837542f66c798651a051df990e6840e3349e478e54920",
+    "src/agent/loop.ts": "4b569874dd6052c809241647ac0830bcf351a76f4526944535bbac2345611fa1",
     "src/agent/policy-engine.ts": "e98768e407f3caaed2159088068b8dec57b40e4998cc4e185d00a79cd8749f69",
     "src/agent/policy-rules/authority.ts": "f6f61b95b1ade90798231fd4711edfcfe0f33b6455600433fee094b559b5ed56",
     "src/agent/policy-rules/command-safety.ts": "4d5e21de517b70df7262bfbc23f5de28408c3b123fa38904a72bd530ec9cafab",

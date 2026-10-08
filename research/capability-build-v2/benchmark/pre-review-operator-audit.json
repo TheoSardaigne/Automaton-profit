@@ -1,0 +1,302 @@
+{
+  "role": "OPERATOR_REFERENCE_AUDIT_NOT_OWNER_HUMAN_REVIEW",
+  "accepted_checked": 32,
+  "correct_against_reference": 32,
+  "incorrect_against_reference": 0,
+  "verified_price_amounts": 7,
+  "correctly_associated_price_contexts": 7,
+  "accepted_plan_name_fields": 9,
+  "complete_price_tuples": 0,
+  "human_false_positives": "UNKNOWN",
+  "human_review_seconds": "UNKNOWN",
+  "checks": [
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "actual": 10,
+      "reference": 10,
+      "matches_reference": true
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "actual": "user/month",
+      "reference": "user/month",
+      "matches_reference": true
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Premium",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "actual": 17,
+      "reference": 17,
+      "matches_reference": true
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Premium",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "actual": "user/month",
+      "reference": "user/month",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "actual": "Free",
+      "reference": "Free",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "actual": 0,
+      "reference": 0,
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "free_plan",
+      "actual": true,
+      "reference": true,
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Individual",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "actual": "Individual",
+      "reference": "Individual",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Individual",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Professional",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "actual": "Professional",
+      "reference": "Professional",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Professional",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Team",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "actual": "Team",
+      "reference": "Team",
+      "matches_reference": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Team",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "actual": "member/month",
+      "reference": "member/month",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "actual": "Free",
+      "reference": "Free",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "actual": 0,
+      "reference": 0,
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "currency",
+      "actual": "EUR",
+      "reference": "EUR",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "free_plan",
+      "actual": true,
+      "reference": true,
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "actual": "Basic",
+      "reference": "Basic",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "actual": 13.9,
+      "reference": 13.9,
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "currency",
+      "actual": "EUR",
+      "reference": "EUR",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "actual": "Standard",
+      "reference": "Standard",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "actual": 29.9,
+      "reference": 29.9,
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "currency",
+      "actual": "EUR",
+      "reference": "EUR",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "actual": "Premium",
+      "reference": "Premium",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "actual": 59.9,
+      "reference": 59.9,
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "currency",
+      "actual": "EUR",
+      "reference": "EUR",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "actual": "month",
+      "reference": "month",
+      "matches_reference": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Enterprise",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "actual": "Enterprise",
+      "reference": "Enterprise",
+      "matches_reference": true
+    }
+  ]
+}

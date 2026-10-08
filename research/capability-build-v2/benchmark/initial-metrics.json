@@ -1,0 +1,241 @@
+{
+  "date": "2026-10-08T18:51:22.866Z",
+  "external_spend_executed": 0,
+  "wallet_loaded": false,
+  "pages_requested": 3,
+  "pages_accessible": 3,
+  "expected_plan_options": 16,
+  "expected_fields": 96,
+  "fields_proposed_total": 62,
+  "fields_proposed_non_unknown": 46,
+  "fields_validated": 27,
+  "unknown": 69,
+  "zero_placeholder_rejections": 0,
+  "exact_quote_checks": [
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "annual",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "annual",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "annual",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "annual",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "annual",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "annual",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "annual",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "annual",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "annual",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "annual",
+      "field": "price_amount",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "annual",
+      "field": "currency",
+      "quote_in_card": true,
+      "source_matches": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "annual",
+      "field": "billing_period",
+      "quote_in_card": true,
+      "source_matches": true
+    }
+  ],
+  "accepted_without_exact_quote": 0,
+  "price_amounts_verified": 9,
+  "machine_seconds": 232.4698312,
+  "local_model_calls": 3,
+  "human_review_seconds": "UNKNOWN",
+  "human_false_positives": "UNKNOWN",
+  "human_correct_accepted_fields": "UNKNOWN",
+  "human_review_status": "PENDING_OWNER_TIMED_REVIEW",
+  "manual_agent_review_is_not_human": true
+}

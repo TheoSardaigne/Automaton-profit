@@ -1,0 +1,333 @@
+{
+  "benchmark": "capability-build-v2",
+  "status": "PENDING_OWNER_TIMED_REVIEW",
+  "start_iso": "UNKNOWN",
+  "end_iso": "UNKNOWN",
+  "elapsed_seconds": "UNKNOWN",
+  "accepted_fields": 32,
+  "correct": "UNKNOWN",
+  "incorrect": "UNKNOWN",
+  "uncertain": "UNKNOWN",
+  "rows": [
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "value": 10,
+      "quote": "$ 10 /user/mo",
+      "source_url": "https://savvycal.com/pricing/",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Basic",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "value": "user/month",
+      "quote": "$ 10 /user/mo",
+      "source_url": "https://savvycal.com/pricing/",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Premium",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "value": 17,
+      "quote": "$ 17 /user/mo",
+      "source_url": "https://savvycal.com/pricing/",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SavvyCal",
+      "plan_name": "Premium",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "value": "user/month",
+      "quote": "$ 17 /user/mo",
+      "source_url": "https://savvycal.com/pricing/",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "value": "Free",
+      "quote": "Free",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "price_amount",
+      "value": 0,
+      "quote": " $ \n 0 \n / month",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": " $ \n 0 \n / month",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Free",
+      "billing_option": "UNKNOWN",
+      "field": "free_plan",
+      "value": true,
+      "quote": " $ \n 0 \n / month",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Individual",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "value": "Individual",
+      "quote": "Individual",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Individual",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": " $ \n 0 \n / month",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Professional",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "value": "Professional",
+      "quote": "Professional",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Professional",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": " $ \n 0 \n / month",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Team",
+      "billing_option": "UNKNOWN",
+      "field": "plan_name",
+      "value": "Team",
+      "quote": "Team",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "plan_name": "Team",
+      "billing_option": "UNKNOWN",
+      "field": "pricing_unit",
+      "value": "member/month",
+      "quote": " $ \n 0 \n / member / month",
+      "source_url": "https://youcanbook.me/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "value": "Free",
+      "quote": "Free",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "value": 0,
+      "quote": "€0",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "currency",
+      "value": "EUR",
+      "quote": "€",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": "per month",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Free",
+      "billing_option": "monthly",
+      "field": "free_plan",
+      "value": true,
+      "quote": "€0",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "value": "Basic",
+      "quote": "Basic",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "value": 13.9,
+      "quote": "€13.9",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "currency",
+      "value": "EUR",
+      "quote": "€",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Basic",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": "per month",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "value": "Standard",
+      "quote": "Standard",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "value": 29.9,
+      "quote": "€29.9",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "currency",
+      "value": "EUR",
+      "quote": "€",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Standard",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": "per month",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "value": "Premium",
+      "quote": "Premium",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "price_amount",
+      "value": 59.9,
+      "quote": "€59.9",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "currency",
+      "value": "EUR",
+      "quote": "€",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Premium",
+      "billing_option": "monthly",
+      "field": "pricing_unit",
+      "value": "month",
+      "quote": "per month",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    },
+    {
+      "entity": "SimplyBook.me",
+      "plan_name": "Enterprise",
+      "billing_option": "monthly",
+      "field": "plan_name",
+      "value": "Enterprise",
+      "quote": "Enterprise",
+      "source_url": "https://simplybook.me/en/pricing",
+      "verdict": "NOT_REVIEWED"
+    }
+  ]
+}
