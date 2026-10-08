@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-08T17:55:21.422Z",
+  "model_calls": 0,
+  "external_spend_executed": 0,
+  "elapsed_seconds": 3.4042456000000003,
+  "pages_requested": 10,
+  "unique_pages_requested": 10,
+  "duplicate_requests_avoided": 0,
+  "pages_succeeded": 6,
+  "fields_expected": 30,
+  "literals_extracted": 7,
+  "unknown": 23,
+  "exact_evidence_checks": [
+    {
+      "entity": "SavvyCal",
+      "field": "scheduling_literal",
+      "source_url": "https://savvycal.com/",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "field": "scheduling_literal",
+      "source_url": "https://youcanbook.me/",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "field": "integrations_literal",
+      "source_url": "https://youcanbook.me/",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    },
+    {
+      "entity": "YouCanBookMe",
+      "field": "free_plan_literal",
+      "source_url": "https://youcanbook.me/pricing",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "field": "scheduling_literal",
+      "source_url": "https://simplybook.me/en/",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "field": "integrations_literal",
+      "source_url": "https://simplybook.me/en/",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    },
+    {
+      "entity": "SimplyBook.me",
+      "field": "free_plan_literal",
+      "source_url": "https://simplybook.me/en/pricing",
+      "value_in_source": true,
+      "evidence_in_source": true,
+      "correct_source_association": true
+    }
+  ],
+  "extraction_errors_observed": 0,
+  "controls_unknown": 10,
+  "page_outcomes": [
+    {
+      "entity": "Calendly",
+      "url": "https://calendly.com/",
+      "http_status": "UNKNOWN",
+      "blocked_reason": "Blocked: response exceeds 524288 byte limit"
+    },
+    {
+      "entity": "Calendly",
+      "url": "https://calendly.com/pricing",
+      "http_status": "UNKNOWN",
+      "blocked_reason": "Blocked: response exceeds 524288 byte limit"
+    },
+    {
+      "entity": "SavvyCal",
+      "url": "https://savvycal.com/",
+      "http_status": "200",
+      "blocked_reason": null
+    },
+    {
+      "entity": "SavvyCal",
+      "url": "https://savvycal.com/pricing/",
+      "http_status": "200",
+      "blocked_reason": null
+    },
+    {
+      "entity": "Cal.com",
+      "url": "https://cal.com/",
+      "http_status": "UNKNOWN",
+      "blocked_reason": "Blocked: response exceeds 524288 byte limit"
+    },
+    {
+      "entity": "Cal.com",
+      "url": "https://cal.com/pricing",
+      "http_status": "UNKNOWN",
+      "blocked_reason": "Blocked: response exceeds 524288 byte limit"
+    },
+    {
+      "entity": "YouCanBookMe",
+      "url": "https://youcanbook.me/",
+      "http_status": "200",
+      "blocked_reason": null
+    },
+    {
+      "entity": "YouCanBookMe",
+      "url": "https://youcanbook.me/pricing",
+      "http_status": "200",
+      "blocked_reason": null
+    },
+    {
+      "entity": "SimplyBook.me",
+      "url": "https://simplybook.me/en/",
+      "http_status": "200",
+      "blocked_reason": null
+    },
+    {
+      "entity": "SimplyBook.me",
+      "url": "https://simplybook.me/en/pricing",
+      "http_status": "200",
+      "blocked_reason": null
+    }
+  ],
+  "scope": "literal collection, NOT semantic correctness, complete plan-price extraction or end-to-end Ollama autonomy"
+}

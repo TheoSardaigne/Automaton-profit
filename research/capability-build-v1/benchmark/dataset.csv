@@ -1,0 +1,93 @@
+entity,source_url,requested_url,access_date,field,value,evidence,status,reason
+"Calendly","https://calendly.com/","https://calendly.com/","2026-10-08T17:55:18.304Z","scheduling_literal","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Calendly","https://calendly.com/","https://calendly.com/","2026-10-08T17:55:18.304Z","integrations_literal","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Calendly","https://calendly.com/","https://calendly.com/","2026-10-08T17:55:18.304Z","unverifiable_control","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Calendly","https://calendly.com/pricing","https://calendly.com/pricing","2026-10-08T17:55:18.702Z","free_plan_literal","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Calendly","https://calendly.com/pricing","https://calendly.com/pricing","2026-10-08T17:55:18.702Z","pricing_line","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Calendly","https://calendly.com/pricing","https://calendly.com/pricing","2026-10-08T17:55:18.702Z","unverifiable_control","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"SavvyCal","https://savvycal.com/","https://savvycal.com/","2026-10-08T17:55:18.904Z","scheduling_literal","scheduling","on your links to match your unique style.
+
+ Custom Domains
+ Host your scheduling links on your own custom domain, for a professional white-labeled boo","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"SavvyCal","https://savvycal.com/","https://savvycal.com/","2026-10-08T17:55:18.904Z","integrations_literal","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"SavvyCal","https://savvycal.com/","https://savvycal.com/","2026-10-08T17:55:18.904Z","unverifiable_control","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"SavvyCal","https://savvycal.com/pricing/","https://savvycal.com/pricing/","2026-10-08T17:55:19.368Z","free_plan_literal","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"SavvyCal","https://savvycal.com/pricing/","https://savvycal.com/pricing/","2026-10-08T17:55:19.368Z","pricing_line","UNKNOWN","","UNKNOWN","AMBIGUOUS"
+"SavvyCal","https://savvycal.com/pricing/","https://savvycal.com/pricing/","2026-10-08T17:55:19.368Z","unverifiable_control","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"Cal.com","https://cal.com/","https://cal.com/","2026-10-08T17:55:19.523Z","scheduling_literal","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Cal.com","https://cal.com/","https://cal.com/","2026-10-08T17:55:19.523Z","integrations_literal","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Cal.com","https://cal.com/","https://cal.com/","2026-10-08T17:55:19.523Z","unverifiable_control","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Cal.com","https://cal.com/pricing","https://cal.com/pricing","2026-10-08T17:55:19.676Z","free_plan_literal","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Cal.com","https://cal.com/pricing","https://cal.com/pricing","2026-10-08T17:55:19.676Z","pricing_line","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"Cal.com","https://cal.com/pricing","https://cal.com/pricing","2026-10-08T17:55:19.676Z","unverifiable_control","UNKNOWN","","UNKNOWN","INACCESSIBLE"
+"YouCanBookMe","https://youcanbook.me/","https://youcanbook.me/","2026-10-08T17:55:19.794Z","scheduling_literal","scheduling","in
+
+ Login
+
+ Menu 
+
+ It Starts With You 
+
+ YouCanBookMe is the online scheduling solution made for small to midsize businesses. Proven to save you tim","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"YouCanBookMe","https://youcanbook.me/","https://youcanbook.me/","2026-10-08T17:55:19.794Z","integrations_literal","integrations","nstantly update your CRM
+
+ Track your client’s journey with Analytics integrations
+
+ Pick the perfect plan for your small business
+
+ Billed Monthly 
+
+ B","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"YouCanBookMe","https://youcanbook.me/","https://youcanbook.me/","2026-10-08T17:55:19.794Z","unverifiable_control","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"YouCanBookMe","https://youcanbook.me/pricing","https://youcanbook.me/pricing","2026-10-08T17:55:19.896Z","free_plan_literal","Free","ed Yearly 10% off 
+
+ Billed 2 Years 20% off 
+
+ $USD 
+ £GBP 
+ €Euro 
+
+ Free
+
+ $ 
+ 0 
+ / month 
+
+ Contact Sales 
+
+ Get started. The most customiza","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"YouCanBookMe","https://youcanbook.me/pricing","https://youcanbook.me/pricing","2026-10-08T17:55:19.896Z","pricing_line","UNKNOWN","","UNKNOWN","AMBIGUOUS"
+"YouCanBookMe","https://youcanbook.me/pricing","https://youcanbook.me/pricing","2026-10-08T17:55:19.896Z","unverifiable_control","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"SimplyBook.me","https://simplybook.me/en/","https://simplybook.me/en/","2026-10-08T17:55:20.374Z","scheduling_literal","scheduling","es
+
+ Handle appointments, reminders, payments — all in one AI-powered scheduling system that's easy to set up yourself in minutes
+
+ Get a Free Account","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"SimplyBook.me","https://simplybook.me/en/","https://simplybook.me/en/","2026-10-08T17:55:20.374Z","integrations_literal","integrations","lients 
+
+ Zapier 
+ Integrate with favourite business tools 
+
+ All our integrations 
+
+ Customization
+
+ Apps 
+ Admin & Client App 
+
+ Website Templates 
+ R","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"SimplyBook.me","https://simplybook.me/en/","https://simplybook.me/en/","2026-10-08T17:55:20.374Z","unverifiable_control","UNKNOWN","","UNKNOWN","NOT_FOUND"
+"SimplyBook.me","https://simplybook.me/en/pricing","https://simplybook.me/en/pricing","2026-10-08T17:55:21.419Z","free_plan_literal","Free","SimplyBook.me Pricing 2026 | Plans, Features & Free Trial 
+
+ Become a partner 
+
+ En 
+
+ Industries 
+
+ Features 
+
+ Pricing ","EXTRACTED_LITERAL","EXACT_LITERAL_ONLY"
+"SimplyBook.me","https://simplybook.me/en/pricing","https://simplybook.me/en/pricing","2026-10-08T17:55:21.419Z","pricing_line","UNKNOWN","","UNKNOWN","AMBIGUOUS"
+"SimplyBook.me","https://simplybook.me/en/pricing","https://simplybook.me/en/pricing","2026-10-08T17:55:21.419Z","unverifiable_control","UNKNOWN","","UNKNOWN","NOT_FOUND"

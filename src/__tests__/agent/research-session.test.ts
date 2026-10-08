@@ -51,11 +51,22 @@ describe("zero-spend research session", () => {
   it("refuses an incomplete toolset", () => {
     expect(() => createResearchDispatcher([], "scope")).toThrow("Incomplete research toolset");
   });
+  it("confines batch CSV exports to the session's dataset", async () => {
+    const execute = vi.fn().mockResolvedValue("OK");
+    const scope = "research/first-payment/session";
+    const dispatch = createResearchDispatcher(RESEARCH_TOOLS.map((name) => ({ name, execute })), scope);
+    for (const path of ["elsewhere.csv", `${scope}/../dataset.csv`, `${scope}/other.csv`]) {
+      expect(await dispatch("local_research_extract_csv", { path, pages: [] })).toContain("Blocked:");
+    }
+    expect(execute).not.toHaveBeenCalled();
+    expect(await dispatch("local_research_extract_csv", { path: `${scope}/dataset.csv`, pages: [] })).toBe("OK");
+  });
   it("blocks all web calls in offline review", async () => {
     const execute = vi.fn().mockResolvedValue("OK");
     const dispatch = createResearchDispatcher(RESEARCH_TOOLS.map((name) => ({ name, execute })), "scope", { offline: true });
     expect(await dispatch("local_web_search", { query: "test" })).toContain("offline review");
     expect(await dispatch("web.local_web_fetch", { url: "https://example.com" })).toContain("offline review");
+    expect(await dispatch("local_research_extract_csv", { path: "scope/dataset.csv", pages: [] })).toContain("offline review");
     expect(execute).not.toHaveBeenCalled();
   });
 });

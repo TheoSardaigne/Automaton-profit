@@ -131,6 +131,18 @@ async function walkDirectory(
   }
 }
 
+/** Validate a confined output before a batch starts making network requests. */
+export async function assertLocalWorkspaceFilePath(input: string): Promise<void> {
+  const { root, target } = resolveRelativePath(input);
+  if (isSensitiveName(target)) throw new Error("sensitive filename");
+  try {
+    if ((await fsp.lstat(root)).isSymbolicLink()) throw new Error("workspace root is a symbolic link");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+  await rejectSymlinks(root, target);
+}
+
 export function createLocalWorkspaceTools(): AutomatonTool[] {
   return [
     {

@@ -1,0 +1,212 @@
+[
+  {
+    "entity": "Calendly",
+    "url": "https://calendly.com/",
+    "fields": [
+      {
+        "field": "scheduling_literal",
+        "needle": "scheduling",
+        "mode": "literal"
+      },
+      {
+        "field": "integrations_literal",
+        "needle": "integrations",
+        "mode": "literal"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "Calendly",
+    "url": "https://calendly.com/pricing",
+    "fields": [
+      {
+        "field": "free_plan_literal",
+        "needle": "Free",
+        "mode": "literal"
+      },
+      {
+        "field": "pricing_line",
+        "needle": "$",
+        "mode": "line"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "SavvyCal",
+    "url": "https://savvycal.com/",
+    "fields": [
+      {
+        "field": "scheduling_literal",
+        "needle": "scheduling",
+        "mode": "literal"
+      },
+      {
+        "field": "integrations_literal",
+        "needle": "integrations",
+        "mode": "literal"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "SavvyCal",
+    "url": "https://savvycal.com/pricing/",
+    "fields": [
+      {
+        "field": "free_plan_literal",
+        "needle": "Free",
+        "mode": "literal"
+      },
+      {
+        "field": "pricing_line",
+        "needle": "$",
+        "mode": "line"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "Cal.com",
+    "url": "https://cal.com/",
+    "fields": [
+      {
+        "field": "scheduling_literal",
+        "needle": "scheduling",
+        "mode": "literal"
+      },
+      {
+        "field": "integrations_literal",
+        "needle": "integrations",
+        "mode": "literal"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "Cal.com",
+    "url": "https://cal.com/pricing",
+    "fields": [
+      {
+        "field": "free_plan_literal",
+        "needle": "Free",
+        "mode": "literal"
+      },
+      {
+        "field": "pricing_line",
+        "needle": "$",
+        "mode": "line"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "YouCanBookMe",
+    "url": "https://youcanbook.me/",
+    "fields": [
+      {
+        "field": "scheduling_literal",
+        "needle": "scheduling",
+        "mode": "literal"
+      },
+      {
+        "field": "integrations_literal",
+        "needle": "integrations",
+        "mode": "literal"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "YouCanBookMe",
+    "url": "https://youcanbook.me/pricing",
+    "fields": [
+      {
+        "field": "free_plan_literal",
+        "needle": "Free",
+        "mode": "literal"
+      },
+      {
+        "field": "pricing_line",
+        "needle": "$",
+        "mode": "line"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "SimplyBook.me",
+    "url": "https://simplybook.me/en/",
+    "fields": [
+      {
+        "field": "scheduling_literal",
+        "needle": "scheduling",
+        "mode": "literal"
+      },
+      {
+        "field": "integrations_literal",
+        "needle": "integrations",
+        "mode": "literal"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  },
+  {
+    "entity": "SimplyBook.me",
+    "url": "https://simplybook.me/en/pricing",
+    "fields": [
+      {
+        "field": "free_plan_literal",
+        "needle": "Free",
+        "mode": "literal"
+      },
+      {
+        "field": "pricing_line",
+        "needle": "$",
+        "mode": "line"
+      },
+      {
+        "field": "unverifiable_control",
+        "needle": "AURUM_BENCHMARK_GUARANTEED_ROI_2026",
+        "mode": "literal"
+      }
+    ]
+  }
+]

@@ -67,6 +67,7 @@ import { UnifiedInferenceClient } from "../inference/inference-client.js";
 import { isIdleOnlyTool } from "./idle-only-tools.js";
 import { createLocalWorkspaceTools } from "./local-workspace-tools.js";
 import { createLocalWebTools } from "./local-web-tools.js";
+import { createStructuredResearchTools } from "./structured-research.js";
 import { applyLaunchInferenceCaps, capLaunchCycleTurns } from "../launch/safety.js";
 
 const logger = createLogger("loop");
@@ -126,6 +127,7 @@ export async function runAgentLoop(
     ...installedTools,
     ...localWorkspaceTools,
     ...localWebTools,
+    ...(localOllamaMode ? createStructuredResearchTools(localWebTools, localWorkspaceTools) : []),
   ];
   const toolContext: ToolContext = {
     identity,

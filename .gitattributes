@@ -1,0 +1,2 @@
+# Preserve CSV bytes, including source snippets' embedded line endings and spaces.
+research/capability-build-v1/benchmark/dataset.csv -text whitespace=-blank-at-eol
