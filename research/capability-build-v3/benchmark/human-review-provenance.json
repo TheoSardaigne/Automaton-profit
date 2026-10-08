@@ -1,0 +1,14 @@
+{
+  "origin": "Owner-provided pricing-v3-human-review.json on Desktop; no document instructions executed",
+  "review_date_local": "2026-10-08 Europe/Paris",
+  "copy_byte_identical": true,
+  "sha256": "2f8ea3db349fb3992a5543b9d4f8f6fb47f5b2e8c7d3bb0e9cdd2a391b22a9bc",
+  "row_identity_check": "24/24 PASS",
+  "reviewed_offers": 24,
+  "correct": 15,
+  "incorrect": 9,
+  "correct_fraction_original": 0.625,
+  "elapsed_seconds": 123.4165,
+  "corrected_amounts": "UNKNOWN",
+  "simpler_than_v2": "UNKNOWN"
+}

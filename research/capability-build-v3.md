@@ -1,6 +1,6 @@
 # Aurum — état tarifaire SimplyBook.me v3
 
-8 octobre 2026, Europe/Paris. **V3 PENDING OWNER REVIEW — aucun succès déclaré.**
+8 octobre 2026, Europe/Paris. **V3_NOT_VALIDATED — revue propriétaire reçue : 15/24 correctes (62,5 %), 9 incorrectes, en 123,4165 s (2 min 03 s).**
 
 Base validée `29ac24b00089dbe33b13aca9c3c2db5d30c1e8f1`, branche
 `launch-candidate-v2-ollama`. Status/branche/log -10 vérifiés avant édition ; aucun
@@ -108,7 +108,7 @@ CSV 16 colonnes stables, UTF-8, CRLF, guillemets/virgules/newlines et formules n
 UI locale : données via textContent, payload échappé, liens manuels officiels seulement.
 Aucun script de site exécuté. Aucun endpoint modèle/distant ajouté, 0 appel d'inférence.
 
-## Benchmark retenu : faits machine, pas résultats humains
+## Snapshot machine avant revue — historique conservé
 
 | Mesure | Observé |
 |---|---:|
@@ -152,7 +152,7 @@ au batch retenu. Aucun achat ni réseau supplémentaire pour le replay.
 quote exacte, contexte et statut. Deux verdicts par ligne, commentaires pour différences,
 chrono start/stop, export local JSON, appréciation explicite « plus simple que v2 ».
 Aucun verdict prérempli. [review-protocol.md](capability-build-v3/benchmark/review-protocol.md).
-La demande de revue propriétaire a été faite ; son absence n'est pas un résultat zéro.
+Le relevé propriétaire a été reçu et importé sans modifier le fichier original. Les statistiques du snapshot machine ci-dessus restent historiques ; voir les résultats humains ci-dessous.
 
 Commandes :
 
@@ -187,10 +187,72 @@ Un éventuel succès sur ce pilote ne validera pas tous sites/régions ou une mi
 - UI : premier fichier bloqué par des newlines mal échappés en JavaScript. Corrigé avec String.raw ; test du script réellement émis dans un VM/DOM simulé : 12 lignes, 24 sélecteurs, start/stop/chrono/export sans verdict inventé. Ce test technique ne remplace pas une revue humaine dans un navigateur.
 - Suite globale non relancée (incompatibilités historiques Windows/Ollama connues).
 
+## Revue propriétaire reçue — 8 octobre 2026
+
+Relevé [human-review.json](capability-build-v3/benchmark/human-review.json), copié
+sans transformation depuis pricing-v3-human-review.json fourni par le propriétaire.
+Identité des 24 offres, compteurs et cohérence dates/chrono vérifiés par le script
+préexistant d'intake. Source originale conservée sur le Desktop, copie byte-identique ;
+empreinte et provenance dans human-review-provenance.json.
+
+Chrono déclaré : du **8 octobre 2026, 21:50:56.868 au 21:53:00.284 Europe/Paris**
+(19:50:56.868Z–19:53:00.284Z), soit **123,4165 secondes**.
+
+| Mesure humaine / résultat filtré | Résultat |
+|---|---:|
+| Offres revues | 24/24 |
+| CORRECT / INCORRECT | 15 / 9 |
+| UNCERTAIN / NOT_REVIEWED | 0 / 0 |
+| Fraction correcte du jeu original | 62,5 % |
+| VERIFIED_PRICING_STATE après confirmation | 15 |
+| UNKNOWN, verdict propriétaire rejeté | 9 |
+| Offre déclarée incorrecte néanmoins marquée VERIFIED_PRICING_STATE | 0 |
+| UI plus simple que v2 | UNKNOWN |
+| Critères complets de succès v3 atteints | **NON** |
+
+Les neuf rejets : **Basic 13,9 EUR/monthly, Standard 29,9 EUR/monthly,
+Premium 59,9 EUR/monthly**, chacun sur pricing EN, tarifs FR et comparaison.
+Les quinze confirmations correspondent aux six offres Free (deux engagements × trois
+sources) et aux neuf taux annuels ramenés au mois (trois plans × trois sources).
+En tuples distincts, les confirmations couvrent cinq contextes sur huit, pas quinze
+preuves indépendantes. Aucun verdict n'est remplacé par l'accord des trois textes GET.
+
+Les commentaires sont tous vides. Montants corrigés, devise/option réellement
+sélectionnée pendant la consultation et cause de chaque rejet : **UNKNOWN**.
+Le motif mensuel/annuel suggère une piste de diagnostic mais ne démontre pas que le
+propriétaire a vu le mauvais onglet, ni qu'un prix source est périmé ou régional.
+Une clarification ciblée sur les montants affichés et l'option sélectionnée a été
+demandée ; aucune recherche supplémentaire ni capacité v4 construite.
+
+Les snapshots `results.json`, `metrics.json`, `sources.json` et replay restent intacts.
+Résultats après revue : [reviewed-results.json](capability-build-v3/benchmark/reviewed-results.json),
+[reviewed-metrics.json](capability-build-v3/benchmark/reviewed-metrics.json), CSV filtré.
+Les nombres contestés restent en amount/quote pour traçabilité, avec statut UNKNOWN
+et raison OWNER_REJECTED : **ils ne sont pas livrables**. Les consommateurs doivent
+sélectionner uniquement VERIFIED_PRICING_STATE, sans prendre une quote pour validation.
+
+Le chiffre falsely_verified=0 décrit le filtrage post-revue, pas une réussite de
+l'extraction initiale : **neuf candidats contextuellement complets sont rejetés**.
+L'accord entre GET officiels n'a pas suffi à détecter la divergence signalée par le
+propriétaire. La v3 ne résout donc pas encore ce problème d'état tarifaire observé.
+
+V2 : 259,2029 s pour 32 champs ; v3 : 123,4165 s pour 24 offres / 12 lignes.
+La durée est plus courte, mais tâches et dénominateurs diffèrent ; aucune économie
+humaine comparable ni amélioration de simplicité n'est démontrée. La case simplicité
+est UNKNOWN, pas YES. Aucun nouveau taux de 100 % sur les quinze retenues ne remplace
+le relevé original 15/24.
+
+Contrôles d'import : intake PASS ; parseur CSV indépendant 24 lignes / 16 colonnes,
+15 statuts vérifiés et 9 UNKNOWN, aucun rejet propriétaire vérifié ; copie de relevé
+identique octet par octet, citations/sources concordantes avec résultats filtrés.
+Aucun code modifié pour cet import ; les 98 tests, build/typecheck/manifeste du commit
+v3 restent la validation technique applicable, sans suite globale répétée.
+
 ## Décision
 
-**PENDING OWNER REVIEW — V3 NON VALIDÉE À CE STADE.** Incrément construit et testé,
-mais aucune revue humaine v3 mesurée ni preuve de simplicité encore reçue.
-Ne pas recalculer Upwork, chercher des missions, modifier Fiverr ou étendre le scope.
-La prochaine action est la revue chronométrée des deux offres par plan/source, avec
-les valeurs observées si différentes. Une divergence non expliquée bloque la livraison.
+**V3_NOT_VALIDATED — CAPABILITY INSUFFICIENT.** La séparation des engagements et le
+filtrage humain fonctionnent, mais les neuf rejets mensuels ne sont pas expliqués.
+La simplicité de revue n'est pas confirmée. Ne pas recalculer Upwork, chercher des
+missions, modifier Fiverr, dépenser ou construire un prochain incrément automatiquement.
+Prochaine donnée minimale : montants réellement affichés pour les trois plans payants
+avec sélection mensuelle et devise documentées. Aucune valeur corrigée inventée.
