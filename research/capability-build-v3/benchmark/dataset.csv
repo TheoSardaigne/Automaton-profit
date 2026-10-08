@@ -1,0 +1,261 @@
+"entity","plan_name","amount","currency","billing_commitment","displayed_rate_period","pricing_unit","locale","source_url","accessed_at","exact_evidence_quote","context_evidence_quote","evidence_status","reason","capture_mode","source_reference_date"
+"SimplyBook.me","Free","0","EUR","monthly","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€0
+
+ per month, billed monthly"," Free
+
+ €0
+
+ per month, billed annually 
+ €0
+
+ per month, billed monthly","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Free","0","EUR","annual","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€0
+
+ per month, billed annually"," Free
+
+ €0
+
+ per month, billed annually","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Basic","13.9","EUR","monthly","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€13.9
+
+ per month, billed monthly"," Basic
+
+ €11.9
+
+ per month, billed annually 
+ €13.9
+
+ per month, billed monthly","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Basic","11.9","EUR","annual","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€11.9
+
+ per month, billed annually"," Basic
+
+ €11.9
+
+ per month, billed annually","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Standard","29.9","EUR","monthly","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€29.9
+
+ per month, billed monthly"," Standard
+
+ €24.9
+
+ per month, billed annually 
+ €29.9
+
+ per month, billed monthly","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Standard","24.9","EUR","annual","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€24.9
+
+ per month, billed annually"," Standard
+
+ €24.9
+
+ per month, billed annually","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Premium","59.9","EUR","monthly","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€59.9
+
+ per month, billed monthly"," Premium
+
+ Most popular 
+
+ €49.9
+
+ per month, billed annually 
+ €59.9
+
+ per month, billed monthly","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Premium","49.9","EUR","annual","month","month","en","https://simplybook.me/en/pricing","2026-10-08T19:30:17.288Z","€49.9
+
+ per month, billed annually"," Premium
+
+ Most popular 
+
+ €49.9
+
+ per month, billed annually","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Free","0","EUR","monthly","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€0
+
+ par mois, facturé mensuellement"," Gratuit
+
+ €0
+
+ par mois, facturé annuellement 
+ €0
+
+ par mois, facturé mensuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Free","0","EUR","annual","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€0
+
+ par mois, facturé annuellement"," Gratuit
+
+ €0
+
+ par mois, facturé annuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Basic","13.9","EUR","monthly","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€13.9
+
+ par mois, facturé mensuellement"," Basique
+
+ €11.9
+
+ par mois, facturé annuellement 
+ €13.9
+
+ par mois, facturé mensuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Basic","11.9","EUR","annual","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€11.9
+
+ par mois, facturé annuellement"," Basique
+
+ €11.9
+
+ par mois, facturé annuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Standard","29.9","EUR","monthly","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€29.9
+
+ par mois, facturé mensuellement"," Standard
+
+ €24.9
+
+ par mois, facturé annuellement 
+ €29.9
+
+ par mois, facturé mensuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Standard","24.9","EUR","annual","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€24.9
+
+ par mois, facturé annuellement"," Standard
+
+ €24.9
+
+ par mois, facturé annuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Premium","59.9","EUR","monthly","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€59.9
+
+ par mois, facturé mensuellement"," Premium
+
+ Plus populaire 
+
+ €49.9
+
+ par mois, facturé annuellement 
+ €59.9
+
+ par mois, facturé mensuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Premium","49.9","EUR","annual","month","month","fr","https://simplybook.me/fr/tarifs","2026-10-08T19:30:17.671Z","€49.9
+
+ par mois, facturé annuellement"," Premium
+
+ Plus populaire 
+
+ €49.9
+
+ par mois, facturé annuellement","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","UNKNOWN"
+"SimplyBook.me","Free","0","EUR","monthly","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Free 
+ €0 
+ €0 
+ 1 
+ 50/month 
+ 1","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Free","0","EUR","annual","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Free 
+ €0 
+ €0 
+ 1 
+ 50/month 
+ 1","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Basic","13.9","EUR","monthly","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Basic 
+ €13.90 
+ €11.90 
+ 5 
+ 100/month 
+ 3","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Basic","11.9","EUR","annual","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Basic 
+ €13.90 
+ €11.90 
+ 5 
+ 100/month 
+ 3","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Standard","29.9","EUR","monthly","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Standard 
+ €29.90 
+ €24.90 
+ 15 
+ 500/month 
+ 8","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Standard","24.9","EUR","annual","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Standard 
+ €29.90 
+ €24.90 
+ 15 
+ 500/month 
+ 8","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Premium","59.9","EUR","monthly","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Premium 
+ €59.90 
+ €49.90 
+ 30 
+ 2,000/month 
+ Unlimited 
+
+ Free plan with no credit card required. Upgrade as your business grows.","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"
+"SimplyBook.me","Premium","49.9","EUR","annual","month","month","en","https://simplybook.me/en/simplybook-vs-calendly","2026-10-08T19:30:17.862Z"," Premium 
+ €59.90 
+ €49.90 
+ 30 
+ 2,000/month 
+ Unlimited 
+
+ Free plan with no credit card required. Upgrade as your business grows.","SimplyBook.me Pricing (as of April 2026) 
+
+ Plan 
+ Monthly 
+ Annual (per month) 
+ Seats 
+ Bookings 
+ Custom Features 
+","UNKNOWN","CONTEXT_BOUND_OWNER_REVIEW_REQUIRED","PUBLIC_GET_STATIC_TEXT","2026-04 (precision month)"

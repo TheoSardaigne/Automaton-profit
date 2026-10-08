@@ -1,0 +1,38 @@
+[
+  {
+    "requested_url": "https://simplybook.me/en/pricing",
+    "source_url": "https://simplybook.me/en/pricing",
+    "accessed_at": "2026-10-08T19:30:17.288Z",
+    "accessible": true,
+    "text": "\n Free\n\n €0\n\n per month, billed annually \n €0\n\n per month, billed monthly \n\n Included bookings\n\n 50\n\n Custom Features \n\n 1\n\n Providers\n\n 1\n\n Get Started \n\n Available options\n\n Booking website\n\n Booking widget\n\n Admin App\n\n Wordpress widget\n\n Basic\n\n €11.9\n\n per month, billed annually \n €13.9\n\n per month, billed monthly \n\n Included bookings\n\n 100\n\n Custom Features \n\n 3\n\n Providers\n\n 5\n\n Get Started \n\n Available options on Free+\n\n Client App\n\n Payments, Deposits, Tips\n\n Sales (POS)\n\n Standard\n\n €24.9\n\n per month, billed annually \n €29.9\n\n per month, billed monthly \n\n Included bookings\n\n 500\n\n Custom Features \n\n 8\n\n Providers\n\n 15\n\n Get Started \n\n Available options on Basic+\n\n Branded Client App\n\n HIPAA\n\n SAML SSO\n\n Premium\n\n Most popular \n\n €49.9\n\n per month, billed annually \n €59.9\n\n per month, billed monthly \n\n Included bookings\n\n 2000\n\n Custom Features \n\n ∞\n\n Providers\n\n 30\n\n Get Started \n\n Available options on Standard+\n\n Payments PRO\n\n Refunds, Payment Links, Vaulted cards \n\n QuickBooks, FreshBooks, Xero Integrations\n\n White label (page footer)\n\n (page footer) \n\n Enterprise\n",
+    "full_sha256": "97d885d7f3cc81bd35a268faf069cd99c4738e21350970ff0979deb94e726475",
+    "full_characters": 27223,
+    "excerpt_sha256": "60f0fb2447ffcc7b03c76826f108b74b14566784037b1a1412621cb9702a4568",
+    "capture_mode": "PUBLIC_GET_STATIC_TEXT",
+    "excerpt_is_not_full_page": true
+  },
+  {
+    "requested_url": "https://simplybook.me/fr/tarifs",
+    "source_url": "https://simplybook.me/fr/tarifs",
+    "accessed_at": "2026-10-08T19:30:17.671Z",
+    "accessible": true,
+    "text": "\n Gratuit\n\n €0\n\n par mois, facturé annuellement \n €0\n\n par mois, facturé mensuellement \n\n Réservations incluses\n\n 50\n\n Fonctionnalités personnalisées \n\n 1\n\n Fournisseurs\n\n 1\n\n Commencer \n\n Basique\n\n €11.9\n\n par mois, facturé annuellement \n €13.9\n\n par mois, facturé mensuellement \n\n Réservations incluses\n\n 100\n\n Fonctionnalités personnalisées \n\n 3\n\n Fournisseurs\n\n 5\n\n Commencer \n\n Standard\n\n €24.9\n\n par mois, facturé annuellement \n €29.9\n\n par mois, facturé mensuellement \n\n Réservations incluses\n\n 500\n\n Fonctionnalités personnalisées \n\n 8\n\n Fournisseurs\n\n 15\n\n Commencer \n\n Options disponibles sur Basic+\n\n Application client à votre marque\n\n HIPAA\n\n SAML SSO\n\n Premium\n\n Plus populaire \n\n €49.9\n\n par mois, facturé annuellement \n €59.9\n\n par mois, facturé mensuellement \n\n Réservations incluses\n\n 2000\n\n Fonctionnalités personnalisées \n\n ∞\n\n Fournisseurs\n\n 30\n\n Commencer \n\n Options disponibles sur Standard+\n\n Paiements PRO\n\n Remboursements, liens de paiement, cartes voûtées \n\n Intégrations QuickBooks, FreshBooks, Xero\n\n Marque blanche (pied de page)\n\n (page footer) \n\n Entreprise\n",
+    "full_sha256": "d37f85fac590aa5af24bc370eb22d97e78ac8162bad43ec342d79857771e0304",
+    "full_characters": 32963,
+    "excerpt_sha256": "1dcbbe7dcc146bd3e0ccf4b3bb3a411e59f65792cf4388c18d0601201f05f783",
+    "capture_mode": "PUBLIC_GET_STATIC_TEXT",
+    "excerpt_is_not_full_page": true
+  },
+  {
+    "requested_url": "https://simplybook.me/en/simplybook-vs-calendly",
+    "source_url": "https://simplybook.me/en/simplybook-vs-calendly",
+    "accessed_at": "2026-10-08T19:30:17.862Z",
+    "accessible": true,
+    "text": "SimplyBook.me Pricing (as of April 2026) \n\n Plan \n Monthly \n Annual (per month) \n Seats \n Bookings \n Custom Features \n\n Free \n €0 \n €0 \n 1 \n 50/month \n 1 \n\n Basic \n €13.90 \n €11.90 \n 5 \n 100/month \n 3 \n\n Standard \n €29.90 \n €24.90 \n 15 \n 500/month \n 8 \n\n Premium \n €59.90 \n €49.90 \n 30 \n 2,000/month \n Unlimited \n\n Free plan with no credit card required. Upgrade as your business grows.\n\n What This Means in Practice",
+    "full_sha256": "2b4ff35be0f1baf278b639cd43c5647f496c2de7154b448a322730250705a042",
+    "full_characters": 20904,
+    "excerpt_sha256": "49b1e14a1993aee0cc66377120b394e8eaa51890224be26bd4251fe86a781546",
+    "capture_mode": "PUBLIC_GET_STATIC_TEXT",
+    "excerpt_is_not_full_page": true
+  }
+]

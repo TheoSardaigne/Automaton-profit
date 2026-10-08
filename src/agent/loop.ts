@@ -69,6 +69,7 @@ import { createLocalWorkspaceTools } from "./local-workspace-tools.js";
 import { createLocalWebTools } from "./local-web-tools.js";
 import { createStructuredResearchTools } from "./structured-research.js";
 import { createLocalPricingTools } from "./pricing-research.js";
+import { createPricingStateTools } from "./pricing-state-research.js";
 import { applyLaunchInferenceCaps, capLaunchCycleTurns } from "../launch/safety.js";
 
 const logger = createLogger("loop");
@@ -130,6 +131,7 @@ export async function runAgentLoop(
     ...localWebTools,
     ...(localOllamaMode ? createStructuredResearchTools(localWebTools, localWorkspaceTools) : []),
     ...(localOllamaMode ? createLocalPricingTools(localWebTools, localWorkspaceTools) : []),
+    ...(localOllamaMode ? createPricingStateTools(localWebTools, localWorkspaceTools) : []),
   ];
   const toolContext: ToolContext = {
     identity,
