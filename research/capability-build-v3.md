@@ -1,6 +1,6 @@
 # Aurum — état tarifaire SimplyBook.me v3
 
-8 octobre 2026, Europe/Paris. **V3_NOT_VALIDATED — revue propriétaire reçue : 15/24 correctes (62,5 %), 9 incorrectes, en 123,4165 s (2 min 03 s).**
+8 octobre 2026, Europe/Paris. **PRICING CONFIRMED BY OWNER — 24/24 offres correctes (100 %) après correction explicite des verdicts.** Le chrono original de 123,4165 s reste historique ; aucun nouveau chrono attribué à cette confirmation. Simplicité de revue : UNKNOWN.
 
 Base validée `29ac24b00089dbe33b13aca9c3c2db5d30c1e8f1`, branche
 `launch-candidate-v2-ollama`. Status/branche/log -10 vérifiés avant édition ; aucun
@@ -187,7 +187,7 @@ Un éventuel succès sur ce pilote ne validera pas tous sites/régions ou une mi
 - UI : premier fichier bloqué par des newlines mal échappés en JavaScript. Corrigé avec String.raw ; test du script réellement émis dans un VM/DOM simulé : 12 lignes, 24 sélecteurs, start/stop/chrono/export sans verdict inventé. Ce test technique ne remplace pas une revue humaine dans un navigateur.
 - Suite globale non relancée (incompatibilités historiques Windows/Ollama connues).
 
-## Revue propriétaire reçue — 8 octobre 2026
+## Revue initiale — 8 octobre 2026, avant correction propriétaire
 
 Relevé [human-review.json](capability-build-v3/benchmark/human-review.json), copié
 sans transformation depuis pricing-v3-human-review.json fourni par le propriétaire.
@@ -248,11 +248,53 @@ identique octet par octet, citations/sources concordantes avec résultats filtr�
 Aucun code modifié pour cet import ; les 98 tests, build/typecheck/manifeste du commit
 v3 restent la validation technique applicable, sans suite globale répétée.
 
+## Correction explicite du propriétaire — 8 octobre 2026
+
+Le propriétaire a précisé « je n ai regardé que annuelle », puis confirmé explicitement
+« non non c'est confirmé tu avais bon ». Ces messages corrigent les neuf verdicts
+mensuels INCORRECT du fichier initial ; ils ne fournissent pas un nouveau chronomètre.
+
+La correction est enregistrée séparément dans
+[owner-verdict-amendment.json](capability-build-v3/benchmark/owner-verdict-amendment.json),
+avec les messages exacts, les 24 identités d'offres et l'empreinte du relevé original.
+Le fichier human-review.json et sa provenance restent strictement inchangés.
+Le script d'intake valide ce lien et applique les verdicts corrigés ; aucun prix,
+quote, source, date d'accès, mode tarifaire ou devise n'est modifié.
+
+| Mesure après correction propriétaire | Résultat |
+|---|---:|
+| Offres confirmées correctes | **24/24 — 100 % déclaré propriétaire** |
+| Offres incorrectes selon verdict corrigé | 0 |
+| VERIFIED_PRICING_STATE | 24 |
+| UNKNOWN / CONFLICT_REQUIRES_REVIEW | 0 / 0 |
+| Offre incorrecte néanmoins vérifiée | 0 |
+| Nouveaux montants ou quotes fabriqués | 0 |
+| Chrono initial conservé | 123,4165 s |
+| Durée de la confirmation corrigée | **UNKNOWN** |
+| Revue plus simple que v2 | **UNKNOWN** |
+
+Les 24 lignes correspondent à huit tuples tarifaires distincts répétés sur trois
+sources, pas 24 observations indépendantes. Le 100 % est la confirmation explicite
+du propriétaire sur ce benchmark ; aucune généralisation à d'autres régions/pages
+ou à un livrable commercial entier. Il ne permet pas d'affirmer « 100 % en 2 min 03 »
+car le chrono concerne le relevé initial antérieur à la correction.
+
+Les tableaux de revue initiale et leur interprétation ci-dessus sont historiques :
+les neuf rejets sont désormais retirés par le propriétaire. Ils ne constituent plus
+neuf erreurs de prix démontrées. L'affichage annuel seul explique la comparaison
+initiale inadéquate avec les candidats mensuels ; aucun nouveau défaut source n'est
+inféré. Les montants mensuels sont maintenant confirmés par déclaration propriétaire.
+
+Contrôles d'import de correction : identité/empreinte du relevé PASS ; 24 tuples
+source/quote inchangés, CSV 24 lignes/16 colonnes et 24 statuts vérifiés.
+Test du script d'intake sur copies isolées : original 15/24 et chrono conservés PASS ;
+correction 24/24 avec durée UNKNOWN PASS ; empreinte falsifiée bloquée avant écriture PASS.
+Aucun nouveau benchmark réseau ou modèle, aucune suite globale relancée.
+
 ## Décision
 
-**V3_NOT_VALIDATED — CAPABILITY INSUFFICIENT.** La séparation des engagements et le
-filtrage humain fonctionnent, mais les neuf rejets mensuels ne sont pas expliqués.
-La simplicité de revue n'est pas confirmée. Ne pas recalculer Upwork, chercher des
-missions, modifier Fiverr, dépenser ou construire un prochain incrément automatiquement.
-Prochaine donnée minimale : montants réellement affichés pour les trois plans payants
-avec sélection mensuelle et devise documentées. Aucune valeur corrigée inventée.
+**PRICING_OWNER_CONFIRMED_SIMPLICITY_UNCONFIRMED.** La justesse des offres et leur
+séparation mensuel/annuel sont confirmées à 100 % par le propriétaire sur ce pilote.
+Les critères exhaustifs v3 incluent aussi une revue plus simple que v2 : cette
+appréciation reste UNKNOWN dans le relevé et n'est pas déduite du chrono.
+Aucune extension automatique, recherche ou recalcul Upwork, action Fiverr ou dépense.
